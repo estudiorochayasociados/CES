@@ -326,7 +326,7 @@ $template->themeInit();
             </div>
         </div>
     </section>
-    <?php $template->themeEndListingP(); ?>
+    <?php $template->themeEnd(); ?>
 </div>
 </body>
 

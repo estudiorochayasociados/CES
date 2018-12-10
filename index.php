@@ -17,6 +17,10 @@ $template->themeInit();
     <section class="main-section">
         <div class="container">
             <div class="row">
+                <?php
+                if ($_SESSION)
+
+                ?>
                 <!--
                 <div class="col-md-5 col-sm-8 col-xs-12 col-sm-offset-2 col-md-offset-0">
                     <div class="search-form-contaner">
@@ -284,7 +288,7 @@ $template->themeInit();
                                         <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/laptops/3.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/laptops/3.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-412">
                                                     <div class="listing-desc">
@@ -320,7 +324,7 @@ $template->themeInit();
                                             </div>
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/laptops/4.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/laptops/4.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -357,7 +361,7 @@ $template->themeInit();
                                             <div class="clearfix visible-sm"></div>
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/laptops/1.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/laptops/1.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -393,7 +397,7 @@ $template->themeInit();
                                             </div>
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/laptops/2.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/laptops/2.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -433,7 +437,7 @@ $template->themeInit();
                                         <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/laptops/5.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/laptops/5.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -469,7 +473,7 @@ $template->themeInit();
                                             </div>
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/laptops/2.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/laptops/2.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -506,7 +510,7 @@ $template->themeInit();
                                             <div class="clearfix visible-sm"></div>
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/laptops/3.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/laptops/3.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -542,7 +546,7 @@ $template->themeInit();
                                             </div>
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/laptops/1.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/laptops/1.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -582,7 +586,7 @@ $template->themeInit();
                                         <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/jobs/1.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/jobs/1.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -618,7 +622,7 @@ $template->themeInit();
                                             </div>
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/jobs/2.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/jobs/2.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -655,7 +659,7 @@ $template->themeInit();
                                             <div class="clearfix visible-sm"></div>
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/jobs/3.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/jobs/3.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -691,7 +695,7 @@ $template->themeInit();
                                             </div>
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/jobs/1.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/jobs/1.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -731,7 +735,7 @@ $template->themeInit();
                                         <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/house/1.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/house/1.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -767,7 +771,7 @@ $template->themeInit();
                                             </div>
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/house/2.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/house/2.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -804,7 +808,7 @@ $template->themeInit();
                                             <div class="clearfix visible-sm"></div>
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/house/4.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/house/4.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -844,7 +848,7 @@ $template->themeInit();
                                         <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/cars/1.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/cars/1.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -880,7 +884,7 @@ $template->themeInit();
                                             </div>
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/cars/3.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/cars/3.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -917,7 +921,7 @@ $template->themeInit();
                                             <div class="clearfix visible-sm"></div>
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/cars/4.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/cars/4.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -957,7 +961,7 @@ $template->themeInit();
                                         <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/sports/1.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/sports/1.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -993,7 +997,7 @@ $template->themeInit();
                                             </div>
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/sports/3.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/sports/3.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -1030,7 +1034,7 @@ $template->themeInit();
                                             <div class="clearfix visible-sm"></div>
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/sports/2.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/sports/2.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -1070,7 +1074,7 @@ $template->themeInit();
                                         <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/cloths/1.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/cloths/1.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -1106,7 +1110,7 @@ $template->themeInit();
                                             </div>
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/cloths/3.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/cloths/3.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -1143,7 +1147,7 @@ $template->themeInit();
                                             <div class="clearfix visible-sm"></div>
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/cloths/2.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/cloths/2.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -1179,7 +1183,7 @@ $template->themeInit();
                                             </div>
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="images/post-images/cloths/4.jpg" class="img-responsive" alt="image" /> </div>
+                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/cloths/4.jpg" class="img-responsive" alt="image" /> </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                                     <div class="listing-desc">
@@ -1440,7 +1444,7 @@ $template->themeInit();
                     </div>
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="featured-image-box">
-                            <div class="img-box"><img src="images/post-images/camera/1.jpg" class="img-responsive center-block" alt=""></div>
+                            <div class="img-box"><img src="<?=URL?>/assets/images/post-images/camera/1.jpg" class="img-responsive center-block" alt=""></div>
                             <div class="content-area">
                                 <div class="">
                                     <h4><a href=""> Canon Powershot A Great D-SLR</a></h4>
@@ -1455,7 +1459,7 @@ $template->themeInit();
                     </div>
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="featured-image-box">
-                            <div class="img-box"><img src="images/post-images/animals/1.jpg" class="img-responsive center-block" alt=""></div>
+                            <div class="img-box"><img src="<?=URL?>/assets/images/post-images/animals/1.jpg" class="img-responsive center-block" alt=""></div>
                             <div class="content-area">
                                 <div class="">
                                     <h4><a href=""> Chocolate Colour Persian Kittens</a></h4>
@@ -1471,7 +1475,7 @@ $template->themeInit();
                     <div class="clearfix visible-sm"></div>
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="featured-image-box">
-                            <div class="img-box"><img src="images/post-images/camera/3.jpg" class="img-responsive center-block" alt=""></div>
+                            <div class="img-box"><img src="<?=URL?>/assets/images/post-images/camera/3.jpg" class="img-responsive center-block" alt=""></div>
                             <div class="content-area">
                                 <div class="">
                                     <h4><a href=""> D-SLR Powershot Mega </a></h4>
@@ -1487,7 +1491,7 @@ $template->themeInit();
                     <div class="clearfix hidden-sm"></div>
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="featured-image-box">
-                            <div class="img-box"><img src="images/post-images/laptops/5.jpg" class="img-responsive center-block" alt=""></div>
+                            <div class="img-box"><img src="<?=URL?>/assets/images/post-images/laptops/5.jpg" class="img-responsive center-block" alt=""></div>
                             <div class="content-area">
                                 <div class="">
                                     <h4><a href=""> Monster DNA two-Ear Headphones  </a></h4>
@@ -1503,7 +1507,7 @@ $template->themeInit();
                     <div class="clearfix visible-sm"></div>
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="featured-image-box">
-                            <div class="img-box"><img src="images/post-images/camera/2.jpg" class="img-responsive center-block" alt=""></div>
+                            <div class="img-box"><img src="<?=URL?>/assets/images/post-images/camera/2.jpg" class="img-responsive center-block" alt=""></div>
                             <div class="content-area">
                                 <div class="">
                                     <h4><a href=""> 54/A Dual Mode Ready Camera </a></h4>
@@ -1518,7 +1522,7 @@ $template->themeInit();
                     </div>
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="featured-image-box">
-                            <div class="img-box"><img src="images/post-images/cars/4.jpg" class="img-responsive center-block" alt=""></div>
+                            <div class="img-box"><img src="<?=URL?>/assets/images/post-images/cars/4.jpg" class="img-responsive center-block" alt=""></div>
                             <div class="content-area">
                                 <div class="">
                                     <h4><a href=""> A 4 Rings Premium Fast Car </a></h4>

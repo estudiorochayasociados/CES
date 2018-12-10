@@ -111,7 +111,7 @@ $template->themeInit();
             </div>
         </div>
     </section>
-    <?php $template->themeEndContact(); ?>
+    <?php $template->themeEnd(); ?>
 </div>
 </body>
 </html>

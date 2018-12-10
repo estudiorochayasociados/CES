@@ -407,7 +407,7 @@ $template->themeInit();
         </div>
     </section>
     <?php
-    $template->themeEndProfile();
+    $template->themeEnd();
     ?>
 </div>
 </body>

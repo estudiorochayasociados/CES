@@ -1,84 +1,102 @@
+<?php
+$usuario = new Clases\Usuarios();
+$funcionesNav = new Clases\PublicFunction();
+$sesionCount = @count($_SESSION['usuarios']);
+
+if (isset($_GET["logout"])) {
+    $usuario->logout();
+    $funcionesNav->headerMove(CANONICAL);
+}
+?>
 <div id="spinner">
+    <!--
     <div class="spinner-img">
-        <img alt="AdZone Preloader" src="<?=URL?>/assets/images/loader.gif" />
+        <img alt="AdZone Preloader" src="<?= URL ?>/assets/images/loader.gif"/>
         <h2>Please Wait.....</h2>
     </div>
+    -->
 </div>
-<!-- Color Switcher -->
-<!--
-<div class="color-switcher" id="choose_color"> <a href="#." class="picker_close"><i class="fa fa-angle-right"></i></a>
-    <h5>Color SWITCHER</h5>
-    <div class="theme-colours">
-        <ul>
-            <li>
-                <a href="#." class="defualt" id="defualt" title="Green"></a>
-            </li>
-            <li>
-                <a href="#." class="red" id="red" title="Red"></a>
-            </li>
-            <li>
-                <a href="#." class="see-green" id="see-green" title="See Green"></a>
-            </li>
-            <li>
-                <a href="#." class="blue" id="blue" title="Blue"></a>
-            </li>
-            <li>
-                <a href="#." class="mustard-brown" id="mustard-brown" title="Mustard Brown"></a>
-            </li>
-            <li>
-                <a href="#." class="golden" id="golden" title="Golden"></a>
-            </li>
-        </ul>
-    </div>
-    <div class="clr"> </div>
-</div>
--->
 <div class="header-top clear">
     <div class="container">
         <div class="row">
             <div class="col-md-7 col-sm-6 hidden-xs">
                 <div class="header-top-left header-top-info">
                     <p class="hidden-sm"><a href="tel:+3211234567"><i class="fa fa-phone"></i>(03564) 420108</a></p>
-                    <p><a href="mailto:contact@scriptsbundle.com"><i class="fa fa-envelope"></i>ces@ces-sanfco.com.ar</a></p>
+                    <p><a href="mailto:contact@scriptsbundle.com"><i
+                                    class="fa fa-envelope"></i>ces@ces-sanfco.com.ar</a>
+                    </p>
                 </div>
             </div>
             <div class="col-md-5 col-sm-6 col-xs-12">
                 <div class="header-top-right pull-right header-top-info">
-                    <ul>
-                        <li><a href="" data-toggle="modal" data-target=".register-model"> <i class="fa fa-user"></i> Registrar</a></li>
-                        <li><a href="" data-toggle="modal" data-target=".login-model"> <i class="fa fa-sign-in"></i> Ingresar</a></li>
-                    </ul>
+                    <?php
+                    if ($sesionCount == 0) {
+                        ?>
+                        <ul>
+                            <li><a href="" data-toggle="modal" data-target=".register-model"> <i class="fa fa-user"></i>
+                                    Registrar</a></li>
+                            <li><a href="" data-toggle="modal" data-target=".login-model"> <i class="fa fa-sign-in"></i>
+                                    Ingresar</a></li>
+                        </ul>
+                        <?php
+                    } else {
+                        var_dump($_SESSION['usuarios']);
+                        ?>
+                        <li class="country top-profile">
+                            <div class="btn-group open" role="group">
+                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="true">
+                                    <i class="fa fa-gear"></i> MI CUENTA
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="<?=URL .'/profile.php?usuario='.$funcionesNav->normalizar_link($_SESSION['usuarios']['titulo']).'&cod='.$funcionesNav->normalizar_link($_SESSION['usuarios']['cod']) ?>"><i class="fa fa-user"></i>Perfil</a></li>
+                                    <li><a href="<?= CANONICAL ?>?logout=0"><i class="fa fa-power-off"></i>Desconectar</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <header class="nav-down">
-    <a class="navbar-brand visible-xs" id="navbar-logo-mobile" href="<?=URL?>/inicio"><img src="<?=URL?>/assets/images/logo.png" alt="" class="img-responsive"></a>
+    <a class="navbar-brand visible-xs" id="navbar-logo-mobile" href="<?= URL ?>/inicio"><img
+                src="<?= URL ?>/assets/images/logo.png" alt="" class="img-responsive"></a>
     <nav class="navbar navbar-default hidden-xs" id="navbar">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                <a class="navbar-brand" id="navbar-logo" href="<?=URL?>/inicio"><img src="<?=URL?>/assets/images/logo.png" alt="" class="img-responsive"></a>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1"><span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" id="navbar-logo" href="<?= URL ?>/inicio"><img
+                            src="<?= URL ?>/assets/images/logo.png" alt="" class="img-responsive"></a>
             </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" data-hover="dropdown" data-animations="fadeInDown fadeInRight fadeInUp fadeInLeft">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" data-hover="dropdown"
+                 data-animations="fadeInDown fadeInRight fadeInUp fadeInLeft">
                 <ul class="nav navbar-nav navbar-right" id="menu-right">
                     <li>
-                        <a href="<?=URL?>/inicio" >Inicio </a>
+                        <a href="<?= URL ?>/inicio">Inicio </a>
                     </li>
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Nosotros <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Nosotros
+                            <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="<?=URL?>/empresa">Sobre nosotros</a></li>
-                            <li><a href="<?=URL?>/contacto">Contactanos</a></li>
+                            <li><a href="<?= URL ?>/empresa">Sobre nosotros</a></li>
+                            <li><a href="<?= URL ?>/contacto">Contactanos</a></li>
                             <li><a href="404.html">Error Page</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="<?=URL?>/comercios" >Listado </a>
+                        <a href="<?= URL ?>/comercios">Listado </a>
                     </li>
-                    <li ><a href="#" class="submit-btn"><i class="fa fa-plus"></i></a></li>
+                    <li><a href="#" class="submit-btn"><i class="fa fa-plus"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -195,7 +213,7 @@
                         <div class="row">
                             <div class="col-xs-6">
                                 <div class="checkbox-nice">
-                                    <input type="checkbox" class="remember-me" checked="checked" />
+                                    <input type="checkbox" class="remember-me" checked="checked"/>
                                     <label>
                                         Recordarme
                                     </label>
@@ -217,44 +235,40 @@
     </div>
 </div>
 <!-- REGISTERATION MODEL  -->
-<div class="modal fade register-model" tabindex="-1" role="dialog" >
+<div class="modal fade register-model" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="login-logo">
                 <h2>Registrarse</h2>
             </div>
             <div class="login-box-inner">
-                <form>
+                <div id="resultado"></div>
+                <form method="POST" id="registerForm">
+                    <input type="hidden" name="agregar" class="btn btn-default col-xs-12" value="0"/>
+
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input class="form-control" type="text" placeholder="Email">
+                        <input class="form-control" type="text" name="titulo" data-validation="required"
+                               placeholder="Nombre de la empresa">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                        <input class="form-control" name="email" data-validation="email" placeholder="Email">
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                        <input type="password" class="form-control" placeholder="Contraseña">
+                        <input type="password" class="form-control" name="password" data-validation="required"
+                               placeholder="Contraseña">
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                        <input type="text" class="form-control" placeholder="Teléfono">
-                    </div>
-                    <div class="remember-me-wrapper">
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <div class="checkbox-nice">
-                                    <input type="checkbox" class="remember-me" checked="checked" />
-                                    <label>
-                                        Acepto
-                                    </label>
-                                </div>
-                            </div>
-                            <a href="" class="login-forget-link col-xs-6">
-                                Términos y condiciones
-                            </a>
-                        </div>
+                        <input type="text" class="form-control" name="telefono" data-validation="required"
+                               placeholder="Teléfono">
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <button type="submit" class="btn btn-default col-xs-12">Registrar</button>
+                            <input type="submit" class="btn btn-default col-xs-12" value="Registrar"
+                                   onclick="ajaxPost('<?= URL; ?>/assets/api/crear-cuenta.api.php?login=ok')"/>
                         </div>
                     </div>
                 </form>
