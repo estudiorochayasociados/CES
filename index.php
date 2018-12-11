@@ -17,10 +17,6 @@ $template->themeInit();
     <section class="main-section">
         <div class="container">
             <div class="row">
-                <?php
-                if ($_SESSION)
-
-                ?>
                 <!--
                 <div class="col-md-5 col-sm-8 col-xs-12 col-sm-offset-2 col-md-offset-0">
                     <div class="search-form-contaner">

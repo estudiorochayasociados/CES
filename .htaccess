@@ -11,13 +11,8 @@ RewriteRule ^(.*)$ $1.php
 ##RewriteRule ^productos/(.*)/(.*)$ ./productos.php?pagina=$2
 #RewriteRule ^contacto ./contact.php
 
-#RewriteRule ^inicio ./index.php
-#RewriteRule ^empresa ./about.php
-#RewriteRule ^contacto ./contact.php
-#RewriteRule ^comercios ./listingC.php
-#RewriteRule ^promociones ./listingP.php
-#RewriteRule ^perfil/(.*)/(.*)$ ./profile.php?id=$2
+
+RewriteRule ^perfil/(.*)/(.*)$ ./perfil.php?op=$2
 
 #RewriteRule ^blog/(.*)/(.*)$ ./blog.php?id=$2
 
-RewriteRule ^perfil/(.*)/(.*)/(.*)$ ./profile.php?usuarios=$2&cod=$3

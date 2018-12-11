@@ -3,9 +3,28 @@ $usuario = new Clases\Usuarios();
 $funcionesNav = new Clases\PublicFunction();
 $sesionCount = @count($_SESSION['usuarios']);
 
+$usuario->set("email","p@p.com");
+$usuario->set("password","p");
+$usuario->login();
+//var_dump($_SESSION['usuarios']);
 if (isset($_GET["logout"])) {
     $usuario->logout();
     $funcionesNav->headerMove(CANONICAL);
+}
+if (isset($_POST['registrar'])){
+    $cod = substr(md5(uniqid(rand())), 0, 10);
+    $usuario->set("titulo", $funcionesNav->antihack_mysqli(isset($_POST["titulo"]) ? $_POST["titulo"] : ''));
+    $usuario->set("cod", $cod);
+    $usuario->set("email", $funcionesNav->antihack_mysqli(isset($_POST["email"]) ? $_POST["email"] : ''));
+    $usuario->set("password", $funcionesNav->antihack_mysqli(isset($_POST["password"]) ? $_POST["password"] : ''));
+    $usuario->set("telefono", $funcionesNav->antihack_mysqli(isset($_POST["telefono"]) ? $_POST["telefono"] : ''));
+    if ($usuario->add()) {
+        $usuario->add();
+        $usuario->login();
+        $funciones->headerMove(URL .'/perfil.php?usuario='.$funcionesNav->normalizar_link($_SESSION['usuarios']['titulo']).'&cod='.$funcionesNav->normalizar_link($_SESSION['usuarios']['cod']));
+    } else{
+        echo "....";
+    }
 }
 ?>
 <div id="spinner">
@@ -40,7 +59,6 @@ if (isset($_GET["logout"])) {
                         </ul>
                         <?php
                     } else {
-                        var_dump($_SESSION['usuarios']);
                         ?>
                         <li class="country top-profile">
                             <div class="btn-group open" role="group">
@@ -50,7 +68,7 @@ if (isset($_GET["logout"])) {
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="<?=URL .'/profile.php?usuario='.$funcionesNav->normalizar_link($_SESSION['usuarios']['titulo']).'&cod='.$funcionesNav->normalizar_link($_SESSION['usuarios']['cod']) ?>"><i class="fa fa-user"></i>Perfil</a></li>
+                                    <li><a href="<?=URL .'/perfil/ver'?>"><i class="fa fa-user"></i>Perfil</a></li>
                                     <li><a href="<?= CANONICAL ?>?logout=0"><i class="fa fa-power-off"></i>Desconectar</a>
                                     </li>
                                 </ul>
@@ -65,7 +83,7 @@ if (isset($_GET["logout"])) {
     </div>
 </div>
 <header class="nav-down">
-    <a class="navbar-brand visible-xs" id="navbar-logo-mobile" href="<?= URL ?>/inicio"><img
+    <a class="navbar-brand visible-xs" id="navbar-logo-mobile" href="<?= URL ?>/index.php"><img
                 src="<?= URL ?>/assets/images/logo.png" alt="" class="img-responsive"></a>
     <nav class="navbar navbar-default hidden-xs" id="navbar">
         <div class="container">
@@ -74,14 +92,14 @@ if (isset($_GET["logout"])) {
                         data-target="#bs-example-navbar-collapse-1"><span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" id="navbar-logo" href="<?= URL ?>/inicio"><img
+                <a class="navbar-brand" id="navbar-logo" href="<?= URL ?>/index"><img
                             src="<?= URL ?>/assets/images/logo.png" alt="" class="img-responsive"></a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" data-hover="dropdown"
                  data-animations="fadeInDown fadeInRight fadeInUp fadeInLeft">
                 <ul class="nav navbar-nav navbar-right" id="menu-right">
                     <li>
-                        <a href="<?= URL ?>/inicio">Inicio </a>
+                        <a href="<?= URL ?>/index">Inicio </a>
                     </li>
 
                     <li class="dropdown">
@@ -96,7 +114,6 @@ if (isset($_GET["logout"])) {
                     <li class="dropdown">
                         <a href="<?= URL ?>/comercios">Listado </a>
                     </li>
-                    <li><a href="#" class="submit-btn"><i class="fa fa-plus"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -203,11 +220,11 @@ if (isset($_GET["logout"])) {
                 <form>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input class="form-control" type="text" placeholder="Email">
+                        <input class="form-control" type="text" placeholder="email">
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                        <input type="password" class="form-control" placeholder="Contraseña">
+                        <input type="password" class="form-control" placeholder="password">
                     </div>
                     <div class="remember-me-wrapper">
                         <div class="row">
@@ -226,7 +243,10 @@ if (isset($_GET["logout"])) {
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <button type="submit" class="btn btn-default col-xs-12">Ingresar</button>
+                            <!--
+                            <input type="submit" class="btn btn-default col-xs-12" value="Ingresar"
+                                   onclick="ajaxPost('<?= URL; ?>/assets/api/logear-cuenta.api.php?login=ok')"/> -->
+                            <button type="submit" name="registrar" class="btn btn-default col-xs-12">Sign Up</button>
                         </div>
                     </div>
                 </form>
@@ -243,7 +263,7 @@ if (isset($_GET["logout"])) {
             </div>
             <div class="login-box-inner">
                 <div id="resultado"></div>
-                <form method="POST" id="registerForm">
+                <form method="POST" id="registrar">
                     <input type="hidden" name="agregar" class="btn btn-default col-xs-12" value="0"/>
 
                     <div class="input-group">
@@ -267,8 +287,10 @@ if (isset($_GET["logout"])) {
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
+                            <!--
                             <input type="submit" class="btn btn-default col-xs-12" value="Registrar"
-                                   onclick="ajaxPost('<?= URL; ?>/assets/api/crear-cuenta.api.php?login=ok')"/>
+                                   onclick="ajaxPost('<?= URL; ?>/assets/api/crear-cuenta.api.php?login=ok')"/>-->
+                            <button type="submit" name="registrar" class="btn btn-default col-xs-12">Sign Up</button>
                         </div>
                     </div>
                 </form>

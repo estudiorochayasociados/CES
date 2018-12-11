@@ -21,7 +21,7 @@ $template->themeInit();
                 </div>
                 <div class="col-sm-6 col-md-6">
                     <ol class="breadcrumb pull-right">
-                        <li><a href="<?=URL?>/inicio">Inicio</a></li>
+                        <li><a href="<?=URL?>/index">Inicio</a></li>
                         <li class="active">Comercios</li>
                     </ol>
                 </div>

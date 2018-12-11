@@ -23,6 +23,11 @@ class Usuarios
     public $invitado;
     public $descuento;
     public $fecha;
+    public $direccion;
+    public $descripcion;
+    public $categoria;
+    public $subcategoria;
+
     private $con;
 
 //Metodos
@@ -45,7 +50,7 @@ class Usuarios
     {
         $validar = $this->validate();
         if (!is_array($validar)) {
-            $sql = "INSERT INTO `usuarios` (`cod`, `nombre`, `apellido`, `doc`, `email`, `password`, `postal`, `localidad`, `provincia`, `pais`, `telefono`, `celular`, `invitado`, `descuento`, `fecha`) VALUES ('{$this->cod}', '{$this->nombre}', '{$this->apellido}', '{$this->doc}', '{$this->email}', '{$this->password}', '{$this->postal}', '{$this->localidad}', '{$this->provincia}', '{$this->pais}', '{$this->telefono}', '{$this->celular}', '{$this->invitado}', '{$this->descuento}', '{$this->fecha}')";
+            $sql = "INSERT INTO `usuarios` (`cod`, `nombre`, `apellido`, `doc`, `email`, `password`, `postal`, `localidad`, `provincia`, `pais`, `telefono`, `celular`, `invitado`, `descuento`, `fecha`, `titulo`, `direccion`, `descripcion`, `categoria`, `subcategoria`) VALUES ('{$this->cod}', '{$this->nombre}', '{$this->apellido}', '{$this->doc}', '{$this->email}', '{$this->password}', '{$this->postal}', '{$this->localidad}', '{$this->provincia}', '{$this->pais}', '{$this->telefono}', '{$this->celular}', '{$this->invitado}', '{$this->descuento}', '{$this->fecha}', '{$this->titulo}', '{$this->direccion}', '{$this->descripcion}', '{$this->categoria}', '{$this->subcategoria}')";
             $query = $this->con->sql($sql);
             return true;
         } else {
@@ -58,7 +63,7 @@ class Usuarios
     {
         $validar = $this->validate();
         $usuario = $this->view();
-        $sql = "UPDATE `usuarios` SET `nombre` = '{$this->nombre}', `apellido` = '{$this->apellido}', `doc` = '{$this->doc}', `email` = '{$this->email}', `password` = '{$this->password}', `postal` = '{$this->postal}', `localidad` = '{$this->localidad}', `provincia` = '{$this->provincia}', `pais` = '{$this->pais}', `telefono` = '{$this->telefono}', `celular` = '{$this->celular}', `invitado` = '{$this->invitado}', `descuento` = '{$this->descuento}', `fecha` = '{$this->fecha}'WHERE `cod`='{$this->cod}'";
+        $sql = "UPDATE `usuarios` SET `nombre` = '{$this->nombre}', `apellido` = '{$this->apellido}', `doc` = '{$this->doc}', `email` = '{$this->email}', `password` = '{$this->password}', `postal` = '{$this->postal}', `localidad` = '{$this->localidad}', `provincia` = '{$this->provincia}', `pais` = '{$this->pais}', `telefono` = '{$this->telefono}', `celular` = '{$this->celular}', `invitado` = '{$this->invitado}', `descuento` = '{$this->descuento}', `fecha` = '{$this->fecha}', `titulo` = '{$this->titulo}', `direccion` = '{$this->direccion}', `descripcion` = '{$this->descripcion}', `categoria` = '{$this->categoria}', `subcategoria` = '{$this->subcategoria}'WHERE `cod`='{$this->cod}'";
 
         if (is_array($validar)) {
             if ($validar["email"] == $usuario["email"]) {
@@ -90,7 +95,12 @@ class Usuarios
             'celular' => $this->celular,
             'invitado' => $this->invitado,
             'descuento' => $this->descuento,
-            'fecha' => $this->fecha
+            'fecha' => $this->fecha,
+            'titulo' => $this->titulo,
+            'direccion' => $this->direccion,
+            'descripcion' => $this->descripcion,
+            'categoria' => $this->categoria,
+            'subcategoria' => $this->subcategoria
         );
     }
 
