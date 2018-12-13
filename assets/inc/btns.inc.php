@@ -12,7 +12,7 @@ if ($sesionCount != 0) {
                         <ul>
                             <li class="<?php if ($op=='ver') {echo "active"; }?>">
                                 <a href="<?=URL .'/perfil/ver' ?>">
-                                    <div class="icon"><i class="fa fa-dashboard"></i></div>
+                                    <div class="icon"><i class="fa fa-user"></i></div>
                                     <div class="menue-name"> Perfil </div>
                                 </a>
                             </li>

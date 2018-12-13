@@ -1,3 +1,6 @@
+<?php
+$imagenesPerfil = new Clases\Imagenes();
+?>
 <section class="ad-listing-single">
     <div class="container">
         <div class="row">
@@ -27,64 +30,30 @@
                     </div>
                 </div>
                 <div class="row">
-                    <!--  <div class="col-md-8 col-sm-12 col-xs-12 nopaddingright">
-                            <div class="slick-gallery-slideshow">
-                                <div class="slider gallery-slideshow gallery-slideshow-not-tab">
-                                    <div>
-                                        <div class="image"><img src="<?= URL ?>/assets/images/post-images/camera/1.jpg" alt="image" /></div>
-                                    </div>
-                                </div>
-                                <div class="slider gallery-nav gallery-nav-not-tab">
-                                    <div>
-                                        <div class="image"><img src="<?= URL ?>/assets/images/post-images/camera/1.jpg" alt="image" /></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                -->
                     <div class="col-md-8 col-sm-12 col-xs-12 nopaddingright">
                         <div class="slick-gallery-slideshow">
                             <div class="slider gallery-slideshow gallery-slideshow-not-tab">
-                                <div>
-                                    <div class="image"><img src="<?= URL ?>/assets/images/post-images/camera/1.jpg"
-                                                            alt="image"/></div>
-                                </div>
-                                <div>
-                                    <div class="image"><img src="<?= URL ?>/assets/images/post-images/camera/2.jpg"
-                                                            alt="image"/></div>
-                                </div>
-                                <div>
-                                    <div class="image"><img src="<?= URL ?>/assets/images/post-images/camera/3.jpg"
-                                                            alt="image"/></div>
-                                </div>
-                                <div>
-                                    <div class="image"><img src="<?= URL ?>/assets/images/post-images/camera/4.jpg"
-                                                            alt="image"/></div>
-                                </div>
-                                <div>
-                                    <div class="image"><img src="<?= URL ?>/assets/images/post-images/animals/1.jpg"
-                                                            alt="image"/></div>
-                                </div>
-                                <div>
-                                    <div class="image"><img src="<?= URL ?>/assets/images/post-images/animals/2.jpg"
-                                                            alt="image"/></div>
-                                </div>
-                                <div>
-                                    <div class="image"><img src="<?= URL ?>/assets/images/post-images/animals/3.jpg"
-                                                            alt="image"/></div>
-                                </div>
-                                <div>
-                                    <div class="image"><img src="<?= URL ?>/assets/images/post-images/animals/4.jpg"
-                                                            alt="image"/></div>
-                                </div>
-                                <div>
-                                    <div class="image"><img src="<?= URL ?>/assets/images/post-images/animals/5.jpg"
-                                                            alt="image"/></div>
-                                </div>
-                                <div>
-                                    <div class="image"><img src="<?= URL ?>/assets/images/post-images/animals/6.jpg"
-                                                            alt="image"/></div>
-                                </div>
+                                <?php
+                                $imagenesPerfil->set("cod", $_SESSION['usuarios']['cod']);
+                                $imagenesPerfil->list('');
+                                if (true) {
+                                    foreach ($imagenesPerfil as $img){
+                                    ?>
+                                        <div>
+                                            <div class="image"><img src="<?= URL ?>/assets/images/post-images/camera/1.jpg"
+                                                                    alt="image"/></div>
+                                        </div>
+                                    <?php
+                                    }
+                                } else {
+                                    ?>
+                                    <div>
+                                        <div class="image"><img src="<?= URL ?>/assets/images/post-images/camera/1.jpg"
+                                                                alt="image"/></div>
+                                    </div>
+                                    <?php
+                                }
+                                ?>
                             </div>
                             <div class="slider gallery-nav gallery-nav-not-tab">
                                 <div>
@@ -133,8 +102,13 @@
                     <div class="col-md-4 col-sm-12 col-xs-12 nopaddingleft">
                         <div class="ad-detail">
                             <div class="ad-detail-title">
-                                <h3><i class=" icon-layers"></i> Ad Detail</h3>
+                                <h3><i class=" icon-layers"></i> Información</h3>
                             </div>
+                            <?php
+                            $imagenesPerfil->set("cod",$_SESSION['usuarios']['cod']);
+                            $img = $imagenesPerfil->view();
+                            ?>
+                            <div style="height:340px;background:url(<?= URL. '/' . $img['ruta'] ?>) no-repeat center center/contain;"></div>
                             <div class="ad-detail-desc light-blue ">
                                 <ul>
                                     <li>
@@ -154,27 +128,24 @@
                                         <span class="pull-right"><?= $_SESSION['usuarios']['categoria']; ?></span>
                                     </li>
                                     <li>
-                                        <span class="pull-left">subcategoria</span>
-                                        <span class="pull-right"><?= $_SESSION['usuarios']['subcategoria']; ?></span>
-                                    </li>
-                                    <li>
                                         <span class="pull-left"></span>
                                     </li>
                                 </ul>
-                                <ul class="social-network social-circle onwhite">
-                                    <ul class="social-icons icon-circle list-unstyled list-inline">
 
-                                        <li><a href="<?= $_SESSION['usuarios']['facebook'] ?>"><i
-                                                        class="fa fa-facebook"></i></a></li>
-
-                                        <li><a href="<?= $_SESSION['usuarios']['twitter'] ?>"><i
-                                                        class="fa fa-instagram"></i></a></li>
-
-                                        <li><a href="<?= $_SESSION['usuarios']['instagram'] ?>"><i
-                                                        class="fa fa-twitter"></i></a></li>
-                                    </ul>
-                                </ul>
                             </div>
+                            <ul class="social-network social-circle onwhite" style="margin-top: 10px;">
+                                <ul class="social-icons icon-circle list-unstyled list-inline">
+
+                                    <li><a href="<?= $_SESSION['usuarios']['facebook'] ?>"><i
+                                                    class="fa fa-facebook"></i></a></li>
+
+                                    <li><a href="<?= $_SESSION['usuarios']['twitter'] ?>"><i
+                                                    class="fa fa-instagram"></i></a></li>
+
+                                    <li><a href="<?= $_SESSION['usuarios']['instagram'] ?>"><i
+                                                    class="fa fa-twitter"></i></a></li>
+                                </ul>
+                            </ul>
                         </div>
                     </div>
                 </div>

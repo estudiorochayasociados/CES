@@ -13,9 +13,8 @@ if (isset($_POST['crear'])) {
     $promocionCrear->set("descripcion", $funcionesCrear->antihack_mysqli(isset($_POST["descripcion"]) ? $_POST["descripcion"] : ''));
     $promocionCrear->set("detalle", $funcionesCrear->antihack_mysqli(isset($_POST["detalle"]) ? $_POST["detalle"] : ''));
     $promocionCrear->set("categoria", $funcionesCrear->antihack_mysqli(isset($_POST["categoria"]) ? $_POST["categoria"] : ''));
-    $promocionCrear->set("subcategoria", $funcionesCrear->antihack_mysqli(isset($_POST["subcategoria"]) ? $_POST["subcategoria"] : ''));
+    //$promocionCrear->set("subcategoria", $funcionesCrear->antihack_mysqli(isset($_POST["subcategoria"]) ? $_POST["subcategoria"] : ''));
     $promocionCrear->set("usuario", $_SESSION['usuarios']['cod']);
-    if ($promocionCrear->add()) {
         foreach ($_FILES['files']['name'] as $f => $name) {
             $imgInicio = $_FILES["files"]["tmp_name"][$f];
             $tucadena  = $_FILES["files"]["name"][$f];
@@ -44,73 +43,15 @@ if (isset($_POST['crear'])) {
                 $imagenes->set("ruta", str_replace("../", "", $destinoRecortado));
                 $imagenes->add();
             }
-
-            $count++;
         }
         $promocionCrear->add();
-        //$funcionesEdit->headerMove(URL .'/perfil/ver');
-    } else{
-        echo "<div class='col-md-12'><div class='alert alert-danger'>Error </div></div>";
-    }
+        $funcionesCrear->headerMove(URL .'/perfil/ver');
 }
 ?>
 <section class="dashboard light-blue">
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-sm-12 col-xs-12 col-md-push-8">
-                <div class="main-box profile-box-contact">
-                    <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
-                        <div class="profile-box-header blue-bg">
-                            <div class="col-md-12 col-sm-7 col-xs-12">
-                                <img src="images/users/6.jpg" alt="" class="profile-img img-responsive"/>
-                                <h2>Jessica Daisy</h2>
-                                <ul class="contact-details">
-                                    <li>
-                                        <i class="fa fa-map-marker"></i> UK London
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-envelope"></i> jessica@admin.com
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-phone"></i> (123) 000-9876
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-12 col-sm-5 col-xs-12">
-                                <div class="profile-btn">
-                                    <a class="btn" href=""> <i class="fa fa-envelope-o"></i> Message </a>
-                                    <a href="" class="btn"> <i class="fa fa-user-plus"></i> Follow </a>
-                                </div>
-                                <ul class="social-network social-circle onwhite">
-                                    <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a>
-                                    </li>
-                                    <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a>
-                                    </li>
-                                    <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a>
-                                    </li>
-                                    <li><a href="#" class="icoLinkedin" title="Linkedin +"><i
-                                                    class="fa fa-linkedin"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
-                        <div class="profile-box-footer">
-                            <a href="#">
-                                <span class="value">783</span>
-                                <span class="label">Ads Posted</span>
-                            </a>
-                            <a href="#">
-                                <span class="value">912</span>
-                                <span class="label">Followers</span>
-                            </a>
-                            <a href="#">
-                                <span class="value">83</span>
-                                <span class="label">Messages</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="col-md-8 col-sm-8 col-xs-12 col-md-pull-4">
                 <div class="dashboard-main-disc">
@@ -128,13 +69,13 @@ if (isset($_POST['crear'])) {
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Fecha de inicio <span class="required"></span></label>
-                                    <input type="date" name="inicio">
+                                    <input class="form-control" type="date" min="<?= date('Y-m-d')?>" name="inicio" onchange="$('#fin').attr('min',$(this).val()).val($(this).val())">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Fecha de fin <span class="required"></span></label>
-                                    <input type="date" name="fin">
+                                    <input id="fin" class="form-control" type="date" name="fin">
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12">
@@ -164,6 +105,7 @@ if (isset($_POST['crear'])) {
                                     </select>
                                 </div>
                             </div>
+                            <!--
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Subcategoria </label>
@@ -173,6 +115,7 @@ if (isset($_POST['crear'])) {
                                     </select>
                                 </div>
                             </div>
+                            -->
                             <label class="col-md-7">Imágenes:<br/>
                                 <input type="file" id="file" name="files[]" multiple="multiple" accept="image/*" />
                             </label>

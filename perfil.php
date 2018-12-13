@@ -14,36 +14,18 @@ $sesionCount = @count($_SESSION['usuarios']);
 <div class="page">
     <?php $template->themeNav(); ?>
     <?php
-    if ($sesionCount == 0) {
-        ?>
-        <section class="ad-breadcrumb parallex">
-            <div class="container page-banner">
-                <div class="row">
-                    <div class="col-sm-6 col-md-6">
-                        <h1>Perfil</h1>
-                    </div>
-                    <div class="col-sm-6 col-md-6">
-                        <ol class="breadcrumb pull-right">
-                            <li><a href="<?= URL ?>/inicio">Inicio</a></li>
-                            <li class="active">Perfil</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <?php
-    }
-    ?>
-    <?php include 'assets/inc/btns.inc.php'; ?>
-
-
-    <?php
-    if ($op != '') {
-        include 'assets/inc/perfil/' . $op . '.inc.php';
+    if ($sesionCount != 0) {
+        include 'assets/inc/btns.inc.php';
+        if ($op != '') {
+            include 'assets/inc/perfil/' . $op . '.inc.php';
+        } else {
+            $funciones->headerMove(URL . "/index");
+        }
     } else {
         $funciones->headerMove(URL . "/index");
     }
     ?>
+
     <?php
     $template->themeEnd();
     ?>

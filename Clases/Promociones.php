@@ -15,6 +15,7 @@ class Promociones
     public $detalle;
     public $categoria;
     public $subcategoria;
+    public $estado;
     private $con;
 
     //Metodos
@@ -62,16 +63,100 @@ class Promociones
         return $row;
     }
 
-    public function list() {
+    public function setEstado(){
+        $sql   = "UPDATE `promociones` SET estado = '{$this->estado}' WHERE `cod`='{$this->cod}'";
+        $query = $this->con->sql($sql);
+        return $query;
+    }
+
+    function list($filter) {
         $array = array();
-        $sql = "SELECT * FROM `promociones`";
+        if (is_array($filter)) {
+            $filterSql = "WHERE ";
+            $filterSql .= implode(" AND ", $filter);
+        } else {
+            $filterSql = '';
+        }
+
+        $sql = "SELECT * FROM `promociones` $filterSql  ORDER BY id DESC";
         $notas = $this->con->sqlReturn($sql);
 
         if ($notas) {
             while ($row = mysqli_fetch_assoc($notas)) {
                 $array[] = $row;
             }
+            return $array;
+        }
+    }
+
+    function listWithOps($filter,$order,$limit) {
+        $array = array();
+        if (is_array($filter)) {
+            $filterSql = "WHERE ";
+            $filterSql .= implode(" AND ", $filter);
+        } else {
+            $filterSql = '';
+        }
+
+        if ($order != '') {
+            $orderSql = $order;
+        } else {
+            $orderSql = "id DESC";
+        }
+
+        if ($limit != '') {
+            $limitSql = "LIMIT " . $limit;
+        } else {
+            $limitSql = '';
+        }
+
+        $sql = "SELECT * FROM `promociones`$filterSql  ORDER BY $orderSql $limitSql";
+        $notas = $this->con->sqlReturn($sql);
+        if ($notas) {
+            while ($row = mysqli_fetch_assoc($notas)) {
+                $array[] = $row;
+            }
             return $array ;
         }
+    }
+
+    function listWithOpsPerfil($order,$limit) {
+        $array = array();
+
+        if ($order != '') {
+            $orderSql = $order;
+        } else {
+            $orderSql = "id DESC";
+        }
+
+        if ($limit != '') {
+            $limitSql = "LIMIT " . $limit;
+        } else {
+            $limitSql = '';
+        }
+
+        $sql = "SELECT * FROM `promociones` where `usuario`='{$this->usuario}' and `estado`='{$this->estado}' ORDER BY $orderSql $limitSql";
+        $notas = $this->con->sqlReturn($sql);
+        if ($notas) {
+            while ($row = mysqli_fetch_assoc($notas)) {
+                $array[] = $row;
+            }
+            return $array ;
+        }
+    }
+
+    function paginador($filter,$cantidad) {
+        $array = array();
+        if (is_array($filter)) {
+            $filterSql = "WHERE ";
+            $filterSql .= implode(" AND ", $filter);
+        } else {
+            $filterSql = '';
+        }
+        $sql = "SELECT * FROM `promociones` $filterSql";
+        $contar = $this->con->sqlReturn($sql);
+        $total = mysqli_num_rows($contar);
+        $totalPaginas = $total / $cantidad;
+        return floor($totalPaginas);
     }
 }
