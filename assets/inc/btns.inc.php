@@ -22,6 +22,12 @@ if ($sesionCount != 0) {
                                     <div class="menue-name">Editar perfil</div>
                                 </a>
                             </li>
+                            <li class="<?php if ($op=='crear') {echo "active"; }?>">
+                                <a href="<?=URL .'/perfil/crear' ?>">
+                                    <div class="icon"><i class="fa  fa-history"></i></div>
+                                    <div class="menue-name">Crear promos</div>
+                                </a>
+                            </li>
                             <li class="<?php if ($op=='promociones-activas') {echo "active"; }?>">
                                 <a href="<?=URL .'/perfil/promociones-activas' ?>">
                                     <div class="icon"><i class="fa  fa-history"></i></div>

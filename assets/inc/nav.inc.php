@@ -3,9 +3,9 @@ $usuario = new Clases\Usuarios();
 $funcionesNav = new Clases\PublicFunction();
 $sesionCount = @count($_SESSION['usuarios']);
 
-$usuario->set("email","p@p.com");
-$usuario->set("password","p");
-$usuario->login();
+//$usuario->set("email","p@p.com");
+//$usuario->set("password","p");
+//$usuario->login();
 //var_dump($_SESSION['usuarios']);
 if (isset($_GET["logout"])) {
     $usuario->logout();
@@ -21,9 +21,18 @@ if (isset($_POST['registrar'])){
     if ($usuario->add()) {
         $usuario->add();
         $usuario->login();
-        $funciones->headerMove(URL .'/perfil.php?usuario='.$funcionesNav->normalizar_link($_SESSION['usuarios']['titulo']).'&cod='.$funcionesNav->normalizar_link($_SESSION['usuarios']['cod']));
+        $funcionesNav->headerMove(URL .'/perfil/ver');
     } else{
         echo "....";
+    }
+}
+if (isset($_POST['login'])){
+    $usuario->set("email", $funcionesNav->antihack_mysqli(isset($_POST["email"]) ? $_POST["email"] : ''));
+    $usuario->set("password", $funcionesNav->antihack_mysqli(isset($_POST["password"]) ? $_POST["password"] : ''));
+    if ($usuario->login()) {
+        $usuario->login();
+        $funcionesNav->headerMove(URL .'/perfil/ver');
+    } else{
     }
 }
 ?>
@@ -217,14 +226,14 @@ if (isset($_POST['registrar'])){
                 <h2>Ingresar</h2>
             </div>
             <div class="login-box-inner">
-                <form>
+                <form method="post" id="login">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input class="form-control" type="text" placeholder="email">
+                        <input class="form-control" type="text" name="email" placeholder="email">
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                        <input type="password" class="form-control" placeholder="password">
+                        <input type="password" class="form-control" name="password" placeholder="password">
                     </div>
                     <div class="remember-me-wrapper">
                         <div class="row">
@@ -246,7 +255,7 @@ if (isset($_POST['registrar'])){
                             <!--
                             <input type="submit" class="btn btn-default col-xs-12" value="Ingresar"
                                    onclick="ajaxPost('<?= URL; ?>/assets/api/logear-cuenta.api.php?login=ok')"/> -->
-                            <button type="submit" name="registrar" class="btn btn-default col-xs-12">Sign Up</button>
+                            <button type="submit" name="login" class="btn btn-default col-xs-12">Ingresar</button>
                         </div>
                     </div>
                 </form>
