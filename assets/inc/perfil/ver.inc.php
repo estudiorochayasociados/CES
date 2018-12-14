@@ -1,5 +1,7 @@
 <?php
 $imagenesPerfil = new Clases\Imagenes();
+$promociones = new Clases\Promociones();
+$galerias = new Clases\Galerias();
 ?>
 <section class="ad-listing-single">
     <div class="container">
@@ -34,68 +36,56 @@ $imagenesPerfil = new Clases\Imagenes();
                         <div class="slick-gallery-slideshow">
                             <div class="slider gallery-slideshow gallery-slideshow-not-tab">
                                 <?php
-                                $imagenesPerfil->set("cod", $_SESSION['usuarios']['cod']);
-                                $imagenesPerfil->list('');
-                                if (true) {
-                                    foreach ($imagenesPerfil as $img){
-                                    ?>
+                                $galerias->set("usuario",$_SESSION['usuarios']['cod']);
+                                $gal = $galerias->view_perfil();
+                                $imagenesPerfil->set("cod", $gal['cod']);
+                                $galerias_perfil=$imagenesPerfil->listForProduct();
+                                if (count($galerias_perfil)>0) {
+
+                                    foreach ($galerias_perfil as $galeria) {
+                                        ?>
                                         <div>
-                                            <div class="image"><img src="<?= URL ?>/assets/images/post-images/camera/1.jpg"
-                                                                    alt="image"/></div>
+                                            <div class="image"><img
+                                                        src="<?= URL .'/'.$galeria['ruta'] ?>"
+                                                        alt="image"/></div>
                                         </div>
-                                    <?php
+                                        <?php
                                     }
                                 } else {
                                     ?>
                                     <div>
-                                        <div class="image"><img src="<?= URL ?>/assets/images/post-images/camera/1.jpg"
-                                                                alt="image"/></div>
+                                        <div class="image"><img src="<?= URL .'/assets/archivos/img/galeria_sin.jpg' ?>"
+                                                                alt="gg"/></div>
                                     </div>
                                     <?php
                                 }
                                 ?>
                             </div>
                             <div class="slider gallery-nav gallery-nav-not-tab">
-                                <div>
-                                    <div class="image"><img src="<?= URL ?>/assets/images/post-images/camera/1.jpg"
-                                                            alt="image"/></div>
-                                </div>
-                                <div>
-                                    <div class="image"><img src="<?= URL ?>/assets/images/post-images/camera/2.jpg"
-                                                            alt="image"/></div>
-                                </div>
-                                <div>
-                                    <div class="image"><img src="<?= URL ?>/assets/images/post-images/camera/3.jpg"
-                                                            alt="image"/></div>
-                                </div>
-                                <div>
-                                    <div class="image"><img src="<?= URL ?>/assets/images/post-images/camera/4.jpg"
-                                                            alt="image"/></div>
-                                </div>
-                                <div>
-                                    <div class="image"><img src="<?= URL ?>/assets/images/post-images/animals/1.jpg"
-                                                            alt="image"/></div>
-                                </div>
-                                <div>
-                                    <div class="image"><img src="<?= URL ?>/assets/images/post-images/animals/2.jpg"
-                                                            alt="image"/></div>
-                                </div>
-                                <div>
-                                    <div class="image"><img src="<?= URL ?>/assets/images/post-images/animals/3.jpg"
-                                                            alt="image"/></div>
-                                </div>
-                                <div>
-                                    <div class="image"><img src="<?= URL ?>/assets/images/post-images/animals/4.jpg"
-                                                            alt="image"/></div>
-                                </div>
-                                <div>
-                                    <div class="image"><img src="<?= URL ?>/assets/images/post-images/animals/5.jpg"
-                                                            alt="image"/></div>
-                                </div>
-                                <div>
-                                    <div class="image"><img src="<?= URL ?>/assets/images/post-images/animals/6.jpg"
-                                                            alt="image"/></div>
-                                </div>
+                                <?php
+                                $galerias->set("usuario",$_SESSION['usuarios']['cod']);
+                                $gal = $galerias->view_perfil();
+                                $imagenesPerfil->set("cod", $gal['cod']);
+                                $galerias_perfil=$imagenesPerfil->listForProduct();
+                                if (count($galerias_perfil)>0) {
+                                    foreach ($galerias_perfil as $galeria) {
+                                        ?>
+                                        <div>
+                                            <div class="image"><img
+                                                        src="<?= URL .'/'.$galeria['ruta'] ?>"
+                                                        alt="image"/></div>
+                                        </div>
+                                        <?php
+                                    }
+                                } else {
+                                    ?>
+                                    <div>
+                                        <div class="image"><img src="<?= URL .'/assets/archivos/img/galeria_sin.jpg' ?>"
+                                                                alt="image"/></div>
+                                    </div>
+                                    <?php
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -105,10 +95,12 @@ $imagenesPerfil = new Clases\Imagenes();
                                 <h3><i class=" icon-layers"></i> Información</h3>
                             </div>
                             <?php
-                            $imagenesPerfil->set("cod",$_SESSION['usuarios']['cod']);
+                            $imagenesPerfil->set("cod", $_SESSION['usuarios']['cod']);
                             $img = $imagenesPerfil->view();
-                            ?>
-                            <div style="height:340px;background:url(<?= URL. '/' . $img['ruta'] ?>) no-repeat center center/contain;"></div>
+                                ?>
+                                <div style="height:340px;background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/contain;"></div>
+
+
                             <div class="ad-detail-desc light-blue ">
                                 <ul>
                                     <li>
@@ -165,27 +157,27 @@ $imagenesPerfil = new Clases\Imagenes();
                                     <span class="title">Promociones activas</span>
                                 </div>
                                 <ul class="related-post">
-                                    <li>
-                                        <img src="<?= URL ?>/assets/images/footer/1.jpg" alt="post image"
-                                             class="img-responsive">
-                                        <a href="#">Canon Powershot D-SLR </a>
-                                        <span><i class="fa fa-folder-open-o"></i> Electronics</span>
-                                        <span><i class="fa fa-calendar"></i> October 07, 2016 </span>
-                                    </li>
-                                    <li>
-                                        <img src="<?= URL ?>/assets/images/footer/2.jpg" alt="post image"
-                                             class="img-responsive">
-                                        <a href="#"> Chocolate Colour Persian Kittens </a>
-                                        <span><i class="fa fa-folder-open-o"></i>Animales - Cats </span>
-                                        <span><i class="fa fa-calendar"></i>Sep 01, 2015 - Aug 09, 2016</span>
-                                    </li>
-                                    <li>
-                                        <img src="<?= URL ?>/assets/images/footer/3.jpg" alt="post image"
-                                             class="img-responsive">
-                                        <a href="#"> A 4 Rings Premium Fast Car </a>
-                                        <span><i class="fa fa-folder-open-o"></i>Vehicle - Cars  </span>
-                                        <span><i class="fa fa-calendar"></i>March 09, 2016 </span>
-                                    </li>
+                                    <?php
+                                    $promociones->set("usuario", $_SESSION['usuarios']['cod']);
+                                    $promociones->set("estado", 1);
+                                    $promos = $promociones->listWithOpsPerfil('', '3');
+                                    foreach ($promos as $p) {
+                                        $imagenesPerfil->set("cod", $p['cod']);
+                                        $img_promos = $imagenesPerfil->view();
+                                        $fechaI = explode("-", $p['inicio']);
+                                        $fechaF = explode("-", $p['fin']);
+                                        ?>
+                                        <li>
+                                            <img src="<?= URL . '/' . $img_promos['ruta'] ?>" alt="post image"
+                                                 class="img-responsive">
+                                            <a href="#"><?= ucfirst(substr($p['titulo'],0,40));?> </a>
+                                            <span><i class="fa fa-folder-open-o"></i> <?= ucfirst($p['categoria'])?></span>
+                                            <span><i class="fa fa-calendar"></i><?= $fechaI[2] . '/' . $fechaI[1] . '/' . $fechaI[0] ?> -  <?= $fechaF[2] . '/' . $fechaF[1] . '/' . $fechaF[0] ?>
+                                                </span>
+                                        </li>
+                                        <?php
+                                    }
+                                    ?>
                                 </ul>
                             </div>
                         </aside>

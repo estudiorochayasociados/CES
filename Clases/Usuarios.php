@@ -30,6 +30,7 @@ class Usuarios
     public $facebook;
     public $twitter;
     public $instagram;
+    public $estado;
 
     private $con;
 
@@ -53,7 +54,7 @@ class Usuarios
     {
         $validar = $this->validate();
         if (!is_array($validar)) {
-            $sql = "INSERT INTO `usuarios` (`cod`, `nombre`, `apellido`, `doc`, `email`, `password`, `postal`, `localidad`, `provincia`, `pais`, `telefono`, `celular`, `invitado`, `descuento`, `fecha`, `titulo`, `direccion`, `descripcion`, `categoria`, `subcategoria`, `facebook`, `twitter`, `instagram`) VALUES ('{$this->cod}', '{$this->nombre}', '{$this->apellido}', '{$this->doc}', '{$this->email}', '{$this->password}', '{$this->postal}', '{$this->localidad}', '{$this->provincia}', '{$this->pais}', '{$this->telefono}', '{$this->celular}', '{$this->invitado}', '{$this->descuento}', '{$this->fecha}', '{$this->titulo}', '{$this->direccion}', '{$this->descripcion}', '{$this->categoria}', '{$this->subcategoria}', '{$this->facebook}', '{$this->twitter}', '{$this->instagram}')";
+            $sql = "INSERT INTO `usuarios` (`cod`, `nombre`, `apellido`, `doc`, `email`, `password`, `postal`, `localidad`, `provincia`, `pais`, `telefono`, `celular`, `invitado`, `descuento`, `fecha`, `titulo`, `direccion`, `descripcion`, `categoria`, `subcategoria`, `facebook`, `twitter`, `instagram`, `estado`) VALUES ('{$this->cod}', '{$this->nombre}', '{$this->apellido}', '{$this->doc}', '{$this->email}', '{$this->password}', '{$this->postal}', '{$this->localidad}', '{$this->provincia}', '{$this->pais}', '{$this->telefono}', '{$this->celular}', '{$this->invitado}', '{$this->descuento}', '{$this->fecha}', '{$this->titulo}', '{$this->direccion}', '{$this->descripcion}', '{$this->categoria}', '{$this->subcategoria}', '{$this->facebook}', '{$this->twitter}', '{$this->instagram}', '{$this->estado}')";
             $query = $this->con->sql($sql);
             return true;
         } else {
@@ -66,7 +67,7 @@ class Usuarios
     {
         $validar = $this->validate();
         $usuario = $this->view();
-        $sql = "UPDATE `usuarios` SET `nombre` = '{$this->nombre}', `apellido` = '{$this->apellido}', `doc` = '{$this->doc}', `postal` = '{$this->postal}', `localidad` = '{$this->localidad}', `provincia` = '{$this->provincia}', `pais` = '{$this->pais}', `telefono` = '{$this->telefono}', `celular` = '{$this->celular}', `invitado` = '{$this->invitado}', `descuento` = '{$this->descuento}', `fecha` = '{$this->fecha}', `titulo` = '{$this->titulo}', `direccion` = '{$this->direccion}', `descripcion` = '{$this->descripcion}', `categoria` = '{$this->categoria}', `subcategoria` = '{$this->subcategoria}', `facebook` = '{$this->facebook}', `twitter` = '{$this->twitter}', `instagram` = '{$this->instagram}'WHERE `cod`='{$this->cod}'";
+        $sql = "UPDATE `usuarios` SET `nombre` = '{$this->nombre}', `apellido` = '{$this->apellido}', `doc` = '{$this->doc}', `postal` = '{$this->postal}', `localidad` = '{$this->localidad}', `provincia` = '{$this->provincia}', `pais` = '{$this->pais}', `telefono` = '{$this->telefono}', `celular` = '{$this->celular}', `invitado` = '{$this->invitado}', `descuento` = '{$this->descuento}', `fecha` = '{$this->fecha}', `titulo` = '{$this->titulo}', `direccion` = '{$this->direccion}', `descripcion` = '{$this->descripcion}', `categoria` = '{$this->categoria}', `subcategoria` = '{$this->subcategoria}', `facebook` = '{$this->facebook}', `twitter` = '{$this->twitter}', `instagram` = '{$this->instagram}', `estado` = '{$this->estado}'WHERE `cod`='{$this->cod}'";
         if (is_array($validar)) {
             if ($validar["email"] == $usuario["email"]) {
                 $query = $this->con->sql($sql);
@@ -123,7 +124,8 @@ class Usuarios
             'subcategoria' => $this->subcategoria,
             'facebook' => $this->facebook,
             'twitter' => $this->twitter,
-            'instagram' => $this->instagram
+            'instagram' => $this->instagram,
+            'estado' => $this->estado
         );
     }
 
@@ -199,6 +201,51 @@ class Usuarios
             }
             return $array;
         }
+    }
+    function listWithOps($filter,$order,$limit) {
+        $array = array();
+        if (is_array($filter)) {
+            $filterSql = "WHERE ";
+            $filterSql .= implode(" AND ", $filter);
+        } else {
+            $filterSql = '';
+        }
+
+        if ($order != '') {
+            $orderSql = $order;
+        } else {
+            $orderSql = "id DESC";
+        }
+
+        if ($limit != '') {
+            $limitSql = "LIMIT " . $limit;
+        } else {
+            $limitSql = '';
+        }
+
+        $sql = "SELECT * FROM `usuarios` WHERE estado = '{$this->estado}' $filterSql  ORDER BY $orderSql $limitSql";
+        $notas = $this->con->sqlReturn($sql);
+        if ($notas) {
+            while ($row = mysqli_fetch_assoc($notas)) {
+                $array[] = $row;
+            }
+            return $array ;
+        }
+    }
+
+    function paginador($filter,$cantidad) {
+        $array = array();
+        if (is_array($filter)) {
+            $filterSql = "WHERE ";
+            $filterSql .= implode(" AND ", $filter);
+        } else {
+            $filterSql = '';
+        }
+        $sql = "SELECT * FROM `promociones` $filterSql";
+        $contar = $this->con->sqlReturn($sql);
+        $total = mysqli_num_rows($contar);
+        $totalPaginas = $total / $cantidad;
+        return floor($totalPaginas);
     }
 
 }

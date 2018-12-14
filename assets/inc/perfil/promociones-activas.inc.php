@@ -19,7 +19,7 @@ $imagenes_Activas = new Clases\Imagenes();
                             $fechaI = explode("-", $promos['inicio']);
                             $fechaF = explode("-", $promos['fin']);
                             ?>
-                            <div class="ad-box ad-box-2" style="min-width: -moz-available;">
+                            <div class="ad-box ad-box-2">
                                 <div class="col-md-4 col-sm-3 col-xs-12 nopadding">
                                     <div class="comp-logo"
                                          style="height:400px;background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/cover;">
@@ -63,7 +63,8 @@ $imagenes_Activas = new Clases\Imagenes();
                                         ?>
 
                                     </span>
-                                            <a href="<?= URL . '/promocion/'.$promos['cod'] ?>" class="btn btn-default pull-right"> Ver detalle <i
+                                            <a href="<?= URL . '/promocion/' . $promos['cod'] ?>"
+                                               class="btn btn-default pull-right"> Ver detalle <i
                                                         class="fa fa-angle-double-right"></i> </a>
                                         </div>
                                     </div>
@@ -75,20 +76,20 @@ $imagenes_Activas = new Clases\Imagenes();
                                         <span class="sr-only">Toggle Dropdown</span>
                                         <i class="fa fa-list-ul"></i>
                                     </button>
-                                    <div class="dropdown-menu edit-btns">
+                                    <div class="dropdown-menu edit-btns ">
                                         <a class="dropdown-item" href="">
-                                 <span class="btn btn-warning">
+                                 <span class="btn btn-warning btn-crud-promos">
                                  <i class="fa fa-edit"></i> Editar
                                  </span>
                                         </a>
                                         <a class="dropdown-item" href="">
-                                 <span class="btn btn-info">
+                                 <span class="btn btn-info btn-crud-promos">
                                  <i class="fa fa-check"></i>
                                  Finalizar
                                  </span>
                                         </a>
                                         <a class="dropdown-item" href="">
-                                 <span class="btn btn-danger">
+                                 <span class="btn btn-danger btn-crud-promos">
                                  <i class="fa fa-close"></i>
                                  Borrar
                                  </span>

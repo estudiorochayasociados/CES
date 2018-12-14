@@ -121,7 +121,10 @@ if (isset($_POST['login'])){
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="<?= URL ?>/comercios">Listado </a>
+                        <a href="<?= URL ?>/comercios">Comercios </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="<?= URL ?>/promociones">Promociones </a>
                     </li>
                 </ul>
             </div>

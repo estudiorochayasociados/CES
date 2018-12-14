@@ -19,7 +19,7 @@ $imagenes_D = new Clases\Imagenes();
                         $fechaI = explode("-", $promos['inicio']);
                         $fechaF = explode("-", $promos['fin']);
                         ?>
-                        <div class="ad-box ad-box-2" style="min-width: -moz-available;">
+                        <div class="ad-box ad-box-2">
                             <div class="col-md-4 col-sm-3 col-xs-12 nopadding">
                                 <div class="comp-logo">
                                     <a href="">

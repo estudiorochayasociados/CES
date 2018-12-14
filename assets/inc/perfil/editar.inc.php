@@ -1,6 +1,7 @@
 <?php
 $usuarioEdit = new Clases\Usuarios();
 $funcionesEdit = new Clases\PublicFunction();
+$galerias = new Clases\Galerias();
 $zebra = new Clases\Zebra_Image();
 $imagenes = new Clases\Imagenes();
 if (isset($_POST['editar'])) {
@@ -79,26 +80,33 @@ if (isset($_POST['editarLogo'])) {
     $funcionesEdit->headerMove(URL . '/perfil/ver');
 }
 if (isset($_POST['crear_galerias'])) {
-    $cod = $_SESSION['usuarios']['cod'];
+    $count = 0;
+    $cod   = substr(md5(uniqid(rand())), 0, 10);
+
+    $galerias->set("cod", $cod);
+    $galerias->set("usuario", $_SESSION['usuarios']['cod']);
+    $galerias->set("titulo","Perfil empresa");
+    $galerias->set("desarrollo",$_SESSION['usuarios']['titulo']);
+
     foreach ($_FILES['files']['name'] as $f => $name) {
         $imgInicio = $_FILES["files"]["tmp_name"][$f];
-        $tucadena = $_FILES["files"]["name"][$f];
-        $partes = explode(".", $tucadena);
-        $dom = (count($partes) - 1);
-        $dominio = $partes[$dom];
-        $prefijo = substr(md5(uniqid(rand())), 0, 10);
+        $tucadena  = $_FILES["files"]["name"][$f];
+        $partes    = explode(".", $tucadena);
+        $dom       = (count($partes) - 1);
+        $dominio   = $partes[$dom];
+        $prefijo   = substr(md5(uniqid(rand())), 0, 10);
         if ($dominio != '') {
             $destinoFinal = "assets/archivos/" . $prefijo . "." . $dominio;
             move_uploaded_file($imgInicio, $destinoFinal);
             chmod($destinoFinal, 0777);
             $destinoRecortado = "assets/archivos/recortadas/a_" . $prefijo . "." . $dominio;
 
-            $zebra->source_path = $destinoFinal;
-            $zebra->target_path = $destinoRecortado;
-            $zebra->jpeg_quality = 80;
-            $zebra->preserve_aspect_ratio = true;
+            $zebra->source_path            = $destinoFinal;
+            $zebra->target_path            = $destinoRecortado;
+            $zebra->jpeg_quality           = 80;
+            $zebra->preserve_aspect_ratio  = true;
             $zebra->enlarge_smaller_images = true;
-            $zebra->preserve_time = true;
+            $zebra->preserve_time          = true;
 
             if ($zebra->resize(800, 700, ZEBRA_IMAGE_NOT_BOXED)) {
                 unlink($destinoFinal);
@@ -108,7 +116,11 @@ if (isset($_POST['crear_galerias'])) {
             $imagenes->set("ruta", str_replace("../", "", $destinoRecortado));
             $imagenes->add();
         }
+
+        $count++;
     }
+
+    $galerias->add();
     $funcionesEdit->headerMove(URL . '/perfil/ver');
 }
 ?>
@@ -288,6 +300,16 @@ if (isset($_POST['crear_galerias'])) {
                                 <div class="heading-inner">
                                     <p class="title">Galerías</p>
                                 </div>
+                            </div>
+                            <?php
+                            $galerias->set("usuario",$_SESSION['usuarios']['cod']);
+                            $gal=$galerias->view_perfil();
+                            $imagenes->set("cod",$gal['cod']);
+                            ?>
+                            <div class="col-md-12 col-sm-12">
+                                <?php
+                                $imagenes->imagenesAdmin();
+                                ?>
                             </div>
                             <label class="col-md-7">Imágenes:<br/>
                                 <input type="file" id="file" name="files[]" multiple="multiple" accept="image/*"/>

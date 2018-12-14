@@ -1,6 +1,13 @@
 .compartir{
     color: white;
 }
+.btn-crud-promos{
+    float: right;
+    width: 100px;
+}
+.btn-crud-deshabilitado{
+    pointer-events: none;
+}
 /*----- Genral Classes start ------ https://codepen.io/ameyraut/pen/yfzog */
 
 /*Change icons size here*/

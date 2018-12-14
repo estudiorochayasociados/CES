@@ -70,10 +70,23 @@ class Imagenes
         $imagenes = $this->con->sqlReturn($sql);
         $row      = mysqli_fetch_assoc($imagenes);
         if ($row===NULL) {
-            $row['ruta']      =  "assets/archivos/sin_imagen.jpg";
+            $row['ruta']      =  "/assets/archivos/img/perfil.jpg";
         return $row;
         }else {
         return $row;
+        }
+    }
+
+    public function view_list()
+    {
+        $sql      = "SELECT * FROM `imagenes` WHERE cod = '{$this->cod}' ORDER BY id ASC";
+        $imagenes = $this->con->sqlReturn($sql);
+        $row      = mysqli_fetch_assoc($imagenes);
+        if ($row===NULL) {
+            $row['ruta']      =  "/assets/archivos/img/galeria_sin.jpg";
+            return $row;
+        }else {
+            return $row;
         }
     }
 
@@ -99,7 +112,7 @@ class Imagenes
         }
     }
     
-    function list($filter) {
+    public function list($filter) {
         $array = array();
         if (is_array($filter)) {
             $filterSql = "WHERE ";
