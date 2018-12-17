@@ -10,8 +10,31 @@ $template->set("title", "CES | Inicio");
 $template->set("description", "");
 $template->set("keywords", "");
 $template->set("favicon", LOGO);
-$promociones_data = $promociones->listWithOps('','','');
 $template->themeInit();
+
+$pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : '0';
+$categoria = isset($_GET["categoria"]) ? $_GET["categoria"] : '0';
+
+$cantidad = 1;
+
+if ($pagina > 0) {
+    $pagina = $pagina - 1;
+}
+
+if(@count($_GET)>1){
+    $anidador = "&";
+}else{
+    $anidador = "?";
+}
+
+if(isset($_GET['pagina'])):
+    $url = $funciones->eliminar_get(CANONICAL, 'pagina');
+else:
+    $url = CANONICAL;
+endif;
+
+$promociones_data = $promociones->listWithOps("","",$cantidad*$pagina.','.$cantidad);
+$numeroPaginas = $promociones->paginador("",$cantidad);
 ?>
 <body>
 <div class="page">
@@ -77,7 +100,7 @@ $template->themeInit();
                             <div class="papular-reviews">
                                 <a href="<?= URL . '/promocion/' . $promos['cod'] ?>">
                                     <div class="image" >
-                                        <img  alt="" src="<?=URL .'/'. $img['ruta']?>" class="img-responsive">
+                                        <img  alt="<?= ucfirst($promos['titulo']);?>" src="<?=URL .'/'. $img['ruta']?>" class="img-responsive">
                                     </div>
                                     <div class="content" >
                                         <h4 > <?= ucfirst($promos['titulo']) ?> </h4>
@@ -140,6 +163,25 @@ $template->themeInit();
                         </div>
                     </aside>
                 </div>-->
+                <?php if($numeroPaginas > 1): ?>
+                    <div class="col-xs-12">
+                        <div class="pagination mb-60">
+                            <ul class="pagination text-center">
+                                <?php if(($pagina+1) > 1): ?>
+                                    <li><a href="<?=$url?><?=$anidador?>pagina=<?=$pagina?>"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                                <?php endif; ?>
+
+                                <?php for ($i = 1; $i <= $numeroPaginas; $i++): ?>
+                                    <li class="<?php if ($i==$pagina+1) {echo "active"; }?>"><a href="<?=$url?><?=$anidador?>pagina=<?=$i?>"><?=$i?></a></li>
+                                <?php endfor; ?>
+
+                                <?php if(($pagina+2) <= $numeroPaginas): ?>
+                                    <li><a href="<?=$url?><?=$anidador?>pagina=<?=($pagina+2)?>"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                <?php endif; ?>
+                            </ul>
+                        </div>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </section>

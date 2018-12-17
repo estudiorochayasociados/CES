@@ -1,6 +1,15 @@
 <?php
-$promociones_D = new Clases\Promociones();
-$imagenes_D = new Clases\Imagenes();
+$promociones_t = new Clases\Promociones();
+$imagenes_t = new Clases\Imagenes();
+$funciones_t = new Clases\PublicFunction();
+if (isset($_GET["borrar"])) {
+    $cod = isset($_GET["borrar"]) ? $_GET["borrar"] : '';
+    $promociones_t->set("cod", $cod);
+    $imagenes_t->set("cod", $cod);
+    $promociones_t->delete();
+    $imagenes_t->deleteAll();
+    $funciones_t->headerMove(URL . "/perfil/promociones-terminadas");
+}
 ?>
 
 <section class="light-blue ad-listing">
@@ -9,40 +18,39 @@ $imagenes_D = new Clases\Imagenes();
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="all-ads-list-box2">
                     <?php
-                    $promociones_D->set("usuario", $_SESSION['usuarios']['cod']);
-                    $promociones_D->set("estado",0);
-                    $promociones = $promociones_D->listWithOpsPerfil('', '');
-                    if (count($promociones)>0){
-                    foreach ($promociones as $promos) {
-                        $imagenes_D->set("cod", $promos['cod']);
-                        $img = $imagenes_D->view();
-                        $fechaI = explode("-", $promos['inicio']);
-                        $fechaF = explode("-", $promos['fin']);
-                        ?>
-                        <div class="ad-box ad-box-2">
-                            <div class="col-md-4 col-sm-3 col-xs-12 nopadding">
-                                <div class="comp-logo">
-                                    <a href="">
-                                        <img src="<?= URL . '/' . $img['ruta'] ?>" class="img-responsive" alt="scriptsbundle">
-                                    </a>
+                    $promociones_t->set("usuario", $_SESSION['usuarios']['cod']);
+                    $promociones_t->set("estado", 0);
+                    $promociones = $promociones_t->listWithOpsPerfil('', '');
+                    if (count($promociones) > 0) {
+                        foreach ($promociones as $promos) {
+                            $imagenes_t->set("cod", $promos['cod']);
+                            $img = $imagenes_t->view();
+                            $fechaI = explode("-", $promos['inicio']);
+                            $fechaF = explode("-", $promos['fin']);
+                            ?>
+                            <div class="ad-box ad-box-2 col-md-12">
+                                <div class="col-md-4 col-sm-3 col-xs-12 nopadding">
+                                    <div class="comp-logo"
+                                         style="height:400px;background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/cover;">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-8 col-sm-9 col-xs-12" style="min-height: 400px;position:relative;">
-                                <div class="ad-box-2-detail">
-                                    <div class="ad-title-box">
-                                        <div class="ad-title"><a href="#"> <?= $_SESSION['usuarios']['titulo'] ?> </a>
-                                        </div>
-                                        <div class="ad-title-meta">
+                                <div class="col-md-8 col-sm-9 col-xs-12" style="min-height: 400px;position:relative;">
+                                    <div class="ad-box-2-detail">
+                                        <div class="ad-title-box">
+                                            <div class="ad-title"><a
+                                                        href="#"> <?= ucfirst($promos['titulo']) ?> </a>
+                                            </div>
+                                            <div class="ad-title-meta">
                                         <span>
                                        <i class="fa fa-calendar"></i><?= $fechaI[2] . '/' . $fechaI[1] . '/' . $fechaI[0] ?> -  <?= $fechaF[2] . '/' . $fechaF[1] . '/' . $fechaF[0] ?>
                                         </span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                    <div class="ad-desc">
-                                        <p><?= substr($promos['detalle'], 0, 300); ?>...</p>
-                                    </div>
-                                    <div class="ad-bottom-area" style="position:absolute;bottom:10px;width: 90%">
+                                        <div class="clearfix"></div>
+                                        <div class="ad-desc">
+                                            <p><?= substr($promos['detalle'], 0, 300); ?>...</p>
+                                        </div>
+                                        <div class="ad-bottom-area" style="position:absolute;bottom:10px;width: 90%">
                                     <span>
                                         <?php
                                         if ($promos['keywords'] == '') {
@@ -64,19 +72,37 @@ $imagenes_D = new Clases\Imagenes();
                                         ?>
 
                                     </span>
-                                        <a href="<?= URL . '/promocion/'.$promos['cod'] ?>" class="btn btn-default pull-right"> Ver detalle <i class="fa fa-angle-double-right"></i> </a>
+                                            <a href="<?= URL . '/promocion/' . $promos['cod'] ?>"
+                                               class="btn btn-default pull-right"> Ver detalle <i
+                                                        class="fa fa-angle-double-right"></i> </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                        <i class="fa fa-list-ul"></i>
+                                    </button>
+                                    <div class="dropdown-menu edit-btns btn-crud-promos-general">
+                                        <a class="dropdown-item" href="<?=URL . '/perfil/promociones-terminadas&borrar=' . $promos['cod'] ?>">
+                                 <span class="btn btn-danger btn-crud-promos">
+                                 <i class="fa fa-close"></i>
+                                 Borrar
+                                 </span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <?php
-                    }
-                    }else{
+                            <?php
+                        }
+                    } else {
                         ?>
                         <div class="black" style="text-align: center;">
                             <h1>No hay promociones para mostrar</h1>
                         </div>
-                    <?php
+                        <?php
                     }
                     ?>
                 </div>

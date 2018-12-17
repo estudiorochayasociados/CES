@@ -36,26 +36,27 @@ $galerias = new Clases\Galerias();
                         <div class="slick-gallery-slideshow">
                             <div class="slider gallery-slideshow gallery-slideshow-not-tab">
                                 <?php
-                                $galerias->set("usuario",$_SESSION['usuarios']['cod']);
+                                $galerias->set("usuario", $_SESSION['usuarios']['cod']);
                                 $gal = $galerias->view_perfil();
                                 $imagenesPerfil->set("cod", $gal['cod']);
-                                $galerias_perfil=$imagenesPerfil->listForProduct();
-                                if (count($galerias_perfil)>0) {
+                                $galerias_perfil = $imagenesPerfil->listForProduct();
+                                if (count($galerias_perfil) > 0) {
 
                                     foreach ($galerias_perfil as $galeria) {
                                         ?>
                                         <div>
                                             <div class="image"><img
-                                                        src="<?= URL .'/'.$galeria['ruta'] ?>"
-                                                        alt="image"/></div>
+                                                        src="<?= URL . '/' . $galeria['ruta'] ?>"
+                                                        /></div>
                                         </div>
                                         <?php
                                     }
                                 } else {
                                     ?>
                                     <div>
-                                        <div class="image"><img src="<?= URL .'/assets/archivos/img/galeria_sin.jpg' ?>"
-                                                                alt="gg"/></div>
+                                        <div class="image"><img
+                                                    src="<?= URL . '/assets/archivos/img/galeria_sin.jpg' ?>"
+                                                    /></div>
                                     </div>
                                     <?php
                                 }
@@ -63,16 +64,16 @@ $galerias = new Clases\Galerias();
                             </div>
                             <div class="slider gallery-nav gallery-nav-not-tab">
                                 <?php
-                                $galerias->set("usuario",$_SESSION['usuarios']['cod']);
+                                $galerias->set("usuario", $_SESSION['usuarios']['cod']);
                                 $gal = $galerias->view_perfil();
                                 $imagenesPerfil->set("cod", $gal['cod']);
-                                $galerias_perfil=$imagenesPerfil->listForProduct();
-                                if (count($galerias_perfil)>0) {
+                                $galerias_perfil = $imagenesPerfil->listForProduct();
+                                if (count($galerias_perfil) > 0) {
                                     foreach ($galerias_perfil as $galeria) {
                                         ?>
                                         <div>
                                             <div class="image"><img
-                                                        src="<?= URL .'/'.$galeria['ruta'] ?>"
+                                                        src="<?= URL . '/' . $galeria['ruta'] ?>"
                                                         alt="image"/></div>
                                         </div>
                                         <?php
@@ -80,8 +81,9 @@ $galerias = new Clases\Galerias();
                                 } else {
                                     ?>
                                     <div>
-                                        <div class="image"><img src="<?= URL .'/assets/archivos/img/galeria_sin.jpg' ?>"
-                                                                alt="image"/></div>
+                                        <div class="image"><img
+                                                    src="<?= URL . '/assets/archivos/img/galeria_sin.jpg' ?>"
+                                                    alt="image"/></div>
                                     </div>
                                     <?php
                                 }
@@ -97,8 +99,8 @@ $galerias = new Clases\Galerias();
                             <?php
                             $imagenesPerfil->set("cod", $_SESSION['usuarios']['cod']);
                             $img = $imagenesPerfil->view();
-                                ?>
-                                <div style="height:340px;background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/contain;"></div>
+                            ?>
+                            <div style="height:340px;background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/contain;"></div>
 
 
                             <div class="ad-detail-desc light-blue ">
@@ -111,14 +113,26 @@ $galerias = new Clases\Galerias();
                                         <span class="pull-left">Teléfono</span>
                                         <span class="pull-right"><?= $_SESSION['usuarios']['telefono']; ?></span>
                                     </li>
-                                    <li>
-                                        <span class="pull-left">Dirección</span>
-                                        <span class="pull-right"><?= $_SESSION['usuarios']['direccion'] . ', ' . $_SESSION['usuarios']['localidad']; ?></span>
-                                    </li>
-                                    <li>
-                                        <span class="pull-left">categoria</span>
-                                        <span class="pull-right"><?= $_SESSION['usuarios']['categoria']; ?></span>
-                                    </li>
+                                    <?php
+                                    if ($_SESSION['usuarios']['direccion'] != '') {
+                                        ?>
+                                        <li>
+                                            <span class="pull-left">Dirección</span>
+                                            <span class="pull-right"><?= $_SESSION['usuarios']['direccion'] . ', ' . $_SESSION['usuarios']['localidad']; ?></span>
+                                        </li>
+                                        <?php
+                                    }
+                                    ?>
+                                    <?php
+                                    if ($_SESSION['usuarios']['categoria'] != '') {
+                                        ?>
+                                        <li>
+                                            <span class="pull-left">Rubro</span>
+                                            <span class="pull-right"><?= $_SESSION['usuarios']['categoria']; ?></span>
+                                        </li>
+                                        <?php
+                                    }
+                                    ?>
                                     <li>
                                         <span class="pull-left"></span>
                                     </li>
@@ -168,10 +182,10 @@ $galerias = new Clases\Galerias();
                                         $fechaF = explode("-", $p['fin']);
                                         ?>
                                         <li>
-                                            <img src="<?= URL . '/' . $img_promos['ruta'] ?>" alt="post image"
+                                            <img src="<?= URL . '/' . $img_promos['ruta'] ?>" alt="<?= ucfirst($p['titulo']);?>"
                                                  class="img-responsive">
-                                            <a href="#"><?= ucfirst(substr($p['titulo'],0,40));?> </a>
-                                            <span><i class="fa fa-folder-open-o"></i> <?= ucfirst($p['categoria'])?></span>
+                                            <a href="#"><?= ucfirst(substr($p['titulo'], 0, 40)); ?> </a>
+                                            <span><i class="fa fa-folder-open-o"></i> <?= ucfirst($p['categoria']) ?></span>
                                             <span><i class="fa fa-calendar"></i><?= $fechaI[2] . '/' . $fechaI[1] . '/' . $fechaI[0] ?> -  <?= $fechaF[2] . '/' . $fechaF[1] . '/' . $fechaF[0] ?>
                                                 </span>
                                         </li>

@@ -58,8 +58,8 @@ $fechaF = explode("-", $promo['fin']);
                             <div class="item">
                                 <div>
                                     <div class="image">
-                                        <a href="images/post-images/cars/audi/1.jpg"><img
-                                                    src="<?= URL . '/' . $img['ruta'] ?>" alt="image"
+                                        <a ><img
+                                                    src="<?= URL . '/' . $img['ruta'] ?>" alt="<?= ucfirst($promo['titulo']);?>"
                                                     class="img-responsive"/></a>
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@ $fechaF = explode("-", $promo['fin']);
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="row">
-                        <div class="col-md-8 col-sm-12 col-sm-12">
+                        <div class="col-md-12 col-sm-12 col-sm-12">
                             <div class="heading-inner">
                                 <p class="title light-blue">Descripción</p>
                             </div>

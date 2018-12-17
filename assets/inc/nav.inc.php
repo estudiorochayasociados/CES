@@ -70,7 +70,7 @@ if (isset($_POST['login'])){
                     } else {
                         ?>
                         <li class="country top-profile">
-                            <div class="btn-group open" role="group">
+                            <div class="btn-group " role="group">
                                 <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="true">
                                     <i class="fa fa-gear"></i> MI CUENTA
@@ -117,7 +117,7 @@ if (isset($_POST['login'])){
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="<?= URL ?>/empresa">Sobre nosotros</a></li>
                             <li><a href="<?= URL ?>/contacto">Contactanos</a></li>
-                            <li><a href="404.html">Error Page</a></li>
+                            <li><a href="<?= URL ?>/404">Error Page</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -125,6 +125,9 @@ if (isset($_POST['login'])){
                     </li>
                     <li class="dropdown">
                         <a href="<?= URL ?>/promociones">Promociones </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="<?= URL ?>/novedades">Novedades </a>
                     </li>
                 </ul>
             </div>

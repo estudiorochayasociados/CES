@@ -14,6 +14,8 @@ RewriteRule ^(.*)$ $1.php
 RewriteRule ^promocion/(.*)/(.*)$ ./promocion.php?cod=$2
 RewriteRule ^perfil/(.*)/(.*)$ ./perfil.php?op=$2
 RewriteRule ^comercio/(.*)/(.*)$ ./comercio.php?cod=$2
+RewriteRule ^novedad/(.*)/(.*)$ ./novedad.php?cod=$2
+
 
 #RewriteRule ^blog/(.*)/(.*)$ ./blog.php?cod=$2
 

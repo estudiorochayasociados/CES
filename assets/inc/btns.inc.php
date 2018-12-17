@@ -22,20 +22,19 @@ if ($sesionCount != 0) {
                                     <div class="menue-name">Editar perfil</div>
                                 </a>
                             </li>
-                            <!--<li class="<? if ($_SESSION['usuarios']['estado']==1) { echo "pointer-events: none;"; }?>">-->
-                                <li class="<?php if ($op=='crear') {echo "active "; }?>">
+                                <li class="<?php if ($op=='crear') {echo 'active '; }?><?php if ($_SESSION['usuarios']['estado']==0) { echo 'btn-crud-deshabilitado'; }?>">
                                     <a href="<?=URL .'/perfil/crear' ?>">
                                         <div class="icon"><i class="fa  fa-history"></i></div>
                                         <div class="menue-name">Crear promos</div>
                                     </a>
                                 </li>
-                                <li class="<?php if ($op=='promociones-activas') {echo "active"; }?>">
+                                <li class="<?php if ($op=='promociones-activas') {echo "active "; }?><?php if ($_SESSION['usuarios']['estado']==0) { echo 'btn-crud-deshabilitado'; }?>">
                                     <a href="<?=URL .'/perfil/promociones-activas' ?>">
                                         <div class="icon"><i class="fa  fa-history"></i></div>
                                         <div class="menue-name">Promos activas</div>
                                     </a>
                                 </li>
-                                <li class="<?php if ($op=='promociones-terminadas') {echo "active"; }?>">
+                                <li class="<?php if ($op=='promociones-terminadas') {echo "active "; }?><?php if ($_SESSION['usuarios']['estado']==0) { echo 'btn-crud-deshabilitado'; }?>">
                                     <a href="<?=URL .'/perfil/promociones-terminadas' ?>">
                                         <div class="icon"><i class="fa fa-archive"></i></div>
                                         <div class="menue-name">Promos terminadas</div>

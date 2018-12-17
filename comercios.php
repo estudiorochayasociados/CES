@@ -5,7 +5,6 @@ $template = new Clases\TemplateSite();
 $funciones = new Clases\PublicFunction();
 $usuarios = new Clases\Usuarios();
 $usuarios->set("estado",1);
-$usuarios_data = $usuarios->listWithOps('', '', '');
 $imagenes = new Clases\Imagenes();
 $categorias = new Clases\Categorias();
 $template->set("title", "CES | Inicio");
@@ -14,6 +13,29 @@ $template->set("keywords", "");
 $template->set("favicon", LOGO);
 $template->themeInit();
 
+$pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : '0';
+$categoria = isset($_GET["categoria"]) ? $_GET["categoria"] : '0';
+
+$cantidad = 1;
+
+if ($pagina > 0) {
+    $pagina = $pagina - 1;
+}
+
+if(@count($_GET)>1){
+    $anidador = "&";
+}else{
+    $anidador = "?";
+}
+
+if(isset($_GET['pagina'])):
+    $url = $funciones->eliminar_get(CANONICAL, 'pagina');
+else:
+    $url = CANONICAL;
+endif;
+
+$usuarios_data = $usuarios->listWithOps("","",$cantidad*$pagina.','.$cantidad);
+$numeroPaginas = $usuarios->paginador("",$cantidad);
 ?>
 <body>
 <div class="page">
@@ -62,17 +84,17 @@ $template->themeInit();
                             $imagenes->set("cod", $user['cod']);
                             $img = $imagenes->view_list();
                             ?>
-                            <div class="ad-box ad-box-2">
+                            <div class="ad-box ad-box-2" style="min-height: 200px;position:relative;">
                                 <div class="col-md-4 col-sm-3 col-xs-12 nopadding">
-                                    <div class="comp-logo">
-                                        <a href=""><img src="<?= URL . '/' . $img['ruta'] ?>" class="img-responsive"
-                                                        alt="scriptsbundle"> </a>
+                                    <div class="comp-logo" >
+                                      <a href="<?= URL .'/comercio/'.$user['cod']?>"><img src="<?= URL . '/' . $img['ruta'] ?>" class="img-responsive"
+                                                        alt="<?= ucfirst($user['titulo']);?>"> </a>
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-sm-9 col-xs-12">
                                     <div class="ad-box-2-detail">
                                         <div class="ad-title-box">
-                                            <div class="ad-title"><a href="#"> <?= ucfirst($user['titulo']) ?> </a>
+                                            <div class="ad-title"><a href="<?= URL .'/comercio/'.$user['cod']?>"> <?= ucfirst($user['titulo']) ?> </a>
                                             </div>
                                             <div class="ad-title-meta">
                                        <span>
@@ -90,7 +112,7 @@ $template->themeInit();
                                         <div class="ad-desc">
                                             <p><?= substr(ucfirst($user['descripcion']), 0, 150) ?></p>
                                         </div>
-                                        <div class="ad-bottom-area">
+                                        <div class="ad-bottom-area" >
                                             <?php
                                             if ($user['categoria'] != '') {
                                                 $categorias->set("cod",$user['categoria']);
@@ -133,6 +155,25 @@ $template->themeInit();
                         </div>
                     </aside>
                 </div>
+                <?php if($numeroPaginas > 1): ?>
+                    <div class="col-xs-12">
+                        <div class="pagination mb-60">
+                            <ul class="pagination text-center">
+                                <?php if(($pagina+1) > 1): ?>
+                                    <li><a href="<?=$url?><?=$anidador?>pagina=<?=$pagina?>"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                                <?php endif; ?>
+
+                                <?php for ($i = 1; $i <= $numeroPaginas; $i++): ?>
+                                    <li class="<?php if ($i==$pagina+1) {echo "active"; }?>"><a href="<?=$url?><?=$anidador?>pagina=<?=$i?>"><?=$i?></a></li>
+                                <?php endfor; ?>
+
+                                <?php if(($pagina+2) <= $numeroPaginas): ?>
+                                    <li><a href="<?=$url?><?=$anidador?>pagina=<?=($pagina+2)?>"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                <?php endif; ?>
+                            </ul>
+                        </div>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </section>

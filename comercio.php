@@ -77,7 +77,7 @@ $galerias = new Clases\Galerias();
                                             <div>
                                                 <div class="image"><img
                                                             src="<?= URL . '/' . $galeria['ruta'] ?>"
-                                                            alt="image"/></div>
+                                                            /></div>
                                             </div>
                                             <?php
                                         }
@@ -86,7 +86,7 @@ $galerias = new Clases\Galerias();
                                         <div>
                                             <div class="image"><img
                                                         src="<?= URL . '/' . $galeria['ruta'] ?>"
-                                                        alt="image"/></div>
+                                                        /></div>
                                         </div>
                                         <?php
                                     }
@@ -104,7 +104,7 @@ $galerias = new Clases\Galerias();
                                             <div>
                                                 <div class="image"><img
                                                             src="<?= URL . '/' . $galeria['ruta'] ?>"
-                                                            alt="image"/></div>
+                                                           /></div>
                                             </div>
                                             <?php
                                         }
@@ -113,7 +113,7 @@ $galerias = new Clases\Galerias();
                                         <div>
                                             <div class="image"><img
                                                         src="<?= URL ?>/assets/images/post-images/camera/1.jpg"
-                                                        alt="image"/></div>
+                                                        /></div>
                                         </div>
                                         <?php
                                     }
@@ -198,7 +198,7 @@ $galerias = new Clases\Galerias();
                                             $fechaF = explode("-", $p['fin']);
                                             ?>
                                             <li>
-                                                <img src="<?= URL . '/' . $img_promos['ruta'] ?>" alt="post image"
+                                                <img src="<?= URL . '/' . $img_promos['ruta'] ?>" alt="<?=$p['titulo'];?>"
                                                      class="img-responsive">
                                                 <a href="#"><?= ucfirst(substr($p['titulo'], 0, 40)); ?> </a>
                                                 <span><i class="fa fa-folder-open-o"></i> <?= ucfirst($p['categoria']) ?></span>

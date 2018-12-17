@@ -1,6 +1,22 @@
 <?php
 $promociones_Activas = new Clases\Promociones();
 $imagenes_Activas = new Clases\Imagenes();
+$funciones_activas = new Clases\PublicFunction();
+if (isset($_GET["borrar"])) {
+    $cod = isset($_GET["borrar"]) ? $_GET["borrar"] : '';
+    $promociones_Activas->set("cod", $cod);
+    $imagenes_Activas->set("cod", $cod);
+    $promociones_Activas->delete();
+    $imagenes_Activas->deleteAll();
+    $funciones_activas->headerMove(URL . "/perfil/promociones-activas");
+}
+if (isset($_GET["finalizar"])) {
+    $cod = isset($_GET["finalizar"]) ? $_GET["finalizar"] : '';
+    $promociones_Activas->set("cod", $cod);
+    $promociones_Activas->set("estado","0");
+    $promociones_Activas->setEstado();
+    $funciones_activas->headerMove(URL . "/perfil/promociones-activas");
+}
 ?>
 
 <section class="light-blue ad-listing">
@@ -19,7 +35,8 @@ $imagenes_Activas = new Clases\Imagenes();
                             $fechaI = explode("-", $promos['inicio']);
                             $fechaF = explode("-", $promos['fin']);
                             ?>
-                            <div class="ad-box ad-box-2">
+
+                            <div class="ad-box ad-box-2 col-md-12">
                                 <div class="col-md-4 col-sm-3 col-xs-12 nopadding">
                                     <div class="comp-logo"
                                          style="height:400px;background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/cover;">
@@ -29,7 +46,7 @@ $imagenes_Activas = new Clases\Imagenes();
                                     <div class="ad-box-2-detail">
                                         <div class="ad-title-box">
                                             <div class="ad-title"><a
-                                                        href="#"> <?= $_SESSION['usuarios']['titulo'] ?> </a>
+                                                        href="#"> <?= ucfirst($promos['titulo']); ?> </a>
                                             </div>
                                             <div class="ad-title-meta">
                                         <span>
@@ -76,19 +93,19 @@ $imagenes_Activas = new Clases\Imagenes();
                                         <span class="sr-only">Toggle Dropdown</span>
                                         <i class="fa fa-list-ul"></i>
                                     </button>
-                                    <div class="dropdown-menu edit-btns ">
-                                        <a class="dropdown-item" href="">
+                                    <div class="dropdown-menu edit-btns btn-crud-promos-general">
+                                        <a class="dropdown-item" href="<?=URL . '/perfil/modificar&promocion=' . $promos['cod'] ?>">
                                  <span class="btn btn-warning btn-crud-promos">
                                  <i class="fa fa-edit"></i> Editar
                                  </span>
                                         </a>
-                                        <a class="dropdown-item" href="">
+                                        <a class="dropdown-item" href="<?=URL . '/perfil/promociones-activas&finalizar=' . $promos['cod'] ?>">
                                  <span class="btn btn-info btn-crud-promos">
                                  <i class="fa fa-check"></i>
                                  Finalizar
                                  </span>
                                         </a>
-                                        <a class="dropdown-item" href="">
+                                        <a class="dropdown-item" href="<?=URL . '/perfil/promociones-activas&borrar=' . $promos['cod'] ?>">
                                  <span class="btn btn-danger btn-crud-promos">
                                  <i class="fa fa-close"></i>
                                  Borrar

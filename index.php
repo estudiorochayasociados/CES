@@ -3,12 +3,18 @@ require_once "Config/Autoload.php";
 Config\Autoload::runSitio();
 $template = new Clases\TemplateSite();
 $funciones = new Clases\PublicFunction();
+$usuarios = new Clases\Usuarios();
+$categorias = new Clases\Categorias();
+$imagenes = new Clases\Imagenes();
 $template->set("title", "CES | Inicio");
 $template->set("description", "");
 $template->set("keywords", "");
 $template->set("favicon", LOGO);
 $template->themeInit();
-/*<?php echo URL . '/producto/' . $funciones->normalizar_link($productos['titulo']) . "/" . $productos['id'] ?>*/
+//Categorias
+$categorias->set("area","comercios");
+$categoriasData = $categorias->listForArea('');
+//
 ?>
 
 <body>
@@ -129,6 +135,7 @@ $template->themeInit();
                                                 <div class="hidden-xs hidden-sm">cloths</div>
                                             </a>
                                         </li>
+
                                     </ul>
                                 </div>
                             </div>
@@ -136,6 +143,8 @@ $template->themeInit();
                                 <div class="tab-content">
                                     <div class="tab-pane active animated fadeInUp" id="tab1">
                                         <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                                            <?php
+                                            ?>
                                             <div class="listing-post">
                                                 <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
                                                     <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/animals/1.jpg" class="img-responsive" alt="image" /> </div>
@@ -206,78 +215,6 @@ $template->themeInit();
                                                 </div>
                                             </div>
                                             <div class="clearfix visible-sm"></div>
-                                            <div class="listing-post">
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/animals/6.jpg" class="img-responsive" alt="image" /> </div>
-                                                </div>
-                                                <div class="col-md-6 col-sm-12 col-xs-12">
-                                                    <div class="listing-desc">
-                                                        <h3 class="listing-desc-title">
-                                                            <a href="#">Big Fish in a Small Pond</a>
-                                                        </h3>
-                                                        <div class="listing-desc-category">
-                                                            <ul>
-                                                                <li><a href="#">Animals</a></li>
-                                                                <li><a href="#">fish</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
-                                                        <span class="listing-price">Price: <span>$900</span></span> <span class="listing-desc-date">
-                                                <i class="fa fa-calendar"></i> August 12, 2016
-                                                </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-info"> <span class="listing-address">
-                                                <i class="fa fa-location-arrow"></i>
-                                                503, United States
-                                                </span> <span class="listing-phone">
-                                                <i class="fa fa-phone"></i>
-                                                +90 0666 8009993
-                                                </span> <span class="listing-email">
-                                                <i class="fa fa-envelope"></i>
-                                                contact786@gmail.com
-                                                </span>
-                                                        <button class="btn btn-default btn-block"> View Ad <i class="fa fa-angle-right"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="listing-post">
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/animals/3.jpg" class="img-responsive" alt="image" /> </div>
-                                                </div>
-                                                <div class="col-md-6 col-sm-12 col-xs-12">
-                                                    <div class="listing-desc">
-                                                        <h3 class="listing-desc-title">
-                                                            <a href="#">Small Dog For sale in Low price</a>
-                                                        </h3>
-                                                        <div class="listing-desc-category">
-                                                            <ul>
-                                                                <li><a href="#">Animals</a></li>
-                                                                <li><a href="#">fish</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
-                                                        <span class="listing-price">Price: <span>$900</span></span> <span class="listing-desc-date">
-                                                <i class="fa fa-calendar"></i> August 12, 2016
-                                                </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-info"> <span class="listing-address">
-                                                <i class="fa fa-location-arrow"></i>
-                                                503, United States
-                                                </span> <span class="listing-phone">
-                                                <i class="fa fa-phone"></i>
-                                                +90 0666 8009993
-                                                </span> <span class="listing-email">
-                                                <i class="fa fa-envelope"></i>
-                                                contact786@gmail.com
-                                                </span>
-                                                        <button class="btn btn-default btn-block"> View Ad <i class="fa fa-angle-right"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane animated fadeInDown" id="tab2">

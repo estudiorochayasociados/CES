@@ -53,6 +53,17 @@ class Imagenes
         }
     }
 
+    public function deleteSite()
+    {
+        $sql    = "SELECT * FROM `imagenes` WHERE id = '{$this->id}'";
+        $imagen = $this->con->sqlReturn($sql);
+        while ($row = mysqli_fetch_assoc($imagen)) {
+            $sqlDelete = "DELETE FROM `imagenes` WHERE `id` = '{$this->id}'";
+            $query     = $this->con->sqlReturn($sqlDelete);
+            unlink("" . $row["ruta"]);
+        }
+    }
+
     public function deleteAll()
     {
         $sql    = "SELECT * FROM `imagenes` WHERE cod = '{$this->cod}' ORDER BY cod DESC";
@@ -144,5 +155,18 @@ class Imagenes
             echo "</div>";
         };
     }
+    public function imagenesSite()
+    {
+        $sql      = "SELECT * FROM `imagenes` WHERE cod = '{$this->cod}' ORDER BY id DESC";
+        $imagenes = $this->con->sqlReturn($sql);
+        while ($row = mysqli_fetch_assoc($imagenes)) {
+            echo "<div class='col-md-2 mb-20 mt-20'>";
+            echo "<img src='../" . $row["ruta"] . "' width='100%'  class='mb-20' />";
+            echo "<a href='" . URL . "/perfil/modificar&promocion=" . $row["cod"] . "&borrarImg=" . $row["id"] . "' class='btn btn-primary'>BORRAR IMAGEN</a>";
+            echo "<div class='clearfix'></div>";
+            echo "</div>";
+        };
+    }
+
 
 }

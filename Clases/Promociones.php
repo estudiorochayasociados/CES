@@ -44,6 +44,7 @@ class Promociones
     public function edit()
     {
         $sql   = "UPDATE `promociones` SET cod = '{$this->cod}', titulo = '{$this->titulo}', descripcion = '{$this->descripcion}', usuario = '{$this->usuario}', inicio = '{$this->inicio}', fin = '{$this->fin}', keywords = '{$this->keywords}', detalle = '{$this->detalle}', categoria = '{$this->categoria}', subcategoria = '{$this->subcategoria}' WHERE `cod`='{$this->cod}'";
+        echo $sql;
         $query = $this->con->sql($sql);
         return $query;
     }
