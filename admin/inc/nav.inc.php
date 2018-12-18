@@ -1,6 +1,6 @@
 <?php
-$pages = ["contenidos", "multimedia", "productos", "configuracion", "categorias"];
-$subpages = ["novedades", "videos"];
+$pages = ["contenidos", "multimedia", "promociones", "configuracion", "categorias"];
+$subpages = ["novedades"];
 ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-30">
     <div class="col-md-12">

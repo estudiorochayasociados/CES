@@ -18,26 +18,26 @@ $categorias_data = $categorias->listForArea('');
 $pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : '0';
 $categoria = isset($_GET["categoria"]) ? $_GET["categoria"] : '0';
 
-$cantidad = 1;
+$cantidad = 3;
 
 if ($pagina > 0) {
     $pagina = $pagina - 1;
 }
 
-if(@count($_GET)>1){
+if (@count($_GET) > 1) {
     $anidador = "&";
-}else{
+} else {
     $anidador = "?";
 }
 
-if(isset($_GET['pagina'])):
+if (isset($_GET['pagina'])):
     $url = $funciones->eliminar_get(CANONICAL, 'pagina');
 else:
     $url = CANONICAL;
 endif;
 
-$novedades_data = $novedades->listWithOps("","",$cantidad*$pagina.','.$cantidad);
-$numeroPaginas = $novedades->paginador("",$cantidad);
+$novedades_data = $novedades->listWithOps("", "", $cantidad * $pagina . ',' . $cantidad);
+$numeroPaginas = $novedades->paginador("", $cantidad);
 //
 ?>
 <body>
@@ -55,17 +55,18 @@ $numeroPaginas = $novedades->paginador("",$cantidad);
                         ?>
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="blog-post">
-                                <div class="post-img">
-                                    <a href="<?= URL .'/novedad/'.$nov['cod']?>"> <img src="<?= URL . '/' . $img['ruta'] ?>"
-                                                      alt="<?= ucfirst($nov['titulo']); ?>"
-                                                      class="img-responsive"> </a>
-                                </div>
+                                <a href="<?= URL . '/novedad/' . $nov['cod'] ?>">
+                                    <div class="post-img"
+                                         style="height:400px;background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/cover;">
+                                    </div>
+                                </a>
                                 <div class="post-info">
-                                    <a> <i
-                                                class="fa fa-calendar-o"></i> <?= $fecha[2] . '/' . $fecha[1] . '/' . $fecha[0] ?>
+                                    <a>
+                                        <i class="fa fa-calendar-o"></i> <?= $fecha[2] . '/' . $fecha[1] . '/' . $fecha[0] ?>
                                     </a>
                                 </div>
-                                <h3 class="titulo-blog"><a href="<?= URL .'/novedad/'.$nov['cod']?>"> <?= ucfirst(substr($nov['titulo'], 0, 80)); ?> </a>
+                                <h3 class="titulo-blog"><a
+                                            href="<?= URL . '/novedad/' . $nov['cod'] ?>"> <?= ucfirst(substr($nov['titulo'], 0, 80)); ?> </a>
                                 </h3>
                                 <!--<p class="post-excerpt"> <?= ucfirst(substr($nov['desarrollo'], 0, 260)); ?></p>-->
                                 <div class="blog-meta">
@@ -93,21 +94,25 @@ $numeroPaginas = $novedades->paginador("",$cantidad);
                     }
                     ?>
                 </div>
-               <?php include 'assets/inc/novedades/side.inc.php'; ?>
-                <?php if($numeroPaginas > 1): ?>
+                <?php include 'assets/inc/novedades/side.inc.php'; ?>
+                <?php if ($numeroPaginas > 1): ?>
                     <div class="col-xs-12">
                         <div class="pagination mb-60">
                             <ul class="pagination text-center">
-                                <?php if(($pagina+1) > 1): ?>
-                                    <li><a href="<?=$url?><?=$anidador?>pagina=<?=$pagina?>"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                                <?php if (($pagina + 1) > 1): ?>
+                                    <li><a href="<?= $url ?><?= $anidador ?>pagina=<?= $pagina ?>"><i
+                                                    class="fa fa-angle-left" aria-hidden="true"></i></a></li>
                                 <?php endif; ?>
 
                                 <?php for ($i = 1; $i <= $numeroPaginas; $i++): ?>
-                                    <li class="<?php if ($i==$pagina+1) {echo "active"; }?>"><a href="<?=$url?><?=$anidador?>pagina=<?=$i?>"><?=$i?></a></li>
+                                    <li class="<?php if ($i == $pagina + 1) {
+                                        echo "active";
+                                    } ?>"><a href="<?= $url ?><?= $anidador ?>pagina=<?= $i ?>"><?= $i ?></a></li>
                                 <?php endfor; ?>
 
-                                <?php if(($pagina+2) <= $numeroPaginas): ?>
-                                    <li><a href="<?=$url?><?=$anidador?>pagina=<?=($pagina+2)?>"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                <?php if (($pagina + 2) <= $numeroPaginas): ?>
+                                    <li><a href="<?= $url ?><?= $anidador ?>pagina=<?= ($pagina + 2) ?>"><i
+                                                    class="fa fa-angle-right" aria-hidden="true"></i></a></li>
                                 <?php endif; ?>
                             </ul>
                         </div>

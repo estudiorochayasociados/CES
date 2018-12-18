@@ -66,9 +66,7 @@ if (isset($_POST['modificar'])) {
 <section class="dashboard light-blue">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 col-sm-12 col-xs-12 col-md-push-8">
-            </div>
-            <div class="col-md-8 col-sm-8 col-xs-12 col-md-pull-4">
+            <div class="col-md-12 col-sm-12 col-xs-12 ">
                 <div class="dashboard-main-disc">
                     <div class="heading-inner">
                         <p class="title"> Modificar promoción</p>
@@ -78,7 +76,7 @@ if (isset($_POST['modificar'])) {
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>Título de la promoción <span class="required"></span></label>
-                                    <input placeholder="" value="<?=$promo['titulo'];?>" class="form-control" name="titulo" type="text">
+                                    <input placeholder="" data-validation="length" data-validation-length="min20" value="<?=$promo['titulo'];?>" class="form-control" name="titulo" type="text">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
@@ -102,35 +100,15 @@ if (isset($_POST['modificar'])) {
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>Descripción </label>
-                                    <textarea cols="6" rows="8" placeholder="" value="<?=$promo['descripcion'];?> name="descripcion" class="form-control"></textarea>
+                                    <textarea cols="6" rows="8" placeholder="" data-validation="length" data-validation-length="min50" value="<?=$promo['descripcion'];?> name="descripcion" class="form-control"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>Breve descripción </label>
-                                    <textarea cols="6" rows="4" placeholder="" value="<?=$promo['detalle'];?> name="detalle" class="form-control"></textarea>
+                                    <textarea cols="6" rows="4" placeholder="" data-validation="length" data-validation-length="50-800" value="<?=$promo['detalle'];?> name="detalle" class="form-control"></textarea>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>Categoria </label>
-                                    <select class="select-general form-control" name="categoria">
-                                        <option label="Select Option"></option>
-                                        <option value="0">France</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <!--
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>Subcategoria </label>
-                                    <select class="select-general form-control" name="subcategoria">
-                                        <option label="Select Option"></option>
-                                        <option value="0">France</option>
-                                    </select>
-                                </div>
-                            </div>
-                            -->
                             <div class="col-md-12 col-sm-12">
                                 <?php
                                 $imagenes->imagenesSite();

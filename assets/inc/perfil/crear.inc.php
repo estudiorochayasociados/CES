@@ -12,7 +12,7 @@ if (isset($_POST['crear'])) {
     $promocionCrear->set("keywords", $funcionesCrear->antihack_mysqli(isset($_POST["keywords"]) ? $_POST["keywords"] : ''));
     $promocionCrear->set("descripcion", $funcionesCrear->antihack_mysqli(isset($_POST["descripcion"]) ? $_POST["descripcion"] : ''));
     $promocionCrear->set("detalle", $funcionesCrear->antihack_mysqli(isset($_POST["detalle"]) ? $_POST["detalle"] : ''));
-    $promocionCrear->set("categoria", $funcionesCrear->antihack_mysqli(isset($_POST["categoria"]) ? $_POST["categoria"] : ''));
+    //$promocionCrear->set("categoria", $funcionesCrear->antihack_mysqli(isset($_POST["categoria"]) ? $_POST["categoria"] : ''));
     //$promocionCrear->set("subcategoria", $funcionesCrear->antihack_mysqli(isset($_POST["subcategoria"]) ? $_POST["subcategoria"] : ''));
     $promocionCrear->set("usuario", $_SESSION['usuarios']['cod']);
         foreach ($_FILES['files']['name'] as $f => $name) {
@@ -51,9 +51,7 @@ if (isset($_POST['crear'])) {
 <section class="dashboard light-blue">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 col-sm-12 col-xs-12 col-md-push-8">
-            </div>
-            <div class="col-md-8 col-sm-8 col-xs-12 col-md-pull-4">
+            <div class="col-md-12 col-sm-12 col-xs-12 ">
                 <div class="dashboard-main-disc">
                     <div class="heading-inner">
                         <p class="title">Crear promoción</p>
@@ -63,13 +61,13 @@ if (isset($_POST['crear'])) {
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>Título de la promoción <span class="required"></span></label>
-                                    <input placeholder="" class="form-control" name="titulo" type="text">
+                                    <input placeholder="" data-validation="length" data-validation-length="min20" class="form-control" name="titulo" type="text">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Fecha de inicio <span class="required"></span></label>
-                                    <input class="form-control" type="date" min="<?= date('Y-m-d')?>" name="inicio" onchange="$('#fin').attr('min',$(this).val()).val($(this).val())">
+                                    <input  class="form-control" type="date" min="<?= date('Y-m-d')?>" name="inicio" onchange="$('#fin').attr('min',$(this).val()).val($(this).val())">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
@@ -87,37 +85,17 @@ if (isset($_POST['crear'])) {
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>Descripción </label>
-                                    <textarea cols="6" rows="8" placeholder="" name="descripcion" class="form-control"></textarea>
+                                    <textarea cols="6" rows="8" data-validation="length" data-validation-length="min50" placeholder="" name="descripcion" class="form-control"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>Breve descripción </label>
-                                    <textarea cols="6" rows="4" placeholder="" name="detalle" class="form-control"></textarea>
+                                    <textarea cols="6" rows="4" data-validation="length" data-validation-length="50-800" placeholder="" name="detalle" class="form-control"></textarea>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>Categoria </label>
-                                    <select class="select-general form-control" name="categoria">
-                                        <option label="Select Option"></option>
-                                        <option value="0">France</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <!--
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>Subcategoria </label>
-                                    <select class="select-general form-control" name="subcategoria">
-                                        <option label="Select Option"></option>
-                                        <option value="0">France</option>
-                                    </select>
-                                </div>
-                            </div>
-                            -->
                             <label class="col-md-7">Imágenes:<br/>
-                                <input type="file" id="file" name="files[]" multiple="multiple" accept="image/*" />
+                                <input type="file" id="file" name="files[]" multiple="multiple"  accept="image/*" />
                             </label>
                             <div class="col-md-12 col-sm-12">
                                 <button class="btn btn-default pull-right" name="crear"><i class="fa fa-save"></i> Crear promoción

@@ -6,16 +6,18 @@ $funciones = new Clases\PublicFunction();
 $promociones = new Clases\Promociones();
 $imagenes = new Clases\Imagenes();
 $usuarios = new Clases\Usuarios();
+$categorias = new Clases\Categorias();
 $template->set("title", "CES | Inicio");
 $template->set("description", "");
 $template->set("keywords", "");
 $template->set("favicon", LOGO);
 $template->themeInit();
-
+$categorias->set("area", "rubros");
+$categorias_data = $categorias->listForArea('');
 $pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : '0';
 $categoria = isset($_GET["categoria"]) ? $_GET["categoria"] : '0';
 
-$cantidad = 1;
+$cantidad = 9;
 
 if ($pagina > 0) {
     $pagina = $pagina - 1;
@@ -66,16 +68,14 @@ $numeroPaginas = $promociones->paginador("",$cantidad);
                     <div class="col-md-5 col-sm-5 col-xs-5 nopadding">
                         <div class="form-group">
                             <select class="select-category form-control">
-                                <option label="Select Option"></option>
-                                <option value="0">Animal</option>
-                                <option value="1">Designer</option>
-                                <option value="2">Laptops</option>
-                                <option value="3">Electronics</option>
-                                <option value="4">Human Resource Jobs</option>
-                                <option value="5">Real Estate</option>
-                                <option value="6">Vehicles</option>
-                                <option value="7">Others</option>
-                                <option value="8">Sports</option>
+                                <option label="Elegir una categoría"></option>
+                                <?php
+                                foreach ($categorias_data as $cat) {
+                                    ?>
+                                    <option value="<?= $cat['cod']; ?>"><?= ucfirst($cat['titulo']); ?></option>
+                                    <?php
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>
@@ -99,11 +99,11 @@ $numeroPaginas = $promociones->paginador("",$cantidad);
                         <div class="col-md-4 col-sm-4 col-xs-12">
                             <div class="papular-reviews">
                                 <a href="<?= URL . '/promocion/' . $promos['cod'] ?>">
-                                    <div class="image" >
-                                        <img  alt="<?= ucfirst($promos['titulo']);?>" src="<?=URL .'/'. $img['ruta']?>" class="img-responsive">
+                                    <div class="image" style="height:200px;background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/cover;" >
+
                                     </div>
                                     <div class="content" >
-                                        <h4 > <?= ucfirst($promos['titulo']) ?> </h4>
+                                        <h4 > <?= ucfirst(substr($promos['titulo'],0,25)); ?> </h4>
                                       <!--  <i class="fa fa-calendar"></i> <?= $fechaI[2] . '/' . $fechaI[1] . '/' . $fechaI[0] ?> -  <?= $fechaF[2] . '/' . $fechaF[1] . '/' . $fechaF[0] ?>
 -->
                                     </div>
@@ -116,53 +116,6 @@ $numeroPaginas = $promociones->paginador("",$cantidad);
                     ?>
                     <div class="clearfix"></div>
                 </div>
-                <!--
-                <div class="col-md-4 col-sm-12 col-xs-12">
-                    <aside>
-                        <div class="widget">
-                            <div class="widget-heading"><span class="title"> Search Product </span></div>
-                            <form class="form-inline">
-                                <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="keyword" placeholder="Search Keyword" value=""> <i class="icon-magnifying-glass"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
-                                    <div class="form-group">
-                                        <select class="select-category form-control">
-                                            <option label="Select Option"></option>
-                                            <option value="0">Animal</option>
-                                            <option value="1">Designer</option>
-                                            <option value="2">Laptops</option>
-                                            <option value="3">Electronics</option>
-                                            <option value="4">Human Resource Jobs</option>
-                                            <option value="5">Real Estate</option>
-                                            <option value="6">Vehicles</option>
-                                            <option value="7">Others</option>
-                                            <option value="8">Sports</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
-                                    <div class="form-group form-action">
-                                        <button type="button" class="btn btn-default btn-search-submit"><span class="fa fa-search"></span>Search</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="widget">
-                            <div class="widget-heading"><span class="title">Hot Categories</span></div>
-                            <ul class="categories-module">
-                                <li> <a href=""> Computer and IT <span>121</span> </a> </li>
-                                <li> <a href=""> Animal <span>54</span> </a> </li>
-                                <li> <a href=""> Electronics<span>313</span> </a> </li>
-                                <li> <a href=""> Real Estate<span>23</span> </a> </li>
-                                <li> <a href=""> Mobile / Laptop <span>142</span> </a> </li>
-                                <li> <a href=""> Car / Bike <span>120</span> </a> </li>
-                            </ul>
-                        </div>
-                    </aside>
-                </div>-->
                 <?php if($numeroPaginas > 1): ?>
                     <div class="col-xs-12">
                         <div class="pagination mb-60">

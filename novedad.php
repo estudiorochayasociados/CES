@@ -40,21 +40,11 @@ $fecha = explode("-", $novedad_data['fecha']);
                             <p>
                                 <?= ucfirst($novedad_data['desarrollo']);?>
                             </p>
-                            <div class="tagcloud">
-                                <i class="fa fa-tags"></i>
-                                <a href="#">#food</a>
-                                <a href="#">#gedgets</a>
-                                <a href="#">#news</a>
-                                <a href="#">#fair</a>
-                                <a href="#">#politics</a>
-                                <a href="#">#technology</a>
-                            </div>
                             <div class="share-links">
                                 <a href="#" class="facebook-share"><span class="fa fa-facebook-f"></span> Facebook</a>
                                 <a href="#" class="twitter-share"><span class="fa fa-twitter"></span> Twitter</a>
                                 <a href="#" class="instagram-share"><span class="fa fa-instagram"></span> Instagram</a>
-                                <a href="#" class="pinterest-share"><span class="fa fa-pinterest-p"></span>
-                                    Pinterest</a>
+                                <a href="#" class="pinterest-share"><span class="fa fa-pinterest-p"></span> Pinterest</a>
                             </div>
                         </div>
                     </div>

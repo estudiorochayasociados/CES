@@ -12,11 +12,13 @@ $template->set("description", "");
 $template->set("keywords", "");
 $template->set("favicon", LOGO);
 $template->themeInit();
+$categorias->set("area", "rubros");
+$categorias_data = $categorias->listForArea('');
 
 $pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : '0';
 $categoria = isset($_GET["categoria"]) ? $_GET["categoria"] : '0';
 
-$cantidad = 1;
+$cantidad = 6;
 
 if ($pagina > 0) {
     $pagina = $pagina - 1;
@@ -58,25 +60,21 @@ $numeroPaginas = $usuarios->paginador("",$cantidad);
     <section class="light-blue ad-listing">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
-                    <div class="filters clearfix">
-                        <div class="col-md-2 col-xs-12 col-sm-3 nopadding">
-                            <p>Buscar: </p>
-                        </div>
-                        <div class="col-md-4 col-xs-12 col-sm-3 nopadding">
-                            <div class="form-group">
-                                <select class="select-general form-control">
-                                    <option label="Select Option"></option>
-                                    <option value="0">Highest price</option>
-                                    <option value="1"> 	Date</option>
-                                    <option value="2"> Newest to oldest</option>
-                                    <option value="3"> Oldest To New</option>
-                                    <option value="4"> Alphabatically</option>
-                                </select>
+                <div class="container"><div class="widget">
+                        <div class="widget-heading"><span class="title"> Buscar comercios </span></div>
+                        <form class="form-inline">
+                            <div class="col-md-10 col-sm-10 col-xs-10 nopadding">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="keyword" value=""> <i class="icon-magnifying-glass"></i>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
+                            <div class="col-md-2 col-sm-2 col-xs-2 nopadding">
+                                <div class="form-group form-action">
+                                    <button type="button" class="btn btn-default btn-search-submit"><span class="fa fa-search"></span>Buscar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div></div>
                 <div class="col-md-8 col-sm-12 col-xs-12 col-md-push-4">
                     <div class="all-ads-list-box2">
                         <?php
@@ -140,7 +138,22 @@ $numeroPaginas = $usuarios->paginador("",$cantidad);
                     <aside>
                         <div class="widget">
                             <div class="widget-heading"><span class="title"> Rubros </span></div>
-                            <ul class="categories-module nobullet">
+                            <ul class="categories-module nobullet listado">
+                                <?php
+                                foreach ($categorias_data as $cat) {
+                                    ?>
+                                    <li>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" value="<?= $cat['cod']; ?>" checked>
+                                                <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                                <a href=""> <?= ucfirst($cat['titulo']); ?> </a>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <?php
+                                }
+                                ?>
                                 <li>
                                     <div class="checkbox">
                                         <label>

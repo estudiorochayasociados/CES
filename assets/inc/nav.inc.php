@@ -21,7 +21,7 @@ if (isset($_POST['registrar'])){
     if ($usuario->add()) {
         $usuario->add();
         $usuario->login();
-        $funcionesNav->headerMove(URL .'/perfil/ver');
+        $funcionesNav->headerMove(URL .'/perfil/editar');
     } else{
         echo "....";
     }
@@ -31,7 +31,12 @@ if (isset($_POST['login'])){
     $usuario->set("password", $funcionesNav->antihack_mysqli(isset($_POST["password"]) ? $_POST["password"] : ''));
     if ($usuario->login()) {
         $usuario->login();
-        $funcionesNav->headerMove(URL .'/perfil/ver');
+        if ($_SESSION['usuarios']['estado']==1){
+            $funcionesNav->headerMove(URL .'/perfil/ver');
+        }else{
+            $funcionesNav->headerMove(URL .'/perfil/editar');
+        }
+
     } else{
     }
 }
@@ -77,7 +82,7 @@ if (isset($_POST['login'])){
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="<?=URL .'/perfil/ver'?>"><i class="fa fa-user"></i>Perfil</a></li>
+                                    <li><a href="<?php if ($_SESSION['usuarios']['estado']==1){ echo URL .'/perfil/ver'; }else{ echo URL .'/perfil/editar';} ?>"><i class="fa fa-user"></i>Perfil</a></li>
                                     <li><a href="<?= CANONICAL ?>?logout=0"><i class="fa fa-power-off"></i>Desconectar</a>
                                     </li>
                                 </ul>
@@ -235,11 +240,11 @@ if (isset($_POST['login'])){
                 <form method="post" id="login">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input class="form-control" type="text" name="email" placeholder="email">
+                        <input class="form-control" type="text" data-validation="email" name="email" placeholder="Email">
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                        <input type="password" class="form-control" name="password" placeholder="password">
+                        <input type="password" data-validation="length" data-validation-length="min8" class="form-control" name="password" placeholder="Contraseña">
                     </div>
                     <div class="remember-me-wrapper">
                         <div class="row">
@@ -292,12 +297,12 @@ if (isset($_POST['login'])){
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                        <input type="password" class="form-control" name="password" data-validation="required"
-                               placeholder="Contraseña">
+                        <input type="password" class="form-control" name="password"
+                               data-validation="length" data-validation-length="min8"  placeholder="Contraseña">
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                        <input type="text" class="form-control" name="telefono" data-validation="required"
+                        <input type="text" class="form-control" name="telefono" data-validation="number"
                                placeholder="Teléfono">
                     </div>
                     <div class="row">

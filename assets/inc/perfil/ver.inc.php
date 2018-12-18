@@ -2,6 +2,7 @@
 $imagenesPerfil = new Clases\Imagenes();
 $promociones = new Clases\Promociones();
 $galerias = new Clases\Galerias();
+$categorias = new Clases\Categorias();
 ?>
 <section class="ad-listing-single">
     <div class="container">
@@ -44,19 +45,17 @@ $galerias = new Clases\Galerias();
 
                                     foreach ($galerias_perfil as $galeria) {
                                         ?>
-                                        <div>
-                                            <div class="image"><img
-                                                        src="<?= URL . '/' . $galeria['ruta'] ?>"
-                                                        /></div>
+                                        <div >
+                                            <div class="image" style="height:400px;background:url(<?= URL . '/' . $galeria['ruta'] ?>) no-repeat center center/cover;">
+                                            </div>
                                         </div>
                                         <?php
                                     }
                                 } else {
                                     ?>
                                     <div>
-                                        <div class="image"><img
-                                                    src="<?= URL . '/assets/archivos/img/galeria_sin.jpg' ?>"
-                                                    /></div>
+                                        <div class="image" style="height:500px;background:url(<?= URL . '/' . $galeria['ruta'] ?>) no-repeat center center/cover;">
+                                        </div>
                                     </div>
                                     <?php
                                 }
@@ -125,10 +124,12 @@ $galerias = new Clases\Galerias();
                                     ?>
                                     <?php
                                     if ($_SESSION['usuarios']['categoria'] != '') {
+                                        $categorias->set("cod",$_SESSION['usuarios']['categoria']);
+                                        $cat = $categorias->view();
                                         ?>
                                         <li>
                                             <span class="pull-left">Rubro</span>
-                                            <span class="pull-right"><?= $_SESSION['usuarios']['categoria']; ?></span>
+                                            <span class="pull-right"><?= ucfirst($cat['titulo']); ?></span>
                                         </li>
                                         <?php
                                     }
@@ -146,10 +147,11 @@ $galerias = new Clases\Galerias();
                                                     class="fa fa-facebook"></i></a></li>
 
                                     <li><a href="<?= $_SESSION['usuarios']['twitter'] ?>"><i
-                                                    class="fa fa-instagram"></i></a></li>
+                                                    class="fa fa-twitter"></i></a></li>
 
                                     <li><a href="<?= $_SESSION['usuarios']['instagram'] ?>"><i
-                                                    class="fa fa-twitter"></i></a></li>
+                                                    class="fa fa-instagram"></i></a></li>
+                                    <!--https://sharingbuttons.io/-->
                                 </ul>
                             </ul>
                         </div>

@@ -3,6 +3,7 @@ $funcionesBtn = new Clases\PublicFunction();
 $sesionCount = @count($_SESSION['usuarios']);
 $op       = isset($_GET["op"]) ? $_GET["op"] : '';
 if ($sesionCount != 0) {
+    //onclick="alert('hello')"
     ?>
     <section class="dashboard-menu light-blue">
         <div class="container">
@@ -10,7 +11,7 @@ if ($sesionCount != 0) {
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="dashboard-menu-container">
                         <ul>
-                            <li class="<?php if ($op=='ver') {echo "active"; }?>">
+                            <li class="<?php if ($op=='ver') {echo "active"; }?><?php if ($_SESSION['usuarios']['estado']==0) { echo 'btn-crud-deshabilitado'; }?>" >
                                 <a href="<?=URL .'/perfil/ver' ?>">
                                     <div class="icon"><i class="fa fa-user"></i></div>
                                     <div class="menue-name"> Perfil </div>

@@ -167,6 +167,18 @@ class Imagenes
             echo "</div>";
         };
     }
+    public function imagenesProfile()
+    {
+        $sql      = "SELECT * FROM `imagenes` WHERE cod = '{$this->cod}' ORDER BY id DESC";
+        $imagenes = $this->con->sqlReturn($sql);
+        while ($row = mysqli_fetch_assoc($imagenes)) {
+            echo "<div class='col-md-2 mb-20 mt-20'>";
+            echo "<img src='../" . $row["ruta"] . "' width='100%'  class='mb-20' />";
+            echo "<a href='" . URL . "/perfil/editar" . "&borrarImg=" . $row["id"] . "' class='btn btn-primary'>BORRAR IMAGEN</a>";
+            echo "<div class='clearfix'></div>";
+            echo "</div>";
+        };
+    }
 
 
 }
