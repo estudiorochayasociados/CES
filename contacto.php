@@ -3,11 +3,24 @@ require_once "Config/Autoload.php";
 Config\Autoload::runSitio();
 $template = new Clases\TemplateSite();
 $funciones = new Clases\PublicFunction();
+$enviar = new Clases\Email();
 $template->set("title", "CES | Inicio");
 $template->set("description", "");
 $template->set("keywords", "");
 $template->set("favicon", LOGO);
 $template->themeInit();
+
+if(isset($_POST['enviar'])){
+    $mensaje = 'Nuevo mensaje de contacto <br/>';
+    $mensaje .= "Nombre: ".$_POST["nombre"]."<br/>";
+    $mensaje .= "Email: ".$_POST["email"]."<br/>";
+    $mensaje .= "Teléfono: ".$_POST["telefono"]."<br/>";
+    $mensaje .= "Mensaje: ".$_POST["mensaje"]."<br/>";
+    $asunto = ucfirst($_POST["asunto"]);
+    $receptor = "joaquinestudiorocha@gmail.com";//EMAIL;
+    $emisor = $_POST['email'];
+    $enviar->emailEnviar($asunto,$receptor,$emisor,$mensaje);
+}
 ?>
 <body>
 <div class="page">
@@ -40,39 +53,39 @@ $template->themeInit();
                         </div>
                     </div>
                     <div class="col-md-8 col-sm-8 col-xs-12">
-                        <form class="row">
+                        <form class="row" method="post" id="enviar">
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Nombre <span class="required">*</span></label>
-                                    <input placeholder="" class="form-control" type="text">
+                                    <input placeholder="" data-validation="required" class="form-control" name="nombre" type="text">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Email <span class="required">*</span></label>
-                                    <input placeholder="" class="form-control" type="email">
+                                    <input placeholder="" data-validation="email" class="form-control" name="email" type="email">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Teléfono <span class="required">*</span></label>
-                                    <input placeholder="" class="form-control" type="text">
+                                    <input placeholder="" data-validation="number" class="form-control" name="telefono" type="text">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Asunto <span class="required">*</span></label>
-                                    <input placeholder="" class="form-control" type="text">
+                                    <input placeholder="" data-validation="length" data-validation-length="10-40" name="asunto" class="form-control" type="text">
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    <label>Message <span class="required">*</span></label>
-                                    <textarea cols="6" rows="8" placeholder="Su mensaje" class="form-control"></textarea>
+                                    <label>Mensaje <span class="required">*</span></label>
+                                    <textarea cols="6" rows="8" placeholder="" name="mensaje" data-validation="length" data-validation-length="40-150" class="form-control"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12">
-                                <a href="" class="btn btn-default"> Enviar mensaje <i class="fa fa-angle-double-right"></i> </a>
+                                <a href="" name="enviar" class="btn btn-default"> Enviar mensaje <i class="fa fa-angle-double-right"></i> </a>
                             </div>
                         </form>
                     </div>

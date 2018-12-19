@@ -9,14 +9,14 @@ class autoload
         //$_SESSION["carrito"] = isset($_SESSION["carrito"]) ? $_SESSION["carrito"] : '';
         define('URL', "http://".$_SERVER['HTTP_HOST']."/CES");
         define('CANONICAL', "http://".$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"]);
-        define('TITULO', "Pintureria Ariel");
-        define('TELEFONO', "5555555");
+        define('TITULO', "CES - Centro Empresarial y de Servicios de San Francisco");
+        define('TELEFONO', "(03564) 420108");
         define('CIUDAD', "San Francisco");
         define('PROVINCIA', "Cordoba");
-        define('EMAIL', "");
+        define('EMAIL', "ces@ces-sanfco.com.ar");
         define('PASS_EMAIL', "");
         define('SMTP_EMAIL', "");
-        define('DIRECCION', "");
+        define('DIRECCION', "Belgrano 1585");
         define('LOGO', URL . "/assets/img/logo.png");
         define('APP_ID_FB', "");
         spl_autoload_register(

@@ -33,7 +33,7 @@ $fechaF = explode("-", $promo['fin']);
                     <div class="row">
                         <div class="col-md-8 col-sm-12 col-xs-12">
                             <div class="listing-2-title">
-                                <h2><?= $promo['titulo']; ?></h2>
+                                <h2><?= ucfirst($promo['titulo']); ?></h2>
                             </div>
                             <div class="listing-2-meta">
                                 <ul>

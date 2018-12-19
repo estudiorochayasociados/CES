@@ -54,7 +54,7 @@ $categorias = new Clases\Categorias();
                                 } else {
                                     ?>
                                     <div>
-                                        <div class="image" style="height:500px;background:url(<?= URL . '/' . $galeria['ruta'] ?>) no-repeat center center/cover;">
+                                        <div class="image" style="height:500px;background:url(<?= URL . '/assets/archivos/img/galeria_sin.jpg' ?>) no-repeat center center/cover;">
                                         </div>
                                     </div>
                                     <?php
@@ -73,17 +73,18 @@ $categorias = new Clases\Categorias();
                                         <div>
                                             <div class="image"><img
                                                         src="<?= URL . '/' . $galeria['ruta'] ?>"
-                                                        alt="image"/></div>
+                                                        alt="<?=$_SESSION['usuarios']['titulo'];?>"/></div>
                                         </div>
                                         <?php
                                     }
                                 } else {
                                     ?>
+                                    <!--
                                     <div>
                                         <div class="image"><img
                                                     src="<?= URL . '/assets/archivos/img/galeria_sin.jpg' ?>"
                                                     alt="image"/></div>
-                                    </div>
+                                    </div>-->
                                     <?php
                                 }
                                 ?>

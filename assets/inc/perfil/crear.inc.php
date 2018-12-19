@@ -12,7 +12,7 @@ if (isset($_POST['crear'])) {
     $promocionCrear->set("keywords", $funcionesCrear->antihack_mysqli(isset($_POST["keywords"]) ? $_POST["keywords"] : ''));
     $promocionCrear->set("descripcion", $funcionesCrear->antihack_mysqli(isset($_POST["descripcion"]) ? $_POST["descripcion"] : ''));
     $promocionCrear->set("detalle", $funcionesCrear->antihack_mysqli(isset($_POST["detalle"]) ? $_POST["detalle"] : ''));
-    //$promocionCrear->set("categoria", $funcionesCrear->antihack_mysqli(isset($_POST["categoria"]) ? $_POST["categoria"] : ''));
+    $promocionCrear->set("categoria", $_SESSION['usuarios']['categoria']);
     //$promocionCrear->set("subcategoria", $funcionesCrear->antihack_mysqli(isset($_POST["subcategoria"]) ? $_POST["subcategoria"] : ''));
     $promocionCrear->set("usuario", $_SESSION['usuarios']['cod']);
         foreach ($_FILES['files']['name'] as $f => $name) {

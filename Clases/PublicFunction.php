@@ -62,6 +62,7 @@ class PublicFunction
         return $string;
 
     }
+
     public function eliminar_get($url, $varname)
     {
         $parsedUrl = parse_url($url);

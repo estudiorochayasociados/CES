@@ -71,13 +71,12 @@ $galerias = new Clases\Galerias();
                                     $gal = $galerias->view_perfil();
                                     $imagenesPerfil->set("cod", $gal['cod']);
                                     $galerias_perfil = $imagenesPerfil->listForProduct();
-                                    if (true) {
+                                    if (count($galerias_perfil) > 0) {
                                         foreach ($galerias_perfil as $galeria) {
                                             ?>
-                                            <div>
-                                                <div class="image"><img
-                                                            src="<?= URL . '/' . $galeria['ruta'] ?>"
-                                                            /></div>
+                                            <div >
+                                                <div class="image" style="height:400px;background:url(<?= URL . '/' . $galeria['ruta'] ?>) no-repeat center center/cover;">
+                                                </div>
                                             </div>
                                             <?php
                                         }
@@ -85,7 +84,7 @@ $galerias = new Clases\Galerias();
                                         ?>
                                         <div>
                                             <div class="image"><img
-                                                        src="<?= URL . '/' . $galeria['ruta'] ?>"
+                                                        src="<?= URL . '/assets/archivos/img/galeria_sin.jpg' ?>"
                                                         /></div>
                                         </div>
                                         <?php
@@ -98,23 +97,24 @@ $galerias = new Clases\Galerias();
                                     $gal = $galerias->view_perfil();
                                     $imagenesPerfil->set("cod", $gal['cod']);
                                     $galerias_perfil = $imagenesPerfil->listForProduct();
-                                    if (true) {
+                                    if (count($galerias_perfil) > 0) {
                                         foreach ($galerias_perfil as $galeria) {
                                             ?>
                                             <div>
                                                 <div class="image"><img
-                                                            src="<?= URL . '/' . $galeria['ruta'] ?>"
+                                                            src="<?= URL . '/' . $galeria['ruta'] ?>" alt="<?= $usuario_data['titulo'];?>"
                                                            /></div>
                                             </div>
                                             <?php
                                         }
                                     } else {
                                         ?>
+                                        <!--
                                         <div>
                                             <div class="image"><img
                                                         src="<?= URL ?>/assets/images/post-images/camera/1.jpg"
                                                         /></div>
-                                        </div>
+                                        </div>-->
                                         <?php
                                     }
                                     ?>

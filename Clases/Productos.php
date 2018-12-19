@@ -146,6 +146,6 @@ class Productos
         $contar = $this->con->sqlReturn($sql);
         $total = mysqli_num_rows($contar);
         $totalPaginas = $total / $cantidad;
-        return floor($totalPaginas);       
+        return ceil($totalPaginas);
     }
 }

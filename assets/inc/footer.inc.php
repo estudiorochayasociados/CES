@@ -1,24 +1,23 @@
 <footer class="footer">
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 col-md-3 col-xs-12">
+            <div class="col-sm-6 col-md-4 col-xs-12">
                 <div class="footer_block">
                     <a href="index.html" class="f_logo"><img src="<?=URL?>/assets/images/logo.png" class="img-responsive" alt="logo"></a>
-                    <p>Aoluptas sit aspernatur aut odit aut fugit, sed elits quias magni dolores eos qui ratione volust luptatem sequised .</p>
+                    <p><?=TITULO?>.</p>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-2 col-xs-12">
+            <div class="col-sm-6 col-md-4 col-xs-12">
                 <div class="footer_block">
                     <h4>Hot Links</h4>
                     <ul class="footer-links">
-                        <li> <a href="#">Home</a> </li>
-                        <li> <a href="#">About Us</a> </li>
-                        <li> <a href="#">Privacy</a> </li>
-                        <li> <a href="#">Contact Us</a> </li>
-                        <li> <a href="#">Term & Conditions</a> </li>
+                        <li> <a href="<?= URL ?>/index">Inicio</a> </li>
+                        <li> <a href="<?= URL ?>/empresa">Sobre nosotros</a> </li>
+                        <li> <a href="<?= URL ?>/contacto">Contacto</a> </li>
                     </ul>
                 </div>
             </div>
+            <!--
             <div class="col-sm-6 col-md-4 col-xs-12">
                 <div class="footer_block dark_gry">
                     <h4>Recent Posts</h4>
@@ -40,14 +39,14 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-            <div class="col-sm-6 col-md-3 col-xs-12">
+            </div>-->
+            <div class="col-sm-6 col-md-4 col-xs-12">
                 <div class="footer_block">
-                    <h4>Contact Information</h4>
+                    <h4>Información de contacto</h4>
                     <ul class="personal-info">
-                        <li><i class="fa fa-map-marker"></i> Belgrano 1585 - San Francisco</li>
-                        <li><i class="fa fa-envelope"></i> ces@ces-sanfco.com.ar</li>
-                        <li><i class="fa fa-phone"></i> (03564) 420108 </li>
+                        <li><i class="fa fa-map-marker"></i> <?=DIRECCION .' - '.CIUDAD?></li>
+                        <li><i class="fa fa-envelope"></i> <?=EMAIL?></li>
+                        <li><i class="fa fa-phone"></i> <?=TELEFONO?> </li>
                     </ul>
                     <div class="social-bar">
                         <ul>

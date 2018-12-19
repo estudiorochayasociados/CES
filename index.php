@@ -20,7 +20,7 @@ $categoriasData = $categorias->listForArea('');
 <body>
 <div class="page">
 <?php $template->themeNav();?>
-    <section class="main-section">
+    <section class="main-section" style="background-image: url('<?=URL .'/assets/archivos/img/001.jpg'?>');">
         <div class="container">
             <div class="row">
                 <!--

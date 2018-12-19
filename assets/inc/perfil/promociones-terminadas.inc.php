@@ -20,7 +20,7 @@ if (isset($_GET["borrar"])) {
                     <?php
                     $promociones_t->set("usuario", $_SESSION['usuarios']['cod']);
                     $promociones_t->set("estado", 0);
-                    $promociones = $promociones_t->listWithOpsPerfil('', '');
+                    $promociones = $promociones_t->listWithOpsPerfil('', '10');
                     if (count($promociones) > 0) {
                         foreach ($promociones as $promos) {
                             $imagenes_t->set("cod", $promos['cod']);

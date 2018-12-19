@@ -53,6 +53,14 @@ class Contenidos
         return $row;
     }
 
+    public function viewCod()
+    {
+        $sql   = "SELECT * FROM contenidos WHERE cod = '{$this->cod}' ORDER BY id DESC";
+        $notas = $this->con->sqlReturn($sql);
+        $row   = mysqli_fetch_assoc($notas);
+        return $row;
+    }
+
     public function list($filter)
     {
         $array = array();

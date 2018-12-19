@@ -16,8 +16,11 @@
     font-weight: 600;
     margin-bottom: 15px;
     margin-top: 15px;
-    padding: 0 20px;
+    /*padding: 0 20px;*/
     transition: all 0.4s ease 0s;
+}
+.redes{
+    float: right;
 }
 .tooltip {
     position: relative;

@@ -54,9 +54,9 @@ if (isset($_POST['login'])){
         <div class="row">
             <div class="col-md-7 col-sm-6 hidden-xs">
                 <div class="header-top-left header-top-info">
-                    <p class="hidden-sm"><a href="tel:+3211234567"><i class="fa fa-phone"></i>(03564) 420108</a></p>
+                    <p class="hidden-sm"><a href="tel:+3211234567"><i class="fa fa-phone"></i><?= TELEFONO?></a></p>
                     <p><a href="mailto:contact@scriptsbundle.com"><i
-                                    class="fa fa-envelope"></i>ces@ces-sanfco.com.ar</a>
+                                    class="fa fa-envelope"></i><?= EMAIL?></a>
                     </p>
                 </div>
             </div>
@@ -122,7 +122,6 @@ if (isset($_POST['login'])){
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="<?= URL ?>/empresa">Sobre nosotros</a></li>
                             <li><a href="<?= URL ?>/contacto">Contactanos</a></li>
-                            <li><a href="<?= URL ?>/404">Error Page</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

@@ -85,6 +85,10 @@ if (isset($_POST['editarMail'])) {
 }
 if (isset($_POST['editarLogo'])) {
     $cod = $_SESSION['usuarios']['cod'];
+    $imagenes->set("cod",$cod);
+    $imagenes_logo=$imagenes->view();
+    $imagenes->set("id",$imagenes_logo['id']);
+    $imagenes->deleteSite();
     foreach ($_FILES['files']['name'] as $f => $name) {
         $imgInicio = $_FILES["files"]["tmp_name"][$f];
         $tucadena = $_FILES["files"]["name"][$f];

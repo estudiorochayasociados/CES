@@ -3,6 +3,9 @@ require_once "Config/Autoload.php";
 Config\Autoload::runSitio();
 $template = new Clases\TemplateSite();
 $funciones = new Clases\PublicFunction();
+$contenidos = new Clases\Contenidos();
+$contenidos->set("cod","Prueba");
+$contenidos_data = $contenidos->viewCod();
 $template->set("title", "CES | Inicio");
 $template->set("description", "");
 $template->set("keywords", "");
@@ -33,23 +36,44 @@ $template->themeInit();
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="Heading-title black ">
-                            <h1>Want to know about us?</h1>
+                            <h1>Sobre nosotros</h1>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam neque tempora odit atque repellat est molestiae perferendis.Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. </p>
-                        <blockquote>Lorem ipsum dolor sit amet, adipisicing elit. Veritatis maxime, perferendis nostrum. Repellat nobis aperiam rerum in modi... !</blockquote>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam neque tempora odit atque repellat est molestiae perferendis.Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. </p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam neque tempora odit atque repellat est molestiae perferendis.Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. </p>
+                        <p>El 31 de octubre de 1928 en una reunión realizada en la confitería “Las Colonias”, (más conocida como "Confitería Ferrazzi”, ubicada en la esquina de Bv. 25 de Mayo y Avda. del Libertador (n), fue fundado el Centro Comercial e Industrial de San Francisco.
+
+
+
+                            El primer presidente electo fue el Sr. Carlos Bertello, integrante de la firma propietaria de un negocio de ramos generales que ocupaba gran parte de la manzana enmarcada por el Bv. 25 de Mayo y la calle Moreno y su primer asesor letrado y redactor de sus estatutos fue el Dr. Joaquín Gregorio Martínez.
+
+
+
+                            El 20 de mayo de 1931 quedó constituida una asociación denominada Centro Defensa de la Propiedad y fue su primer presidente el Sr. Luis Lamberghini.
+
+                            Agrupaba, conforme a lo consignado en los estatutos a los propietarios de bienes raíces (propiedades inmuebles).
+
+
+
+                            El 30 de agosto de 1936 esta entidad se fusiona con el Centro Comercial e Industrial dando origen al Centro Comercial, Industrial y de la Propiedad, con la orientación profesional del asesor letrado de ambas instituciones, Dr. Joaquín G. Martínez, quien realiza las correspondientes adecuaciones estatutarias.
+
+
+
+                            A partir de entonces se inicia una prolongada trayectoria de actividades y de realizaciones, no sólo en la promoción y defensa gremial empresaria sino con una activa participación en los principales proyectos de obras de beneficio público que contribuyeron al desarrollo de la ciudad y de su zona de influencia.
+
+
+
+                            En el año 2003, y como consecuencia de la convocatoria a una Asamblea General Extraordinaria de Socios se modifican parte de los Estatutos Sociales pasando a denominarse CENTRO EMPRESARIAL y de SERVICIOS de SAN FRANCISCO. </p>
+                        <!--<blockquote>Lorem ipsum dolor sit amet, adipisicing elit. Veritatis maxime, perferendis nostrum. Repellat nobis aperiam rerum in modi... !</blockquote>-->
+
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <img src="images/car-blueprint2.jpg" alt="" class="img-responsive">
+                        <img src="<?=URL?>/assets/archivos/img/ces_frente.jpg" alt="" class="img-responsive">
                         <div class="panel-group drop-accordion" id="accordion" role="tablist" aria-multiselectable="true">
                             <div class="panel panel-default">
                                 <div class="panel-heading tab-collapsed" role="tab" id="headingOne">
                                     <h4 class="panel-title">
                                         <a class="collapse-controle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            Who We Are
+                                            Texto 1
                                             <span class="expand-icon-wrap"><i class="fa expand-icon"></i></span>
                                         </a>
                                     </h4>
@@ -65,7 +89,7 @@ $template->themeInit();
                                 <div class="panel-heading" role="tab" id="headingTwo">
                                     <h4 class="panel-title">
                                         <a class="collapse-controle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            What We Do
+                                            Texto 2
                                             <span class="expand-icon-wrap"><i class="fa expand-icon"></i></span>
                                         </a>
                                     </h4>
@@ -81,7 +105,7 @@ $template->themeInit();
                                 <div class="panel-heading" role="tab" id="headingThree">
                                     <h4 class="panel-title">
                                         <a class="collapsed collapse-controle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                            Our Mission statement
+                                            Texto 3
                                             <span class="expand-icon-wrap"><i class="fa expand-icon"></i></span>
                                         </a>
                                     </h4>
@@ -103,8 +127,7 @@ $template->themeInit();
         <div class="container">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="Heading-title black">
-                    <h1>AdZone Banifits</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</p>
+                    <h1>Beneficios</h1>
                 </div>
             </div>
             <div class="row">
@@ -184,132 +207,6 @@ $template->themeInit();
                                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Standard dummy text ever since the 1500s.</p>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="facts">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-md-3 col-xs-6">
-                    <div class="fact-box">
-                        <div class="single-facts-area">
-                            <div class="facts-icon">
-                                <i class="icon-beaker"></i>
-                            </div>
-                            <div class="facts-detail">
-                                <span class="counter">7180</span>
-                                <h3>Classic Ads</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-xs-6">
-                    <div class="fact-box">
-                        <div class="single-facts-area">
-                            <div class="facts-icon">
-                                <i class="icon-document"></i>
-                            </div>
-                            <div class="facts-detail">
-                                <span class="counter">1836</span>
-                                <h3> New Projecs </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-xs-6">
-                    <div class="fact-box">
-                        <div class="single-facts-area">
-                            <div class="facts-icon">
-                                <i class="icon-profile-male"></i>
-                            </div>
-                            <div class="facts-detail">
-                                <span class="counter">5960</span>
-                                <h3>Daily Users</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 col-xs-6">
-                    <div class="fact-box">
-                        <div class="single-facts-area">
-                            <div class="facts-icon">
-                                <i class="icon-flag"></i>
-                            </div>
-                            <div class="facts-detail">
-                                <span class="counter">2142</span>
-                                <h3>Listed Company</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="testimoniial-section light-grey">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="Heading-title black">
-                        <h1>Our Success Stories</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</p>
-                    </div>
-                </div>
-                <div class="owl-testimonial-2">
-                    <div class="single_testimonial">
-                        <h4>Just fabulous</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elitsed eiusmod tempor enim minim veniam quis notru.</p>
-                        <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <img src="images/users/2.jpg" alt="">
-                        <h3 class="">Emily Copper</h3>
-                    </div>
-                    <div class="single_testimonial">
-                        <h4>Awesome ! Loving It</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elitsed eiusmod tempor enim minim veniam quis notru.</p>
-                        <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <img src="images/users/3.jpg" alt="">
-                        <h3 class="">Hania Sheikh</h3>
-                    </div>
-                    <div class="single_testimonial">
-                        <h4>Very quick and Fast</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elitsed eiusmod tempor enim minim veniam quis notru.</p>
-                        <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <img src="images/users/6.jpg" alt="">
-                        <h3 class="">Arslan Tariq</h3>
-                    </div>
-                    <div class="single_testimonial">
-                        <h4>Just fabulous</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elitsed eiusmod tempor enim minim veniam quis notru.</p>
-                        <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <img src="images/users/7.jpg" alt="">
-                        <h3 class="">Humayun Sarfraz</h3>
-                    </div>
-                    <div class="single_testimonial">
-                        <h4>Very quick and Fast</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elitsed eiusmod tempor enim minim veniam quis notru.</p>
-                        <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <img src="images/users/1.jpg" alt="">
-                        <h3 class="">Muhammad Umair</h3>
-                    </div>
-                    <div class="single_testimonial">
-                        <h4>Awesome ! Loving It</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elitsed eiusmod tempor enim minim veniam quis notru.</p>
-                        <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <img src="images/users/1.jpg" alt="">
-                        <h3 class="">Hania Sheikh</h3>
-                    </div>
-                    <div class="single_testimonial">
-                        <h4>Just fabulous</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elitsed eiusmod tempor enim minim veniam quis notru.</p>
-                        <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <img src="images/users/4.jpg" alt="">
-                        <h3 class="">Justin Shapes</h3>
-                    </div>
-                    <div class="single_testimonial">
-                        <h4>Awesome ! Loving It</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elitsed eiusmod tempor enim minim veniam quis notru.</p>
-                        <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <img src="images/users/3.jpg" alt="">
-                        <h3 class="">Hania Sheikh</h3>
-                    </div>
-                    <div class="single_testimonial">
-                        <h4>Very quick and Fast</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elitsed eiusmod tempor enim minim veniam quis notru.</p>
-                        <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <img src="images/users/2.jpg" alt="">
-                        <h3 class="">Mark Hales</h3>
                     </div>
                 </div>
             </div>

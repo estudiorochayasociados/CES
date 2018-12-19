@@ -241,7 +241,7 @@ class Usuarios
             $limitSql = '';
         }
 
-        $sql = "SELECT * FROM `usuarios` WHERE estado = '{$this->estado}' $filterSql  ORDER BY $orderSql $limitSql";
+        $sql = "SELECT * FROM `usuarios`  $filterSql  ORDER BY $orderSql $limitSql";
         $notas = $this->con->sqlReturn($sql);
         if ($notas) {
             while ($row = mysqli_fetch_assoc($notas)) {
@@ -263,7 +263,7 @@ class Usuarios
         $contar = $this->con->sqlReturn($sql);
         $total = mysqli_num_rows($contar);
         $totalPaginas = $total / $cantidad;
-        return floor($totalPaginas);
+        return ceil($totalPaginas);
     }
 
 }
