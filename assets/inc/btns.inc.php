@@ -25,7 +25,7 @@ if ($sesionCount != 0) {
                             </li>
                                 <li class="<?php if ($op=='crear') {echo 'active '; }?><?php if ($_SESSION['usuarios']['estado']==0) { echo 'btn-crud-deshabilitado'; }?>">
                                     <a href="<?=URL .'/perfil/crear' ?>">
-                                        <div class="icon"><i class="fa  fa-history"></i></div>
+                                        <div class="icon"><i class="fa  fa-calendar"></i></div>
                                         <div class="menue-name">Crear promos</div>
                                     </a>
                                 </li>
@@ -41,8 +41,14 @@ if ($sesionCount != 0) {
                                         <div class="menue-name">Promos terminadas</div>
                                     </a>
                                 </li>
+
                             <li>
-                                <a href="user-delete-account.html">
+                                <a href="<?= CANONICAL;
+                                if (@count($_GET) > 0) {
+                                    echo '&logout=0';
+                                } else {
+                                    echo '?logout=0';
+                                } ?>">
                                     <div class="icon"><i class="fa fa-close"></i></div>
                                     <div class="menue-name">Desconectar</div>
                                 </a>

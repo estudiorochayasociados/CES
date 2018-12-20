@@ -59,7 +59,7 @@ if (isset($_GET["borrar"])) {
                                         } else {
                                             $tags = explode(",", $promos['keywords']);
                                             ?>
-                                            <i class="fa fa-tags"></i> Tags:
+                                            <i class="fa fa-tags"></i>
                                             <?php
                                             foreach ($tags as $t) {
                                                 ?>
@@ -72,9 +72,9 @@ if (isset($_GET["borrar"])) {
                                         ?>
 
                                     </span>
-                                            <a href="<?= URL . '/promocion/' . $promos['cod'] ?>"
+                                            <!--<a href="<?= URL . '/promocion/' . $promos['cod'] ?>"
                                                class="btn btn-default pull-right"> Ver detalle <i
-                                                        class="fa fa-angle-double-right"></i> </a>
+                                                        class="fa fa-angle-double-right"></i> </a>-->
                                         </div>
                                     </div>
                                 </div>

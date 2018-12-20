@@ -61,7 +61,6 @@ if (isset($_POST['modificar'])) {
     $promocion->edit();
     $funciones->headerMove(URL .'/perfil/modificar&promocion=' . $cod);
 }
-
 ?>
 <section class="dashboard light-blue">
     <div class="container">
@@ -76,19 +75,19 @@ if (isset($_POST['modificar'])) {
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>Título de la promoción <span class="required"></span></label>
-                                    <input placeholder="" data-validation="length" data-validation-length="min20" value="<?=$promo['titulo'];?>" class="form-control" name="titulo" type="text">
+                                    <input placeholder="" data-validation="length" data-validation-length="min10" value="<?=$promo['titulo'];?>" class="form-control" name="titulo" type="text">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Fecha de inicio <span class="required"></span></label>
-                                    <input class="form-control" type="date" min="<?= date('Y-m-d')?>" name="inicio" onchange="$('#fin').attr('min',$(this).val()).val($(this).val())">
+                                    <input class="form-control" value="<?= $promo['inicio']?>" type="date" min="<?= date('Y-m-d')?>" name="inicio" onchange="$('#fin').attr('min',$(this).val()).val($(this).val())">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Fecha de fin <span class="required"></span></label>
-                                    <input id="fin" class="form-control" type="date" name="fin">
+                                    <input id="fin" value="<?=$promo['fin'] ?>" class="form-control" type="date" name="fin">
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12">
@@ -100,13 +99,13 @@ if (isset($_POST['modificar'])) {
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>Descripción </label>
-                                    <textarea cols="6" rows="8" placeholder="" data-validation="length" data-validation-length="min50" value="<?=$promo['descripcion'];?> name="descripcion" class="form-control"></textarea>
+                                    <textarea cols="6" rows="8" placeholder="" data-validation="length" data-validation-length="min20" name="descripcion" class="form-control"><?=$promo['descripcion'];?></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>Breve descripción </label>
-                                    <textarea cols="6" rows="4" placeholder="" data-validation="length" data-validation-length="50-800" value="<?=$promo['detalle'];?> name="detalle" class="form-control"></textarea>
+                                    <textarea cols="6" rows="4" placeholder="" data-validation="length" data-validation-length="20-150" name="detalle" class="form-control"><?=$promo['detalle'];?></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12">

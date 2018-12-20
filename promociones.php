@@ -21,7 +21,7 @@ $pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : '0';
 $categoria = isset($_GET["categoria"]) ? $_GET["categoria"] : '';
 $titulo = isset($_GET["titulo"]) ? $_GET["titulo"] : '';
 
-$cantidad = 3;
+$cantidad = 9;
 
 if ($pagina > 0) {
     $pagina = $pagina - 1;
@@ -81,7 +81,7 @@ $numeroPaginas = $promociones->paginador($filter, $cantidad);
                 <div class="col-sm-6 col-md-6">
                     <h1>Promociones</h1>
                 </div>
-                <div class="col-sm-6 col-md-6">
+                <div class="col-sm-6 col-md-6 hidden-xs">
                     <ol class="breadcrumb pull-right">
                         <li><a href="<?= URL ?>/index">Inicio</a></li>
                         <li class="active">Promociones</li>
@@ -137,6 +137,8 @@ $numeroPaginas = $promociones->paginador($filter, $cantidad);
                         $img = $imagenes->view();
                         $fechaI = explode("-", $promos['inicio']);
                         $fechaF = explode("-", $promos['fin']);
+                        $usuarios->set("cod",$promos['usuario']);
+                        $usuario_data=$usuarios->view();
                         ?>
                         <div class="col-md-4 col-sm-4 col-xs-12">
                             <div class="papular-reviews">
@@ -147,6 +149,7 @@ $numeroPaginas = $promociones->paginador($filter, $cantidad);
                                     </div>
                                     <div class="content">
                                         <h4> <?= ucfirst(substr($promos['titulo'], 0, 25)); ?> </h4>
+                                        <h6> <?= ucfirst($usuario_data['titulo'])?></h6>
                                         <!--  <i class="fa fa-calendar"></i> <?= $fechaI[2] . '/' . $fechaI[1] . '/' . $fechaI[0] ?> -  <?= $fechaF[2] . '/' . $fechaF[1] . '/' . $fechaF[0] ?>
 -->
                                     </div>

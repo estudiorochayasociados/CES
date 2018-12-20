@@ -3,7 +3,7 @@ require_once "Config/Autoload.php";
 Config\Autoload::runSitio();
 $template = new Clases\TemplateSite();
 $funciones = new Clases\PublicFunction();
-$template->set("title", "CES | Inicio");
+$template->set("title", "CES | ERROR");
 $template->set("description", "");
 $template->set("keywords", "");
 $template->set("favicon", LOGO);

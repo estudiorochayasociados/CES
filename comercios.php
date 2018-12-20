@@ -7,7 +7,7 @@ $usuarios = new Clases\Usuarios();
 $usuarios->set("estado", 1);
 $imagenes = new Clases\Imagenes();
 $categorias = new Clases\Categorias();
-$template->set("title", "CES | Inicio");
+$template->set("title", "CES | Comercios");
 $template->set("description", "");
 $template->set("keywords", "");
 $template->set("favicon", LOGO);
@@ -17,10 +17,9 @@ $categorias_data = $categorias->listForArea('');
 
 $pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : '0';
 $categoria = isset($_POST["categoria"]) ? $_POST["categoria"] : '';
-var_dump($categoria);
 $titulo = isset($_GET["titulo"]) ? $_GET["titulo"] : '';
 
-$cantidad = 1;
+$cantidad = 5;
 
 if ($pagina > 0) {
     $pagina = $pagina - 1;
@@ -76,7 +75,7 @@ $numeroPaginas = $usuarios->paginador($filter, $cantidad);
                 <div class="col-sm-6 col-md-6">
                     <h1>Comercios</h1>
                 </div>
-                <div class="col-sm-6 col-md-6">
+                <div class="col-sm-6 col-md-6 hidden-xs">
                     <ol class="breadcrumb pull-right">
                         <li><a href="<?= URL ?>/index">Inicio</a></li>
                         <li class="active">Comercios</li>
@@ -139,7 +138,7 @@ $numeroPaginas = $usuarios->paginador($filter, $cantidad);
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
-                                        <div class="ad-desc">
+                                        <div class="ad-desc hidden-xs">
                                             <p><?= substr(ucfirst($user['descripcion']), 0, 150) ?></p>
                                         </div>
                                         <div class="ad-bottom-area" style="position:absolute;bottom:10px;width: 90%">
@@ -163,7 +162,6 @@ $numeroPaginas = $usuarios->paginador($filter, $cantidad);
                             <?php
                         }
                         ?>
-
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12 col-md-pull-8">
@@ -174,9 +172,9 @@ $numeroPaginas = $usuarios->paginador($filter, $cantidad);
                                 <form method="post" id="formCategoria">
                                     <?php
                                     foreach ($categorias_data as $cat) {
-                                        if(is_array($categoria)) {
-                                            $validar = array_search($cat["cod"],$categoria);
-                                         }
+                                        if (is_array($categoria)) {
+                                            $validar = array_search($cat["cod"], $categoria);
+                                        }
                                         ?>
                                         <li>
                                             <div class="checkbox">
@@ -184,14 +182,14 @@ $numeroPaginas = $usuarios->paginador($filter, $cantidad);
                                                     <input type="checkbox" name="categoria[]"
                                                            value="<?= $cat['cod']; ?>">
                                                     <span class="cr"><i class="cr-icon fa fa-check"></i></span>
-                                                     <?= ucfirst($cat['titulo']); ?>
+                                                    <?= ucfirst($cat['titulo']); ?>
                                                 </label>
                                             </div>
                                         </li>
                                         <?php
                                     }
                                     ?>
-                                    <input type="submit" />
+                                    <input type="submit"/>
                                 </form>
                             </ul>
                         </div>

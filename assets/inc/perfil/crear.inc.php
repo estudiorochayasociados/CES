@@ -61,7 +61,7 @@ if (isset($_POST['crear'])) {
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>Título de la promoción <span class="required"></span></label>
-                                    <input placeholder="" data-validation="length" data-validation-length="min20" class="form-control" name="titulo" type="text">
+                                    <input placeholder="" data-validation="length" data-validation-length="min10" class="form-control" name="titulo" type="text">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
@@ -85,13 +85,13 @@ if (isset($_POST['crear'])) {
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>Descripción </label>
-                                    <textarea cols="6" rows="8" data-validation="length" data-validation-length="min50" placeholder="" name="descripcion" class="form-control"></textarea>
+                                    <textarea cols="6" rows="8" data-validation="length" data-validation-length="min20" placeholder="" name="descripcion" class="form-control"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>Breve descripción </label>
-                                    <textarea cols="6" rows="4" data-validation="length" data-validation-length="50-800" placeholder="" name="detalle" class="form-control"></textarea>
+                                    <textarea cols="6" rows="4" data-validation="length" data-validation-length="20-150" placeholder="" name="detalle" class="form-control"></textarea>
                                 </div>
                             </div>
                             <label class="col-md-7">Imágenes:<br/>

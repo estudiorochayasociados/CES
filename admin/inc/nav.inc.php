@@ -1,5 +1,5 @@
 <?php
-$pages = ["contenidos", "multimedia", "promociones", "configuracion", "categorias"];
+$pages = ["contenidos", "multimedia","usuarios", "promociones", "configuracion", "categorias"];
 $subpages = ["novedades"];
 ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-30">

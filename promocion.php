@@ -6,11 +6,6 @@ $funciones = new Clases\PublicFunction();
 $promocion = new Clases\Promociones();
 $usuario = new Clases\Usuarios();
 $imagenes = new Clases\Imagenes();
-$template->set("title", "CES | Inicio");
-$template->set("description", "");
-$template->set("keywords", "");
-$template->set("favicon", LOGO);
-$template->themeInit();
 $cod = isset($_GET["cod"]) ? $_GET["cod"] : '';
 $promocion->set("cod", $cod);
 $promo = $promocion->view();
@@ -20,12 +15,32 @@ $imagenes->set("cod", $promo['cod']);
 $imagen = $imagenes->listForProduct();
 $fechaI = explode("-", $promo['inicio']);
 $fechaF = explode("-", $promo['fin']);
+$template->set("title", "CES | ".ucfirst($promo['titulo']));
+$template->set("description", "");
+$template->set("keywords", "");
+$template->set("favicon", LOGO);
+$template->themeInit();
 ?>
 <body>
 <div class="page">
     <?php
     $template->themeNav();
     ?>
+    <section class="ad-breadcrumb parallex">
+        <div class="container page-banner">
+            <div class="row">
+                <div class="col-sm-6 col-md-6">
+                    <h1>Promoción</h1>
+                </div>
+                <div class="col-sm-6 col-md-6 hidden-xs">
+                    <ol class="breadcrumb pull-right">
+                        <li><a href="<?= URL ?>/index">Inicio</a></li>
+                        <li class="active"><?=$promo['titulo']?></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="ad-listing-single single-listing-2 light-blue">
         <div class="container">
             <div class="row">

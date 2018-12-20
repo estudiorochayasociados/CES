@@ -6,7 +6,7 @@ $funciones = new Clases\PublicFunction();
 $categorias = new Clases\Categorias();
 $novedades = new Clases\Novedades();
 $imagenes = new Clases\Imagenes();
-$template->set("title", "CES | Inicio");
+$template->set("title", "CES | Novedades");
 $template->set("description", "");
 $template->set("keywords", "");
 $template->set("favicon", LOGO);
@@ -43,10 +43,24 @@ $numeroPaginas = $novedades->paginador("", $cantidad);
 <body>
 <div class="page">
     <?php $template->themeNav(); ?>
+    <section class="ad-breadcrumb parallex">
+        <div class="container page-banner">
+            <div class="row">
+                <div class="col-sm-6 col-md-6">
+                    <h1>Novedades</h1>
+                </div>
+                <div class="col-sm-6 col-md-6 hidden-xs">
+                    <ol class="breadcrumb pull-right">
+                        <li><a href="<?= URL ?>/index">Inicio</a></li>
+                        <li class="active">Novedades</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="featured-ads">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-sm-8 col-xs-12 nopadding">
                     <?php
                     foreach ($novedades_data as $nov) {
                         $imagenes->set("cod", $nov['cod']);
@@ -122,8 +136,6 @@ $numeroPaginas = $novedades->paginador("", $cantidad);
                         <?php
                     }
                     ?>
-                </div>
-                <?php include 'assets/inc/novedades/side.inc.php'; ?>
                 <?php if ($numeroPaginas > 1): ?>
                     <div class="col-xs-12">
                         <div class="pagination mb-60">

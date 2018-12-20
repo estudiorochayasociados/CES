@@ -67,7 +67,7 @@ if (isset($_GET["finalizar"])) {
                                         } else {
                                             $tags = explode(",", $promos['keywords']);
                                             ?>
-                                            <i class="fa fa-tags"></i> Tags:
+                                            <i class="fa fa-tags"></i>
                                             <?php
                                             foreach ($tags as $t) {
                                                 ?>

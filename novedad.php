@@ -5,11 +5,6 @@ $template = new Clases\TemplateSite();
 $funciones = new Clases\PublicFunction();
 $novedades = new Clases\Novedades();
 $imagenes = new Clases\Imagenes();
-$template->set("title", "CES | Inicio");
-$template->set("description", "");
-$template->set("keywords", "");
-$template->set("favicon", LOGO);
-$template->themeInit();
 //
 $cod = isset($_GET["cod"]) ? $_GET["cod"] : '0';
 $novedades->set("cod", $cod);
@@ -18,14 +13,32 @@ $imagenes->set("cod", $cod);
 $img = $imagenes->view();
 $fecha = explode("-", $novedad_data['fecha']);
 
+$template->set("title", "CES | ".ucfirst($novedad_data['titulo']));
+$template->set("description", "");
+$template->set("keywords", "");
+$template->set("favicon", LOGO);
+$template->themeInit();
 ?>
 <body>
 <div class="page">
     <?php $template->themeNav(); ?>
+    <!--<section class="ad-breadcrumb parallex">
+        <div class="container page-banner">
+            <div class="row">
+                <div class="col-sm-6 col-md-6">
+                    <h1>Novedad</h1>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <ol class="breadcrumb pull-right">
+                        <li><a href="<?= URL ?>/index">Inicio</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>-->
     <section class="featured-ads">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-sm-8 col-xs-12 nopadding">
                     <div class="blog-post">
                         <div class="post-img">
                             <img src="<?= URL . '/' . $img['ruta'] ?>" alt="<?= ucfirst($novedad_data['titulo']); ?>"
@@ -102,8 +115,6 @@ $fecha = explode("-", $novedad_data['fecha']);
                             </div>
                         </div>
                     </div>
-                </div>
-                <?php include 'assets/inc/novedades/side.inc.php'; ?>
             </div>
         </div>
     </section>

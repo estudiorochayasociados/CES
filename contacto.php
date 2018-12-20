@@ -4,7 +4,7 @@ Config\Autoload::runSitio();
 $template = new Clases\TemplateSite();
 $funciones = new Clases\PublicFunction();
 $enviar = new Clases\Email();
-$template->set("title", "CES | Inicio");
+$template->set("title", "CES | Contacto");
 $template->set("description", "");
 $template->set("keywords", "");
 $template->set("favicon", LOGO);
@@ -18,20 +18,20 @@ if(isset($_POST['enviar'])){
     $mensaje .= "Mensaje: ".$_POST["mensaje"]."<br/>";
     $asunto = ucfirst($_POST["asunto"]);
     $receptor = "joaquinestudiorocha@gmail.com";//EMAIL;
-    $emisor = $_POST['email'];
+    $emisor = "joaquinestudiorocha@gmail.com";//$_POST['email'];
     $enviar->emailEnviar($asunto,$receptor,$emisor,$mensaje);
 }
 ?>
 <body>
 <div class="page">
     <?php $template->themeNav();?>
-    <section class="ad-breadcrumb parallex">
+    <section class="ad-breadcrumb parallex ">
         <div class="container page-banner">
             <div class="row">
                 <div class="col-sm-6 col-md-6">
                     <h1>Contactanos</h1>
                 </div>
-                <div class="col-sm-6 col-md-6">
+                <div class="col-sm-6 col-md-6 hidden-xs">
                     <ol class="breadcrumb pull-right">
                         <li><a href="<?=URL?>/inicio">Inicio</a></li>
                         <li class="active">Contacto</li>
@@ -41,11 +41,15 @@ if(isset($_POST['enviar'])){
         </div>
     </section>
 
-    <div id="map-contact"></div>
+    <!--<div id="map-contact"></div>-->
+
     <section class="contact-us light-grey">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="videoWrapper mb-10">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3404.4960945077437!2d-62.085600985277914!3d-31.42800678140017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95cb2818faf510ad%3A0xca5efdf25eaf3d8c!2sCentro+Empresarial+y+de+Servicios.!5e0!3m2!1ses!2sar!4v1545344618036" width="1000" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="Heading-title black">
                             <h1>Contactanos</h1>
@@ -105,18 +109,6 @@ if(isset($_POST['enviar'])){
                               <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
                               <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
                               -->
-                                <!-- AddToAny BEGIN -->
-                                <span class="compartir">Compartir en:</span>
-                                <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-                                    <a class="a2a_button_facebook"></a>
-                                    <a class="a2a_button_twitter"></a>
-                                    <a class="a2a_button_google_plus"></a>
-                                    <a class="a2a_button_whatsapp"></a>
-                                    <a class="a2a_button_pinterest"></a>
-                                    <a class="a2a_button_facebook_messenger"></a>
-                                </div>
-                                <script async src="https://static.addtoany.com/menu/page.js"></script>
-                                <!-- AddToAny END -->
                             </ul>
                         </div>
                     </div>

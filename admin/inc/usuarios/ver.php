@@ -9,9 +9,9 @@ $usuarios = new Clases\Usuarios();
         <hr/>
         <table class="table  table-bordered  ">
             <thead>
-                <th>Nombre</th>
+                <th>Título</th>
                 <th>Email</th>
-                <th>Celular</th>
+                <th>Teléfono</th>
                 <th>Ajustes</th>
             </thead>
             <tbody>
@@ -21,9 +21,9 @@ $data   = $usuarios->list("");
 if (is_array($data)) {
     for ($i = 0; $i < count($data); $i++) {
         echo "<tr>";
-        echo "<td>" . strtoupper($data[$i]["nombre"]) . " " . strtoupper($data[$i]["apellido"]) . "</td>";
+        echo "<td>" . strtoupper($data[$i]["titulo"])  . "</td>";
         echo "<td>" . strtoupper($data[$i]["email"]) . "</td>";
-        echo "<td>" . strtoupper($data[$i]["celular"]) . "</td>";
+        echo "<td>" . strtoupper($data[$i]["telefono"]) . "</td>";
         echo "<td>";
         echo '<a class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Modificar" href="' . URL . '/index.php?op=usuarios&accion=modificar&cod=' . $data[$i]["cod"] . '">
                         <i class="fa fa-cog"></i></a>';

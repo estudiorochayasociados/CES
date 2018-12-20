@@ -3,11 +3,7 @@ require_once "Config/Autoload.php";
 Config\Autoload::runSitio();
 $template = new Clases\TemplateSite();
 $funciones = new Clases\PublicFunction();
-$template->set("title", "CES | Inicio");
-$template->set("description", "");
-$template->set("keywords", "");
-$template->set("favicon", LOGO);
-$template->themeInit();
+$categorias = new Clases\Categorias();
 $cod = isset($_GET["cod"]) ? $_GET["cod"] : '';
 $usuario = new Clases\Usuarios();
 $usuario->set('cod',$cod);
@@ -15,6 +11,11 @@ $usuario_data= $usuario->view();
 $imagenesPerfil = new Clases\Imagenes();
 $promociones = new Clases\Promociones();
 $galerias = new Clases\Galerias();
+$template->set("title", "CES | ".ucfirst($usuario_data['titulo']));
+$template->set("description", "");
+$template->set("keywords", "");
+$template->set("favicon", LOGO);
+$template->themeInit();
 ?>
 <body>
 <div class="page">
@@ -25,7 +26,7 @@ $galerias = new Clases\Galerias();
                 <div class="col-sm-6 col-md-6">
                     <h1><?= ucfirst($usuario_data['titulo'])?></h1>
                 </div>
-                <div class="col-sm-6 col-md-6">
+                <div class="col-sm-6 col-md-6 hidden-xs">
                     <ol class="breadcrumb pull-right">
                         <li><a href="<?= URL.'/index'?>">Inicio</a></li>
                         <li class="active"><?= ucfirst($usuario_data['titulo'])?></li>
@@ -63,7 +64,7 @@ $galerias = new Clases\Galerias();
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-8 col-sm-12 col-xs-12 nopaddingright">
+                        <div class="col-md-8 col-sm-12 col-xs-12 ">
                             <div class="slick-gallery-slideshow">
                                 <div class="slider gallery-slideshow gallery-slideshow-not-tab">
                                     <?php
@@ -121,7 +122,7 @@ $galerias = new Clases\Galerias();
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-12 col-xs-12 nopaddingleft">
+                        <div class="col-md-4 col-sm-12 col-xs-12 ">
                             <div class="ad-detail">
                                 <div class="ad-detail-title">
                                     <h3><i class=" icon-layers"></i> Información</h3>
@@ -146,8 +147,12 @@ $galerias = new Clases\Galerias();
                                             <span class="pull-right"><?= $usuario_data['direccion'] . ', ' . $usuario_data['localidad']; ?></span>
                                         </li>
                                         <li>
-                                            <span class="pull-left">categoria</span>
-                                            <span class="pull-right"><?= $usuario_data['categoria']; ?></span>
+                                            <span class="pull-left">Rubro</span>
+                                            <?php
+                                            $categorias->set("cod",$usuario_data['categoria']);
+                                            $cat = $categorias->view();
+                                            ?>
+                                            <span class="pull-right"><?= ucfirst($cat['titulo']); ?></span>
                                         </li>
                                         <li>
                                             <span class="pull-left"></span>
@@ -196,12 +201,14 @@ $galerias = new Clases\Galerias();
                                             $img_promos = $imagenesPerfil->view();
                                             $fechaI = explode("-", $p['inicio']);
                                             $fechaF = explode("-", $p['fin']);
+                                            $categorias->set("cod",$usuario_data['categoria']);
+                                            $cat = $categorias->view();
                                             ?>
                                             <li>
                                                 <img src="<?= URL . '/' . $img_promos['ruta'] ?>" alt="<?=$p['titulo'];?>"
                                                      class="img-responsive">
                                                 <a href="#"><?= ucfirst(substr($p['titulo'], 0, 40)); ?> </a>
-                                                <span><i class="fa fa-folder-open-o"></i> <?= ucfirst($p['categoria']) ?></span>
+                                                <span><i class="fa fa-folder-open-o"></i> <?= ucfirst($cat['titulo']) ?></span>
                                                 <span><i class="fa fa-calendar"></i><?= $fechaI[2] . '/' . $fechaI[1] . '/' . $fechaI[0] ?> -  <?= $fechaF[2] . '/' . $fechaF[1] . '/' . $fechaF[0] ?>
                                                 </span>
                                             </li>

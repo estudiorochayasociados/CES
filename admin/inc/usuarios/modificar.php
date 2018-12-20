@@ -32,6 +32,7 @@ if (isset($_POST["agregar"])) {
     <h4>Usuarios</h4>
     <hr/>
     <form method="post" class="row">
+        <!--
         <label class="col-md-4">
             Nombre:<br/>
             <input type="text" name="nombre" value="<?=$usuario['nombre'];?>" />
@@ -43,6 +44,10 @@ if (isset($_POST["agregar"])) {
         <label class="col-md-4">
             DNI/CUIT/CUIL:<Br/>
             <input type="text" name="doc" value="<?=$usuario['doc'];?>" />
+        </label>-->
+        <label class="col-md-4">
+            Título:<br/>
+            <input type="text" name="nombre" value="<?=$usuario['titulo'];?>" />
         </label>
         <label class="col-md-4">
             Email:<br/>
@@ -52,10 +57,11 @@ if (isset($_POST["agregar"])) {
             Password:<br/>
             <input type="text" name="password" value="<?=$usuario['password'];?>" />
         </label>
+        <!--
         <label class="col-md-4">
             Postal:<br/>
             <input type="text" name="postal" value="<?=$usuario['postal'];?>" />
-        </label>
+        </label>-->
         <label class="col-md-4">
             Localidad:<br/>
             <input type="text" name="localidad" value="<?=$usuario['localidad'];?>" />

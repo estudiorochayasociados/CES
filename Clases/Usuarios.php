@@ -81,42 +81,6 @@ class Usuarios
         }
     }
 
-    public function editPass()
-    {
-        $validar = $this->validate();
-        $usuario = $this->view();
-        $sql = "UPDATE `usuarios` SET `password` = '{$this->password}'WHERE `cod`='{$this->cod}'";
-        if (is_array($validar)) {
-            if ($validar["email"] == $usuario["email"]) {
-                $query = $this->con->sql($sql);
-                return true;
-            } else {
-                echo "<div class='col-md-12'><div class='alert alert-danger'>Este correo ya existe como usuario.</div></div>";
-            }
-        } else {
-            $query = $this->con->sql($sql);
-            return true;
-        }
-    }
-
-    public function editMail()
-    {
-        $validar = $this->validate();
-        $usuario = $this->view();
-        $sql = "UPDATE `usuarios` SET `email` = '{$this->email}'WHERE `cod`='{$this->cod}'";
-        if (is_array($validar)) {
-            if ($validar["email"] == $usuario["email"]) {
-                $query = $this->con->sql($sql);
-                return true;
-            } else {
-                echo "<div class='col-md-12'><div class='alert alert-danger'>Este correo ya existe como usuario.</div></div>";
-            }
-        } else {
-            $query = $this->con->sql($sql);
-            return true;
-        }
-    }
-
     public function invitado_sesion()
     {
         $_SESSION["usuarios"] = array(
@@ -266,4 +230,46 @@ class Usuarios
         return ceil($totalPaginas);
     }
 
+    //Metodos agregados
+    public function editPass()
+    {
+        $validar = $this->validate();
+        $usuario = $this->view();
+        $sql = "UPDATE `usuarios` SET `password` = '{$this->password}'WHERE `cod`='{$this->cod}'";
+        if (is_array($validar)) {
+            if ($validar["email"] == $usuario["email"]) {
+                $query = $this->con->sql($sql);
+                return true;
+            } else {
+                echo "<div class='col-md-12'><div class='alert alert-danger'>Este correo ya existe como usuario.</div></div>";
+            }
+        } else {
+            $query = $this->con->sql($sql);
+            return true;
+        }
+    }
+
+    public function editMail()
+    {
+        $validar = $this->validate();
+        $usuario = $this->view();
+        $sql = "UPDATE `usuarios` SET `email` = '{$this->email}'WHERE `cod`='{$this->cod}'";
+        if (is_array($validar)) {
+            if ($validar["email"] == $usuario["email"]) {
+                $query = $this->con->sql($sql);
+                return true;
+            } else {
+                echo "<div class='col-md-12'><div class='alert alert-danger'>Este correo ya existe como usuario.</div></div>";
+            }
+        } else {
+            $query = $this->con->sql($sql);
+            return true;
+        }
+    }
+
+    public function setEstado(){
+        $sql   = "UPDATE `usuarios` SET estado = '{$this->estado}' WHERE `cod`='{$this->cod}'";
+        $query = $this->con->sql($sql);
+        return $query;
+    }
 }
