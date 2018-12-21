@@ -13,6 +13,7 @@ class autoload
         define('TELEFONO', "(03564) 420108");
         define('CIUDAD', "San Francisco");
         define('PROVINCIA', "Cordoba");
+        define('PAIS', "Argentina");
         define('EMAIL', "ces@ces-sanfco.com.ar");
         define('PASS_EMAIL', "");
         define('SMTP_EMAIL', "");

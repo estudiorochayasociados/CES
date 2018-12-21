@@ -45,19 +45,22 @@ if (isset($_POST['editar'])) {
 }
 if (isset($_POST['editarPass'])) {
     $email = $_SESSION['usuarios']['email'];
-    $passV = $funcionesEdit->antihack_mysqli(isset($_POST["passV"]) ? $_POST["passV"] : '');
-    $usuarioEdit->set("email", $email);
-    $usuarioEdit->set("password", $passV);
-    $usuarioEdit->set("cod", $_SESSION['usuarios']['cod']);
-    if ($usuarioEdit->login()) {
-        $usuarioEdit->set("password", $funcionesEdit->antihack_mysqli(isset($_POST["passN"]) ? $_POST["passN"] : ''));
-        $usuarioEdit->editPass();
-        $usuarioEdit->logout();
-        $usuarioEdit->login();
-        if ($_SESSION['usuarios']['estado'] == 1) {
-            $funcionesEdit->headerMove(URL . '/perfil/ver');
-        } else {
-            $funcionesEdit->headerMove(URL . '/perfil/editar');
+    $pass_vieja = $funcionesEdit->antihack_mysqli(isset($_POST["passV"]) ? $_POST["passV"] : '');
+    if ($pass_vieja == $_SESSION['usuarios']['password']) {
+        $pass_nueva = $funcionesEdit->antihack_mysqli(isset($_POST["passN"]) ? $_POST["passN"] : '');
+        $pass_nueva_confirmada = $funcionesEdit->antihack_mysqli(isset($_POST["passNC"]) ? $_POST["passNC"] : '');
+        if($pass_nueva==$pass_nueva_confirmada){
+            $usuarioEdit->set("password", $funcionesEdit->antihack_mysqli(isset($_POST["passN"]) ? $_POST["passN"] : ''));
+            $usuarioEdit->editPass();
+            $usuarioEdit->set("email", $email);
+            $usuarioEdit->set("password",$pass_nueva);
+            $usuarioEdit->logout();
+            $usuarioEdit->login();
+            if ($_SESSION['usuarios']['estado'] == 1) {
+                $funcionesEdit->headerMove(URL . '/perfil/ver');
+            } else {
+                $funcionesEdit->headerMove(URL . '/perfil/editar');
+            }
         }
     } else {
         echo "<div class='col-md-12'><div class='alert alert-danger'>Contraseña incorrecta </div></div>";
@@ -234,7 +237,7 @@ if (isset($_POST['crear_galerias'])) {
                                 <div class="form-group">
                                     <label>Confirmar contraseña <span class="required">*</span></label>
                                     <input type="password" data-validation="length" data-validation-length="min8"
-                                           placeholder="" class="form-control" name="passNC">
+                                           placeholder="" class="form-control" name="passNc">
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 mb-10" style="display: flex; justify-content: center;">

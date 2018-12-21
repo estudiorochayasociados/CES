@@ -38,11 +38,11 @@ else:
 endif;
 //Mostrar-------------------------------------
 
-$filter = array("estado=1");
+$filter = array('estado=1');
 if ($categoria == '' && $titulo == '') {
-    $filter = '';
+    //$filter = 'estado=1';
+    array_push($filter,"estado=1");
 }
-
 if ($categoria != '') {
     array_push($filter, "categoria='$categoria'");
 }
@@ -61,7 +61,6 @@ if ($titulo != '') {
         array_push($filter, "(titulo LIKE '%$titulo%' || descripcion LIKE '%$titulo%')");
     }
 }
-
 $usuarios_data = $usuarios->listWithOps($filter, "", $cantidad * $pagina . ',' . $cantidad);
 $numeroPaginas = $usuarios->paginador($filter, $cantidad);
 //------------------------------
@@ -117,7 +116,7 @@ $numeroPaginas = $usuarios->paginador($filter, $cantidad);
                             ?>
                             <div class="ad-box ad-box-2" style="width:100%;">
                                 <div class="col-md-4 col-sm-3 col-xs-12 ">
-                                    <div style="width:100%;height:250px;background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/contain"></div>
+                                    <a href="<?= URL . '/comercio/' . $user['cod'] ?>"><div style="width:100%;height:250px;background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/contain"></div></a>
                                 </div>
                                 <div class="col-md-8 col-sm-9 col-xs-12" style="min-height: 250px;position:relative;">
                                     <div class="ad-box-2-detail">

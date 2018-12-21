@@ -9,8 +9,14 @@ class TemplateSite
     public $keywords;
     public $description;
     public $favicon;
-    public $canonical;
 
+    private $canonical = CANONICAL;
+    private $autor     = TITULO;
+    private $made      = EMAIL;
+    private $pais      = PAIS;
+    private $place     = PROVINCIA;
+    private $position  = CIUDAD;
+    private $copy      = TITULO;
     public function themeInit()
     {
         ?>
@@ -60,7 +66,7 @@ class TemplateSite
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
             <![endif]-->
             <?php
-            /*
+
             echo '<meta charset="utf-8"/>';
             echo '<meta name="author" lang="es" content="'.$this->autor.'" />';
             echo '<link rel="author" href="'.$this->made.'" rel="nofollow" />';
@@ -95,14 +101,14 @@ class TemplateSite
             echo '<meta http-equiv="title" content="'.$this->title.'" />';
             echo '<meta name="description" lang=es content="'.$this->description.'" />';
             echo '<meta name="keywords" lang=es content="'.$this->keywords.'" />';
-            echo '<link href="'.$this->imagen.'" rel="Shortcut Icon" />';
+            //echo '<link href="'.$this->imagen.'" rel="Shortcut Icon" />';
             echo '<meta name="DC.title" content="'.$this->title.'" />';
             echo '<meta name="DC.subject" content="'.$this->description.'" />';
             echo '<meta name="DC.description" content="'.$this->description.'" />';
             echo '<meta property="og:title" content="'.$this->title.'" />';
             echo '<meta property="og:description" content="'.$this->description.'" />';
-            echo '<meta property="og:image" content="'.$this->imagen.'" />';
-            */
+            //echo '<meta property="og:image" content="'.$this->imagen.'" />';
+
             ?>
         </head>
         <?php

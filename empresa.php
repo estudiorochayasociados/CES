@@ -5,7 +5,19 @@ $template = new Clases\TemplateSite();
 $funciones = new Clases\PublicFunction();
 $contenidos = new Clases\Contenidos();
 $contenidos->set("cod","Historia");
-$contenidos_data = $contenidos->viewCod();
+$historia = $contenidos->viewCod();
+$contenidos->set("cod","Beneficio 1");
+$beneficio1 = $contenidos->viewCod();
+$contenidos->set("cod","Beneficio 2");
+$beneficio2 = $contenidos->viewCod();
+$contenidos->set("cod","Beneficio 3");
+$beneficio3 = $contenidos->viewCod();
+$contenidos->set("cod","Beneficio 4");
+$beneficio4 = $contenidos->viewCod();
+$contenidos->set("cod","Beneficio 5");
+$beneficio5 = $contenidos->viewCod();
+$contenidos->set("cod","Beneficio 6");
+$beneficio6 = $contenidos->viewCod();
 $template->set("title", "CES | Sobre nosotros");
 $template->set("description", "");
 $template->set("keywords", "");
@@ -39,11 +51,12 @@ $template->themeInit();
                             <h1>Sobre nosotros</h1>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <?=$contenidos_data['contenido'];?>
+                    <div class="col-md-12 col-sm-6 col-xs-12">
+                        <?=$historia['contenido'];?>
                         <!--<blockquote>Lorem ipsum dolor sit amet, adipisicing elit. Veritatis maxime, perferendis nostrum. Repellat nobis aperiam rerum in modi... !</blockquote>-->
 
                     </div>
+                    <!--
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <img src="<?=URL?>/assets/archivos/img/ces_frente.jpg" alt="" class="img-responsive">
                         <div class="panel-group drop-accordion" id="accordion" role="tablist" aria-multiselectable="true">
@@ -96,7 +109,7 @@ $template->themeInit();
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
@@ -116,8 +129,8 @@ $template->themeInit();
                                 <i class="services-icon fa fa-support"></i></a>
                             <div class="clearfix visible-xs"></div>
                             <div class="media-body">
-                                <h3>Beneficio 1</h3>
-                                <p></p>
+                                <!--<h3>Beneficio 1</h3>-->
+                                <p><?=$beneficio1['contenido'];?></p>
                             </div>
                         </div>
                     </div>
@@ -129,8 +142,7 @@ $template->themeInit();
                                 <i class="services-icon fa fa-plus-square-o"></i></a>
                             <div class="clearfix visible-xs"></div>
                             <div class="media-body">
-                                <h3>Beneficio 2</h3>
-                                <p></p>
+                                <p><?=$beneficio2['contenido'];?></p>
                             </div>
                         </div>
                     </div>
@@ -142,8 +154,7 @@ $template->themeInit();
                                 <i class="services-icon fa fa-cogs"></i></a>
                             <div class="clearfix visible-xs"></div>
                             <div class="media-body">
-                                <h3>Beneficio 3</h3>
-                                <p></p>
+                                <p><?=$beneficio3['contenido'];?></p>
                             </div>
                         </div>
                     </div>
@@ -155,8 +166,7 @@ $template->themeInit();
                                 <i class="services-icon fa fa-home"></i></a>
                             <div class="clearfix visible-xs"></div>
                             <div class="media-body">
-                                <h3> Beneficio 4</h3>
-                                <p></p>
+                                <p><?=$beneficio4['contenido'];?></p>
                             </div>
                         </div>
                     </div>
@@ -168,8 +178,7 @@ $template->themeInit();
                                 <i class="services-icon fa fa-book"></i></a>
                             <div class="clearfix visible-xs"></div>
                             <div class="media-body">
-                                <h3>Beneficio 5</h3>
-                                <p></p>
+                                <p><?=$beneficio5['contenido'];?></p>
                             </div>
                         </div>
                     </div>
@@ -181,8 +190,7 @@ $template->themeInit();
                                 <i class="services-icon fa fa-archive"></i></a>
                             <div class="clearfix visible-xs"></div>
                             <div class="media-body">
-                                <h3> Beneficio 6</h3>
-                                <p></p>
+                                <p><?=$beneficio6['contenido'];?></p>
                             </div>
                         </div>
                     </div>

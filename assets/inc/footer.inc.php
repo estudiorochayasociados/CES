@@ -9,7 +9,7 @@
             </div>
             <div class="col-sm-6 col-md-4 col-xs-12">
                 <div class="footer_block">
-                    <h4>Hot Links</h4>
+                    <h4>Enlaces</h4>
                     <ul class="footer-links">
                         <li> <a href="<?= URL ?>/index">Inicio</a> </li>
                         <li> <a href="<?= URL ?>/empresa">Sobre nosotros</a> </li>
@@ -17,29 +17,6 @@
                     </ul>
                 </div>
             </div>
-            <!--
-            <div class="col-sm-6 col-md-4 col-xs-12">
-                <div class="footer_block dark_gry">
-                    <h4>Recent Posts</h4>
-                    <ul class="recentpost">
-                        <li>
-                            <span><a class="plus" href="#"><img src="<?=URL?>/assets/images/footer/4.jpg" alt="" /><i>+</i></a></span>
-                            <p><a href="#">Fusce gravida tortor felis, ac dictum risus sagittis</a></p>
-                            <h3>Sep 15, 2016</h3>
-                        </li>
-                        <li>
-                            <span><a class="plus" href="#"><img src="<?=URL?>/assets/images/footer/5.jpg" alt="" /><i>+</i></a></span>
-                            <p><a href="#">Fusce gravida tortor felis, ac dictum risus sagittis</a></p>
-                            <h3>Fab 10, 2016</h3>
-                        </li>
-                        <li>
-                            <span><a class="plus" href="#"><img src="<?=URL?>/assets/images/footer/6.jpg" alt="" /><i>+</i></a></span>
-                            <p><a href="#">Fusce gravida tortor felis, ac dictum risus sagittis</a></p>
-                            <h3>Fab 10, 2016</h3>
-                        </li>
-                    </ul>
-                </div>
-            </div>-->
             <div class="col-sm-6 col-md-4 col-xs-12">
                 <div class="footer_block">
                     <h4>Información de contacto</h4>

@@ -16,6 +16,7 @@ class Promociones
     public $categoria;
     public $subcategoria;
     public $estado;
+    public $activo;
     private $con;
 
     //Metodos
@@ -66,6 +67,12 @@ class Promociones
 
     public function setEstado(){
         $sql   = "UPDATE `promociones` SET estado = '{$this->estado}' WHERE `cod`='{$this->cod}'";
+        $query = $this->con->sql($sql);
+        return $query;
+    }
+
+    public function setActivo(){
+        $sql   = "UPDATE `promociones` SET activo = '{$this->activo}' WHERE `cod`='{$this->cod}'";
         $query = $this->con->sql($sql);
         return $query;
     }

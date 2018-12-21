@@ -11,7 +11,7 @@ $template->set("favicon", LOGO);
 $template->themeInit();
 
 if(isset($_POST['enviar'])){
-    $mensaje = 'Nuevo mensaje de contacto <br/>';
+    $mensaje = "Nuevo mensaje de contacto <br/>";
     $mensaje .= "Nombre: ".$_POST["nombre"]."<br/>";
     $mensaje .= "Email: ".$_POST["email"]."<br/>";
     $mensaje .= "Teléfono: ".$_POST["telefono"]."<br/>";
@@ -89,7 +89,7 @@ if(isset($_POST['enviar'])){
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12">
-                                <a href="" name="enviar" class="btn btn-default"> Enviar mensaje <i class="fa fa-angle-double-right"></i> </a>
+                                <button type="submit" name="enviar" class="btn btn-default"> Enviar mensaje <i class="fa fa-angle-double-right"></i> </button>
                             </div>
                         </form>
                     </div>

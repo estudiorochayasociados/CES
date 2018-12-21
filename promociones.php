@@ -41,12 +41,12 @@ endif;
 
 //Mostrar-------------------------------------
 
-
-if ($categoria == '' && $titulo == '') {
-    $filter = '';
-} else {
-    $filter = array();
-}
+$filter = array("estado=1","activo=1");
+//if ($categoria == '' && $titulo == '') {
+//    $filter = '';
+//} else {
+//    $filter = array();
+//}
 
 if ($categoria != '') {
     array_push($filter, "categoria='$categoria'");
@@ -66,7 +66,6 @@ if ($titulo != '') {
         array_push($filter, "(titulo LIKE '%$titulo%' || keywords LIKE '%$titulo%' || detalle LIKE '%$titulo%')");
     }
 }
-
 $promociones_data = $promociones->listWithOps($filter, "", $cantidad * $pagina . ',' . $cantidad);
 
 $numeroPaginas = $promociones->paginador($filter, $cantidad);

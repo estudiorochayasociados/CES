@@ -13,7 +13,8 @@ $template->set("favicon", LOGO);
 $template->themeInit();
 //Categorias
 $categorias->set("area","comercios");
-$categoriasData = $categorias->listForArea('');
+$filter = array("");
+$categoriasData = $categorias->listForArea('','');
 //
 ?>
 
@@ -241,78 +242,6 @@ $categoriasData = $categorias->listForArea('');
                                                 </div>
                                             </div>
                                             <div class="clearfix visible-sm"></div>
-                                            <div class="listing-post">
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/laptops/1.jpg" class="img-responsive" alt="image" /> </div>
-                                                </div>
-                                                <div class="col-md-6 col-sm-12 col-xs-12">
-                                                    <div class="listing-desc">
-                                                        <h3 class="listing-desc-title">
-                                                            <a href="#">Apple MacBook Pro 13</a>
-                                                        </h3>
-                                                        <div class="listing-desc-category">
-                                                            <ul>
-                                                                <li><a href="#">laptop</a></li>
-                                                                <li><a href="#">mac</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
-                                                        <span class="listing-price">Price: <span>$1900</span></span> <span class="listing-desc-date">
-                                                <i class="fa fa-calendar"></i> September 30, 2016
-                                                </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-info"> <span class="listing-address">
-                                                <i class="fa fa-location-arrow"></i>
-                                                New York, United States
-                                                </span> <span class="listing-phone">
-                                                <i class="fa fa-phone"></i>
-                                                +90 0666 8009993
-                                                </span> <span class="listing-email">
-                                                <i class="fa fa-envelope"></i>
-                                                contact786@gmail.com
-                                                </span>
-                                                        <button class="btn btn-default btn-block"> View Ad <i class="fa fa-angle-right"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="listing-post">
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/laptops/2.jpg" class="img-responsive" alt="image" /> </div>
-                                                </div>
-                                                <div class="col-md-6 col-sm-12 col-xs-12">
-                                                    <div class="listing-desc">
-                                                        <h3 class="listing-desc-title">
-                                                            <a href="#">Apple MacBook Pro 13</a>
-                                                        </h3>
-                                                        <div class="listing-desc-category">
-                                                            <ul>
-                                                                <li><a href="#">laptop</a></li>
-                                                                <li><a href="#">mac</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
-                                                        <span class="listing-price">Price: <span>$1900</span></span> <span class="listing-desc-date">
-                                                <i class="fa fa-calendar"></i> September 30, 2016
-                                                </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-info"> <span class="listing-address">
-                                                <i class="fa fa-location-arrow"></i>
-                                                New York, United States
-                                                </span> <span class="listing-phone">
-                                                <i class="fa fa-phone"></i>
-                                                +90 0666 8009993
-                                                </span> <span class="listing-email">
-                                                <i class="fa fa-envelope"></i>
-                                                contact786@gmail.com
-                                                </span>
-                                                        <button class="btn btn-default btn-block"> View Ad <i class="fa fa-angle-right"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane  animated fadeInLeft" id="tab3">
@@ -390,78 +319,6 @@ $categoriasData = $categorias->listForArea('');
                                                 </div>
                                             </div>
                                             <div class="clearfix visible-sm"></div>
-                                            <div class="listing-post">
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/laptops/3.jpg" class="img-responsive" alt="image" /> </div>
-                                                </div>
-                                                <div class="col-md-6 col-sm-12 col-xs-12">
-                                                    <div class="listing-desc">
-                                                        <h3 class="listing-desc-title">
-                                                            <a href="#">Sony VAIO 13.3", Intel Core i7</a>
-                                                        </h3>
-                                                        <div class="listing-desc-category">
-                                                            <ul>
-                                                                <li><a href="#">laptop</a></li>
-                                                                <li><a href="#">sony</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
-                                                        <span class="listing-price">Price: <span>$1900</span></span> <span class="listing-desc-date">
-                                                <i class="fa fa-calendar"></i> September 30, 2016
-                                                </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-info"> <span class="listing-address">
-                                                <i class="fa fa-location-arrow"></i>
-                                                New York, United States
-                                                </span> <span class="listing-phone">
-                                                <i class="fa fa-phone"></i>
-                                                +90 0666 8009993
-                                                </span> <span class="listing-email">
-                                                <i class="fa fa-envelope"></i>
-                                                contact786@gmail.com
-                                                </span>
-                                                        <button class="btn btn-default btn-block"> View Ad <i class="fa fa-angle-right"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="listing-post">
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/laptops/1.jpg" class="img-responsive" alt="image" /> </div>
-                                                </div>
-                                                <div class="col-md-6 col-sm-12 col-xs-12">
-                                                    <div class="listing-desc">
-                                                        <h3 class="listing-desc-title">
-                                                            <a href="#">Sony VAIO 13.3", Intel Core i7</a>
-                                                        </h3>
-                                                        <div class="listing-desc-category">
-                                                            <ul>
-                                                                <li><a href="#">laptop</a></li>
-                                                                <li><a href="#">sony</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
-                                                        <span class="listing-price">Price: <span>$1900</span></span> <span class="listing-desc-date">
-                                                <i class="fa fa-calendar"></i> September 30, 2016
-                                                </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-info"> <span class="listing-address">
-                                                <i class="fa fa-location-arrow"></i>
-                                                New York, United States
-                                                </span> <span class="listing-phone">
-                                                <i class="fa fa-phone"></i>
-                                                +90 0666 8009993
-                                                </span> <span class="listing-email">
-                                                <i class="fa fa-envelope"></i>
-                                                contact786@gmail.com
-                                                </span>
-                                                        <button class="btn btn-default btn-block"> View Ad <i class="fa fa-angle-right"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane animated fadeInUp" id="tab4">
@@ -539,78 +396,6 @@ $categoriasData = $categorias->listForArea('');
                                                 </div>
                                             </div>
                                             <div class="clearfix visible-sm"></div>
-                                            <div class="listing-post">
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/jobs/3.jpg" class="img-responsive" alt="image" /> </div>
-                                                </div>
-                                                <div class="col-md-6 col-sm-12 col-xs-12">
-                                                    <div class="listing-desc">
-                                                        <h3 class="listing-desc-title">
-                                                            <a href="#">Looking for Technical Network Director</a>
-                                                        </h3>
-                                                        <div class="listing-desc-category">
-                                                            <ul>
-                                                                <li><a href="#">jobs</a></li>
-                                                                <li><a href="#">technical</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
-                                                        <span class="listing-price">Salary: <span>$1900</span></span> <span class="listing-desc-date">
-                                                <i class="fa fa-calendar"></i> September 30, 2016
-                                                </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-info"> <span class="listing-address">
-                                                <i class="fa fa-location-arrow"></i>
-                                                New York, United States
-                                                </span> <span class="listing-phone">
-                                                <i class="fa fa-phone"></i>
-                                                +90 0666 8009993
-                                                </span> <span class="listing-email">
-                                                <i class="fa fa-envelope"></i>
-                                                contact786@gmail.com
-                                                </span>
-                                                        <button class="btn btn-default btn-block"> View Ad <i class="fa fa-angle-right"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="listing-post">
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/jobs/1.jpg" class="img-responsive" alt="image" /> </div>
-                                                </div>
-                                                <div class="col-md-6 col-sm-12 col-xs-12">
-                                                    <div class="listing-desc">
-                                                        <h3 class="listing-desc-title">
-                                                            <a href="#">Looking for Technical Network Director</a>
-                                                        </h3>
-                                                        <div class="listing-desc-category">
-                                                            <ul>
-                                                                <li><a href="#">jobs</a></li>
-                                                                <li><a href="#">technical</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
-                                                        <span class="listing-price">Salary: <span>$1900</span></span> <span class="listing-desc-date">
-                                                <i class="fa fa-calendar"></i> September 30, 2016
-                                                </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-info"> <span class="listing-address">
-                                                <i class="fa fa-location-arrow"></i>
-                                                New York, United States
-                                                </span> <span class="listing-phone">
-                                                <i class="fa fa-phone"></i>
-                                                +90 0666 8009993
-                                                </span> <span class="listing-email">
-                                                <i class="fa fa-envelope"></i>
-                                                contact786@gmail.com
-                                                </span>
-                                                        <button class="btn btn-default btn-block"> View Ad <i class="fa fa-angle-right"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane animated fadeInRight" id="tab5">
@@ -688,42 +473,6 @@ $categoriasData = $categorias->listForArea('');
                                                 </div>
                                             </div>
                                             <div class="clearfix visible-sm"></div>
-                                            <div class="listing-post">
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/house/4.jpg" class="img-responsive" alt="image" /> </div>
-                                                </div>
-                                                <div class="col-md-6 col-sm-12 col-xs-12">
-                                                    <div class="listing-desc">
-                                                        <h3 class="listing-desc-title">
-                                                            <a href="#"> Penthouse apartment  open air</a>
-                                                        </h3>
-                                                        <div class="listing-desc-category">
-                                                            <ul>
-                                                                <li><a href="#">jobs</a></li>
-                                                                <li><a href="#">technical</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
-                                                        <span class="listing-price">Salary: <span>$1900</span></span> <span class="listing-desc-date">
-                                                <i class="fa fa-calendar"></i> September 30, 2016
-                                                </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-info"> <span class="listing-address">
-                                                <i class="fa fa-location-arrow"></i>
-                                                New York, United States
-                                                </span> <span class="listing-phone">
-                                                <i class="fa fa-phone"></i>
-                                                +90 0666 8009993
-                                                </span> <span class="listing-email">
-                                                <i class="fa fa-envelope"></i>
-                                                contact786@gmail.com
-                                                </span>
-                                                        <button class="btn btn-default btn-block"> View Ad <i class="fa fa-angle-right"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane animated fadeInUp" id="tab6">
@@ -801,42 +550,6 @@ $categoriasData = $categorias->listForArea('');
                                                 </div>
                                             </div>
                                             <div class="clearfix visible-sm"></div>
-                                            <div class="listing-post">
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/cars/4.jpg" class="img-responsive" alt="image" /> </div>
-                                                </div>
-                                                <div class="col-md-6 col-sm-12 col-xs-12">
-                                                    <div class="listing-desc">
-                                                        <h3 class="listing-desc-title">
-                                                            <a href="#"> 2017 Audi Q7 3.0T quattro Prestige</a>
-                                                        </h3>
-                                                        <div class="listing-desc-category">
-                                                            <ul>
-                                                                <li><a href="#">cars</a></li>
-                                                                <li><a href="#">audi</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
-                                                        <span class="listing-price">Salary: <span>$39000</span></span> <span class="listing-desc-date">
-                                                <i class="fa fa-calendar"></i> September 30, 2016
-                                                </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-info"> <span class="listing-address">
-                                                <i class="fa fa-location-arrow"></i>
-                                                New York, United States
-                                                </span> <span class="listing-phone">
-                                                <i class="fa fa-phone"></i>
-                                                +90 0666 8009993
-                                                </span> <span class="listing-email">
-                                                <i class="fa fa-envelope"></i>
-                                                contact786@gmail.com
-                                                </span>
-                                                        <button class="btn btn-default btn-block"> View Ad <i class="fa fa-angle-right"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane animated fadeInUp" id="tab7">
@@ -914,42 +627,6 @@ $categoriasData = $categorias->listForArea('');
                                                 </div>
                                             </div>
                                             <div class="clearfix visible-sm"></div>
-                                            <div class="listing-post">
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/sports/2.jpg" class="img-responsive" alt="image" /> </div>
-                                                </div>
-                                                <div class="col-md-6 col-sm-12 col-xs-12">
-                                                    <div class="listing-desc">
-                                                        <h3 class="listing-desc-title">
-                                                            <a href="#"> ping pong rackets for sale - Best Quality </a>
-                                                        </h3>
-                                                        <div class="listing-desc-category">
-                                                            <ul>
-                                                                <li><a href="#">cars</a></li>
-                                                                <li><a href="#">audi</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
-                                                        <span class="listing-price">Salary: <span>$39000</span></span> <span class="listing-desc-date">
-                                                <i class="fa fa-calendar"></i> September 30, 2016
-                                                </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-info"> <span class="listing-address">
-                                                <i class="fa fa-location-arrow"></i>
-                                                New York, United States
-                                                </span> <span class="listing-phone">
-                                                <i class="fa fa-phone"></i>
-                                                +90 0666 8009993
-                                                </span> <span class="listing-email">
-                                                <i class="fa fa-envelope"></i>
-                                                contact786@gmail.com
-                                                </span>
-                                                        <button class="btn btn-default btn-block"> View Ad <i class="fa fa-angle-right"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane animated fadeInRight" id="tab8">
@@ -1027,78 +704,6 @@ $categoriasData = $categorias->listForArea('');
                                                 </div>
                                             </div>
                                             <div class="clearfix visible-sm"></div>
-                                            <div class="listing-post">
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/cloths/2.jpg" class="img-responsive" alt="image" /> </div>
-                                                </div>
-                                                <div class="col-md-6 col-sm-12 col-xs-12">
-                                                    <div class="listing-desc">
-                                                        <h3 class="listing-desc-title">
-                                                            <a href="#"> ping pong rackets for sale - Best Quality </a>
-                                                        </h3>
-                                                        <div class="listing-desc-category">
-                                                            <ul>
-                                                                <li><a href="#">cars</a></li>
-                                                                <li><a href="#">audi</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
-                                                        <span class="listing-price">Salary: <span>$39000</span></span> <span class="listing-desc-date">
-                                                <i class="fa fa-calendar"></i> September 30, 2016
-                                                </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-info"> <span class="listing-address">
-                                                <i class="fa fa-location-arrow"></i>
-                                                New York, United States
-                                                </span> <span class="listing-phone">
-                                                <i class="fa fa-phone"></i>
-                                                +90 0666 8009993
-                                                </span> <span class="listing-email">
-                                                <i class="fa fa-envelope"></i>
-                                                contact786@gmail.com
-                                                </span>
-                                                        <button class="btn btn-default btn-block"> View Ad <i class="fa fa-angle-right"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="listing-post">
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-image"> <img src="<?=URL?>/assets/images/post-images/cloths/4.jpg" class="img-responsive" alt="image" /> </div>
-                                                </div>
-                                                <div class="col-md-6 col-sm-12 col-xs-12">
-                                                    <div class="listing-desc">
-                                                        <h3 class="listing-desc-title">
-                                                            <a href="#"> ping pong rackets for sale - Best Quality </a>
-                                                        </h3>
-                                                        <div class="listing-desc-category">
-                                                            <ul>
-                                                                <li><a href="#">cars</a></li>
-                                                                <li><a href="#">audi</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
-                                                        <span class="listing-price">Salary: <span>$39000</span></span> <span class="listing-desc-date">
-                                                <i class="fa fa-calendar"></i> September 30, 2016
-                                                </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3 col-sm-12 col-xs-12 nopadding">
-                                                    <div class="listing-info"> <span class="listing-address">
-                                                <i class="fa fa-location-arrow"></i>
-                                                New York, United States
-                                                </span> <span class="listing-phone">
-                                                <i class="fa fa-phone"></i>
-                                                +90 0666 8009993
-                                                </span> <span class="listing-email">
-                                                <i class="fa fa-envelope"></i>
-                                                contact786@gmail.com
-                                                </span>
-                                                        <button class="btn btn-default btn-block"> View Ad <i class="fa fa-angle-right"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

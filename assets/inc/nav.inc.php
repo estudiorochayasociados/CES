@@ -35,6 +35,7 @@ if (isset($_POST['login'])) {
         }
 
     } else {
+        echo '<p>Something went wrong, go back and try again!</p>';
     }
 }
 if (isset($_POST['recuperar'])) {
@@ -45,7 +46,7 @@ if (isset($_POST['recuperar'])) {
         $mensaje = 'Su contraseña es: <br/>';
         $mensaje .= "Contraseña: ".$usuario_data['password']."<br/>";
         $asunto = TITULO.' - Recuperación de contraseña';
-        $receptor = "joaquinestudiorcha@gmail.com";//$mensaje;
+        $receptor = "joaquinestudiorcha@gmail.com";//$email;
         $emisor = "joaquinestudiorocha@gmail.com";//EMAIL;
         $enviar->emailEnviar($asunto,$receptor,$emisor,$mensaje);
     } else {
@@ -66,8 +67,8 @@ if (isset($_POST['recuperar'])) {
         <div class="row">
             <div class="col-md-7 col-sm-6 hidden-xs">
                 <div class="header-top-left header-top-info">
-                    <p class="hidden-sm"><a href="tel:+3211234567"><i class="fa fa-phone"></i><?= TELEFONO ?></a></p>
-                    <p><a href="mailto:contact@scriptsbundle.com"><i
+                    <p class="hidden-sm"><a ><i class="fa fa-phone"></i><?= TELEFONO ?></a></p>
+                    <p><a ><i
                                     class="fa fa-envelope"></i><?= EMAIL ?></a>
                     </p>
                 </div>
@@ -232,7 +233,7 @@ if (isset($_POST['recuperar'])) {
         </div>
     </div>
 </div>
-<div class="modal fade register-model" id="recover" tabindex="-1" role="dialog">
+<div class="modal fade " id="recover" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="login-logo">
