@@ -13,7 +13,7 @@ $template->set("keywords", "");
 $template->set("favicon", LOGO);
 $template->themeInit();
 $categorias->set("area", "rubros");
-$categorias_data = $categorias->listForArea('');
+$categorias_data = $categorias->listForArea('','');
 
 $pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : '0';
 $categoria = isset($_POST["categoria"]) ? $_POST["categoria"] : '';
@@ -110,6 +110,7 @@ $numeroPaginas = $usuarios->paginador($filter, $cantidad);
                 <div class="col-md-8 col-sm-12 col-xs-12 col-md-push-4">
                     <div class="all-ads-list-box2">
                         <?php
+                        if(@count($usuarios_data)>0){
                         foreach ($usuarios_data as $user) {
                             $imagenes->set("cod", $user['cod']);
                             $img = $imagenes->view_list();
@@ -157,6 +158,13 @@ $numeroPaginas = $usuarios->paginador($filter, $cantidad);
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <?php
+                        }
+                        } else {
+                            ?>
+                            <div class="black" style="text-align: center;">
+                                <h1>No hay comercios para mostrar</h1>
                             </div>
                             <?php
                         }

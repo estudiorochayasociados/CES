@@ -16,7 +16,7 @@ $template->set("favicon", LOGO);
 $template->themeInit();
 //
 $categorias->set("area", "rubros");
-$categorias_data = $categorias->listForArea('');
+$categorias_data = $categorias->listForArea('','');
 $pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : '0';
 $categoria = isset($_GET["categoria"]) ? $_GET["categoria"] : '';
 $titulo = isset($_GET["titulo"]) ? $_GET["titulo"] : '';
@@ -106,12 +106,14 @@ $numeroPaginas = $promociones->paginador($filter, $cantidad);
                             <select class="select-category form-control" name="categoria">
                                 <option label="Elegir una categoría"></option>
                                 <?php
+                                if (@count($categorias_data)>0){
                                 foreach ($categorias_data as $cat) {
                                     ?>
                                     <option value="<?= $cat['cod']; ?>" <?php if ($cat["cod"] == $categoria) {
                                         echo "selected";
                                     } ?>><?= ucfirst($cat['titulo']); ?></option>
                                     <?php
+                                }
                                 }
                                 ?>
                             </select>
@@ -131,6 +133,7 @@ $numeroPaginas = $promociones->paginador($filter, $cantidad);
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
                     <?php
+                    if (@count($promociones_data)>0){
                     foreach ($promociones_data as $promos) {
                         $imagenes->set('cod', $promos['cod']);
                         $img = $imagenes->view();
@@ -155,6 +158,13 @@ $numeroPaginas = $promociones->paginador($filter, $cantidad);
 
                                 </a>
                             </div>
+                        </div>
+                        <?php
+                    }
+                    } else {
+                        ?>
+                        <div class="black" style="text-align: center;">
+                            <h1>No hay promociones para mostrar</h1>
                         </div>
                         <?php
                     }

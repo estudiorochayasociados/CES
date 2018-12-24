@@ -13,7 +13,7 @@ $template->set("favicon", LOGO);
 $template->themeInit();
 //
 $categorias->set("area", "novedades");
-$categorias_data = $categorias->listForArea('');
+$categorias_data = $categorias->listForArea('','');
 
 $pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : '0';
 $categoria = isset($_GET["categoria"]) ? $_GET["categoria"] : '0';
@@ -62,6 +62,7 @@ $numeroPaginas = $novedades->paginador("", $cantidad);
         <div class="container">
             <div class="row">
                     <?php
+                    if (@count($novedades_data)>0){
                     foreach ($novedades_data as $nov) {
                         $imagenes->set("cod", $nov['cod']);
                         $img = $imagenes->view();
@@ -132,6 +133,13 @@ $numeroPaginas = $novedades->paginador("", $cantidad);
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <?php
+                    }
+                    } else {
+                        ?>
+                        <div class="black" style="text-align: center;">
+                            <h1>No hay novedades para mostrar</h1>
                         </div>
                         <?php
                     }

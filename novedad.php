@@ -22,20 +22,20 @@ $template->themeInit();
 <body>
 <div class="page">
     <?php $template->themeNav(); ?>
-    <!--<section class="ad-breadcrumb parallex">
+    <section class="ad-breadcrumb parallex">
         <div class="container page-banner">
             <div class="row">
                 <div class="col-sm-6 col-md-6">
                     <h1>Novedad</h1>
                 </div>
-                <div class="col-sm-6 col-md-6">
+                <div class="col-sm-6 col-md-6 hidden-xs">
                     <ol class="breadcrumb pull-right">
                         <li><a href="<?= URL ?>/index">Inicio</a></li>
                     </ol>
                 </div>
             </div>
         </div>
-    </section>-->
+    </section>
     <section class="featured-ads">
         <div class="container">
             <div class="row">
