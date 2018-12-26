@@ -26,7 +26,7 @@ if (isset($_POST['modificar'])) {
     $promocion->set("keywords", $funciones->antihack_mysqli(isset($_POST["keywords"]) ? $_POST["keywords"] : ''));
     $promocion->set("descripcion", $funciones->antihack_mysqli(isset($_POST["descripcion"]) ? $_POST["descripcion"] : ''));
     $promocion->set("detalle", $funciones->antihack_mysqli(isset($_POST["detalle"]) ? $_POST["detalle"] : ''));
-    $promocion->set("categoria", $funciones->antihack_mysqli(isset($_POST["categoria"]) ? $_POST["categoria"] : ''));
+    $promocion->set("categoria", $_SESSION['usuarios']['categoria']);
     //$promocion->set("subcategoria", $funciones->antihack_mysqli(isset($_POST["subcategoria"]) ? $_POST["subcategoria"] : ''));
     $promocion->set("usuario", $_SESSION['usuarios']['cod']);
     foreach ($_FILES['files']['name'] as $f => $name) {

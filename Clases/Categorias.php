@@ -51,7 +51,7 @@ class Categorias
 
     public function view()
     {
-        $sql   = "SELECT * FROM `categorias` WHERE cod = '{$this->cod}' ORDER BY id DESC";
+        $sql   = "SELECT * FROM `categorias` WHERE cod = '{$this->cod}' ORDER BY titulo asc";
         $notas = $this->con->sqlReturn($sql);
         $row   = mysqli_fetch_assoc($notas);
         return $row;
@@ -66,7 +66,7 @@ class Categorias
             $filterSql = '';
         }
 
-        $sql = "SELECT * FROM `categorias` $filterSql  ORDER BY id DESC";
+        $sql = "SELECT * FROM `categorias` $filterSql  ORDER BY titulo asc";
          $notas = $this->con->sqlReturn($sql);
         if ($notas) {
             while ($row = mysqli_fetch_assoc($notas)) {
@@ -88,7 +88,7 @@ class Categorias
         if ($order != '') {
             $orderSql = $order;
         } else {
-            $orderSql = "id DESC";
+            $orderSql = "titulo asc";
         }
 
         if ($limit != '') {
@@ -120,7 +120,7 @@ class Categorias
         } else {
             $limitSql = '';
         }
-        $sql = "SELECT * FROM `categorias` WHERE area = '{$this->area}'$filterSql  ORDER BY id DESC $limitSql";
+        $sql = "SELECT * FROM `categorias` WHERE area = '{$this->area}'$filterSql  ORDER BY titulo asc$limitSql";
         $notas = $this->con->sqlReturn($sql);
         if ($notas) {
             while ($row = mysqli_fetch_assoc($notas)) {

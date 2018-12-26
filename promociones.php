@@ -42,14 +42,9 @@ endif;
 //Mostrar-------------------------------------
 
 $filter = array("estado=1","activo=1");
-//if ($categoria == '' && $titulo == '') {
-//    $filter = '';
-//} else {
-//    $filter = array();
-//}
 
 if ($categoria != '') {
-    array_push($filter, "categoria='$categoria'");
+    array_push($filter, " categoria='$categoria' ");
 }
 
 if ($titulo != '') {
@@ -144,7 +139,7 @@ $numeroPaginas = $promociones->paginador($filter, $cantidad);
                         ?>
                         <div class="col-md-4 col-sm-4 col-xs-12">
                             <div class="papular-reviews">
-                                <a href="<?= URL . '/promocion/' . $promos['cod'] ?>">
+                                <a href="<?= URL . '/promocion/'.$funciones->normalizar_link($promos["titulo"]).'/'. $promos['cod'] ?>">
                                     <div class="image"
                                          style="height:200px;background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/cover;">
 

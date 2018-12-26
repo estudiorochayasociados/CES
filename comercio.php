@@ -6,12 +6,12 @@ $funciones = new Clases\PublicFunction();
 $categorias = new Clases\Categorias();
 $cod = isset($_GET["cod"]) ? $_GET["cod"] : '';
 $usuario = new Clases\Usuarios();
-$usuario->set('cod',$cod);
-$usuario_data= $usuario->view();
+$usuario->set('cod', $cod);
+$usuario_data = $usuario->view();
 $imagenesPerfil = new Clases\Imagenes();
 $promociones = new Clases\Promociones();
 $galerias = new Clases\Galerias();
-$template->set("title", "CES | ".ucfirst($usuario_data['titulo']));
+$template->set("title", "CES | " . ucfirst($usuario_data['titulo']));
 $template->set("description", "");
 $template->set("keywords", "");
 $template->set("favicon", LOGO);
@@ -24,12 +24,12 @@ $template->themeInit();
         <div class="container page-banner">
             <div class="row">
                 <div class="col-sm-6 col-md-6">
-                    <h1><?= ucfirst($usuario_data['titulo'])?></h1>
+                    <h1><?= ucfirst($usuario_data['titulo']) ?></h1>
                 </div>
                 <div class="col-sm-6 col-md-6 hidden-xs">
                     <ol class="breadcrumb pull-right">
-                        <li><a href="<?= URL.'/index'?>">Inicio</a></li>
-                        <li class="active"><?= ucfirst($usuario_data['titulo'])?></li>
+                        <li><a href="<?= URL . '/index' ?>">Inicio</a></li>
+                        <li class="active"><?= ucfirst($usuario_data['titulo']) ?></li>
                     </ol>
                 </div>
             </div>
@@ -42,11 +42,8 @@ $template->themeInit();
                     <div class="detail-titile light-blue">
                         <div class="row">
                             <div class="col-xs-12 col-sm-9">
-                                <div class="cat-icon">
-                                    <i class="flaticon-computer"></i>
-                                </div>
-                                <div class="ad-name">
-                                    <h3 class=""> <?= ucfirst($usuario_data['titulo'])?> </h3>
+                                <div class="ad-name pl-30">
+                                    <h3 class=""> <?= ucfirst($usuario_data['titulo']) ?> </h3>
                                     <?php
                                     if ($usuario_data['direccion'] == '') {
                                         ?>
@@ -75,7 +72,7 @@ $template->themeInit();
                                     if (count($galerias_perfil) > 0) {
                                         foreach ($galerias_perfil as $galeria) {
                                             ?>
-                                            <div >
+                                            <div>
                                                 <div class="image" style="height:400px;background:url(<?= URL . '/' . $galeria['ruta'] ?>) no-repeat center center/cover;">
                                                 </div>
                                             </div>
@@ -84,9 +81,8 @@ $template->themeInit();
                                     } else {
                                         ?>
                                         <div>
-                                            <div class="image"><img
-                                                        src="<?= URL . '/assets/archivos/img/galeria_sin.jpg' ?>"
-                                                        /></div>
+                                            <div class="image"><img src="<?= URL . '/assets/archivos/img/galeria_sin.jpg' ?>"
+                                                /></div>
                                         </div>
                                         <?php
                                     }
@@ -102,9 +98,7 @@ $template->themeInit();
                                         foreach ($galerias_perfil as $galeria) {
                                             ?>
                                             <div>
-                                                <div class="image"><img
-                                                            src="<?= URL . '/' . $galeria['ruta'] ?>" alt="<?= $usuario_data['titulo'];?>"
-                                                           /></div>
+                                                <div class="image"><img src="<?= URL . '/' . $galeria['ruta'] ?>" alt="<?= $usuario_data['titulo']; ?>"/></div>
                                             </div>
                                             <?php
                                         }
@@ -112,9 +106,7 @@ $template->themeInit();
                                         ?>
                                         <!--
                                         <div>
-                                            <div class="image"><img
-                                                        src="<?= URL ?>/assets/images/post-images/camera/1.jpg"
-                                                        /></div>
+                                            <div class="image"><img src="<?= URL ?>/assets/images/post-images/camera/1.jpg"  /></div>
                                         </div>-->
                                         <?php
                                     }
@@ -131,8 +123,8 @@ $template->themeInit();
                                 $imagenesPerfil->set("cod", $usuario_data['cod']);
                                 $img = $imagenesPerfil->view();
                                 ?>
-                                <div style="height:340px;background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/contain;"></div>
-                                <div class="ad-detail-desc light-blue ">
+                                <div style="height:340px;background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/100%;"></div>
+                                <div class="ad-detail-desc light-blue pb-40 pt-20">
                                     <ul>
                                         <li>
                                             <span class="pull-left">Email</span>
@@ -149,7 +141,7 @@ $template->themeInit();
                                         <li>
                                             <span class="pull-left">Rubro</span>
                                             <?php
-                                            $categorias->set("cod",$usuario_data['categoria']);
+                                            $categorias->set("cod", $usuario_data['categoria']);
                                             $cat = $categorias->view();
                                             ?>
                                             <span class="pull-right"><?= ucfirst($cat['titulo']); ?></span>
@@ -158,28 +150,22 @@ $template->themeInit();
                                             <span class="pull-left"></span>
                                         </li>
                                     </ul>
-
-                                </div>
-                                <ul class="social-network social-circle onwhite" style="margin-top: 10px;">
-                                    <ul class="social-icons icon-circle list-unstyled list-inline">
-
-                                        <li><a href="<?= $usuario_data['facebook'] ?>"><i
-                                                        class="fa fa-facebook"></i></a></li>
-
-                                        <li><a href="<?= $usuario_data['twitter'] ?>"><i
-                                                        class="fa fa-instagram"></i></a></li>
-
-                                        <li><a href="<?= $usuario_data['instagram'] ?>"><i
-                                                        class="fa fa-twitter"></i></a></li>
+                                    <ul class="social-network social-circle onwhite" style="margin-top: 10px;">
+                                        <ul class="social-icons icon-circle list-unstyled list-inline">
+                                            <?php if($usuario_data['facebook'] != '') { echo '<li><a href="'.$usuario_data['facebook'].'"><i class="fa fa-facebook"></i></a></li>'; } ?>
+                                            <?php if($usuario_data['twitter'] != '') { echo '<li><a href="'.$usuario_data['twitter'].'"><i class="fa fa-instagram"></i></a></li>'; } ?>
+                                            <?php if($usuario_data['instagram'] != '') { echo '<li><a href="'.$usuario_data['instagram'].'"><i class="fa fa-twitter"></i></a></li>'; } ?>
+                                        </ul>
                                     </ul>
-                                </ul>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8 col-sm-12 col-sm-12">
                             <div class="heading-inner">
-                                <p class="title">Description</p>
+                                <p class="title">Descripción del comercio</p>
                             </div>
                             <p>
                                 <?= ucfirst($usuario_data['descripcion']); ?>
@@ -201,13 +187,13 @@ $template->themeInit();
                                             $img_promos = $imagenesPerfil->view();
                                             $fechaI = explode("-", $p['inicio']);
                                             $fechaF = explode("-", $p['fin']);
-                                            $categorias->set("cod",$usuario_data['categoria']);
+                                            $categorias->set("cod", $usuario_data['categoria']);
                                             $cat = $categorias->view();
                                             ?>
                                             <li>
-                                                <img src="<?= URL . '/' . $img_promos['ruta'] ?>" alt="<?=$p['titulo'];?>"
+                                                <img src="<?= URL . '/' . $img_promos['ruta'] ?>" alt="<?= $p['titulo']; ?>"
                                                      class="img-responsive">
-                                                <a href="#"><?= ucfirst(substr($p['titulo'], 0, 40)); ?> </a>
+                                                <a href="<?= URL . '/promocion/' . $p['cod'] ?>"><?= ucfirst(substr($p['titulo'], 0, 20)); ?> </a>
                                                 <span><i class="fa fa-folder-open-o"></i> <?= ucfirst($cat['titulo']) ?></span>
                                                 <span><i class="fa fa-calendar"></i><?= $fechaI[2] . '/' . $fechaI[1] . '/' . $fechaI[0] ?> -  <?= $fechaF[2] . '/' . $fechaF[1] . '/' . $fechaF[0] ?>
                                                 </span>

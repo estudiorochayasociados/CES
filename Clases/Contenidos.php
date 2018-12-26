@@ -61,6 +61,18 @@ class Contenidos
         return $row;
     }
 
+    public function list()
+    {
+        $sql   = "SELECT * FROM contenidos ";
+        $conten = $this->con->sqlReturn($sql);
+        if ($conten) {
+            while ($row = mysqli_fetch_assoc($conten)) {
+                $array[] = $row;
+            }
+            return $array ;
+        }
+     }
+
     function listWithOps($filter,$order,$limit) {
         $array = array();
         if (is_array($filter)) {

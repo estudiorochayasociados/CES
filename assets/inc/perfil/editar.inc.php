@@ -6,13 +6,15 @@ $zebra = new Clases\Zebra_Image();
 $imagenes = new Clases\Imagenes();
 $categorias = new Clases\Categorias();
 $categorias->set("area", "rubros");
-$categorias_data = $categorias->listForArea('');
+$categorias_data = $categorias->listForArea('', '');
 $borrarImg = $funcionesEdit->antihack_mysqli(isset($_GET["borrarImg"]) ? $_GET["borrarImg"] : '');
 if ($borrarImg != '') {
     $imagenes->set("id", $borrarImg);
     $imagenes->deleteSite();
     $funcionesEdit->headerMove(URL . "/perfil/editar");
 }
+
+
 if (isset($_POST['editar'])) {
     $usuarioEdit->set("titulo", $funcionesEdit->antihack_mysqli(isset($_POST["titulo"]) ? $_POST["titulo"] : ''));
     $usuarioEdit->set("telefono", $funcionesEdit->antihack_mysqli(isset($_POST["telefono"]) ? $_POST["telefono"] : ''));
@@ -30,12 +32,12 @@ if (isset($_POST['editar'])) {
         $usuarioEdit->edit();
         $email = $_SESSION['usuarios']['email'];
         $pass = $_SESSION['usuarios']['password'];
-        $usuarioEdit->logout();
+        //$usuarioEdit->logout();
         $usuarioEdit->set("email", $email);
         $usuarioEdit->set("password", $pass);
         $usuarioEdit->login();
         if ($_SESSION['usuarios']['estado'] == 1) {
-            $funcionesEdit->headerMove(URL . '/perfil/ver');
+            // $funcionesEdit->headerMove(URL . '/perfil/ver');
         } else {
             $funcionesEdit->headerMove(URL . '/perfil/editar');
         }
@@ -43,17 +45,19 @@ if (isset($_POST['editar'])) {
         echo "<div class='col-md-12'><div class='alert alert-danger'>Error </div></div>";
     }
 }
+
+
 if (isset($_POST['editarPass'])) {
     $email = $_SESSION['usuarios']['email'];
     $pass_vieja = $funcionesEdit->antihack_mysqli(isset($_POST["passV"]) ? $_POST["passV"] : '');
     if ($pass_vieja == $_SESSION['usuarios']['password']) {
         $pass_nueva = $funcionesEdit->antihack_mysqli(isset($_POST["passN"]) ? $_POST["passN"] : '');
         $pass_nueva_confirmada = $funcionesEdit->antihack_mysqli(isset($_POST["passNC"]) ? $_POST["passNC"] : '');
-        if($pass_nueva==$pass_nueva_confirmada){
+        if ($pass_nueva == $pass_nueva_confirmada) {
             $usuarioEdit->set("password", $funcionesEdit->antihack_mysqli(isset($_POST["passN"]) ? $_POST["passN"] : ''));
             $usuarioEdit->editPass();
             $usuarioEdit->set("email", $email);
-            $usuarioEdit->set("password",$pass_nueva);
+            $usuarioEdit->set("password", $pass_nueva);
             $usuarioEdit->logout();
             $usuarioEdit->login();
             if ($_SESSION['usuarios']['estado'] == 1) {
@@ -88,9 +92,9 @@ if (isset($_POST['editarMail'])) {
 }
 if (isset($_POST['editarLogo'])) {
     $cod = $_SESSION['usuarios']['cod'];
-    $imagenes->set("cod",$cod);
-    $imagenes_logo=$imagenes->view();
-    $imagenes->set("id",$imagenes_logo['id']);
+    $imagenes->set("cod", $cod);
+    $imagenes_logo = $imagenes->view();
+    $imagenes->set("id", $imagenes_logo['id']);
     $imagenes->deleteSite();
     foreach ($_FILES['files']['name'] as $f => $name) {
         $imgInicio = $_FILES["files"]["tmp_name"][$f];
@@ -203,7 +207,7 @@ if (isset($_POST['crear_galerias'])) {
                             <label class="col-md-7">Logo:<br/>
                                 <input type="file" id="file" name="files[]" multiple="multiple" accept="image/*"/>
                             </label>
-                            <div class="col-md-12 col-sm-12 mb-10" style="display: flex; justify-content: center;">
+                            <div class="col-md-12 col-sm-12 mt-10 mb-20">
                                 <button class="btn btn-default pull-right" name="editarLogo"><i class="fa fa-save"></i>
                                     Guardar logotipo
                                 </button>
@@ -240,7 +244,7 @@ if (isset($_POST['crear_galerias'])) {
                                            placeholder="" class="form-control" name="passNc">
                                 </div>
                             </div>
-                            <div class="col-md-12 col-sm-12 mb-10" style="display: flex; justify-content: center;">
+                            <div class="col-md-12 col-sm-12 mt-10 mb-20">
                                 <button class="btn btn-default pull-right" name="editarPass"><i class="fa fa-save"></i>
                                     Guardar contraseña
                                 </button>
@@ -268,7 +272,7 @@ if (isset($_POST['crear_galerias'])) {
                                     <input placeholder="" data-validation="email" class="form-control" name="emailN">
                                 </div>
                             </div>
-                            <div class="col-md-12 col-sm-12 mb-10" style="display: flex; justify-content: center;">
+                            <div class="col-md-12 col-sm-12 mt-10 mb-20">
                                 <button class="btn btn-default pull-right" name="editarMail"><i class="fa fa-save"></i>
                                     Guardar email
                                 </button>
@@ -368,24 +372,24 @@ if (isset($_POST['crear_galerias'])) {
                                     <p class="title">Redes sociales enlaces</p>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-12">
+                            <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>Facebook </label>
-                                    <input placeholder=" Ingresar link de Facebook" name="face" class="form-control"
+                                    <input placeholder=" Ingresar link de Facebook" data-validation="url" name="face" class="form-control"
                                            value="<?= $_SESSION['usuarios']['facebook'] ?>" type="text">
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-12">
+                            <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>Twitter </label>
-                                    <input placeholder="Ingresar link de Twitter" name="tw" class="form-control"
+                                    <input placeholder="Ingresar link de Twitter" data-validation="url" name="tw" class="form-control"
                                            value="<?= $_SESSION['usuarios']['twitter'] ?>" type="text">
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-12">
+                            <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>Instagram <span class="required">*</span></label>
-                                    <input placeholder=" Ingresar link de Instagram" name="ins" class="form-control"
+                                    <input placeholder=" Ingresar link de Instagram" data-validation="url" name="ins" class="form-control"
                                            value="<?= $_SESSION['usuarios']['instagram'] ?>" type="text">
                                 </div>
                             </div>
@@ -409,7 +413,6 @@ if (isset($_POST['crear_galerias'])) {
                 <div class="dashboard-main-disc">
                     <div class="row">
                         <form method="post" id="crear_galerias" enctype="multipart/form-data">
-
                             <div class="col-md-12 col-sm-12">
                                 <div class="heading-inner">
                                     <p class="title">Galerías</p>
@@ -419,12 +422,8 @@ if (isset($_POST['crear_galerias'])) {
                             $galerias->set("usuario", $_SESSION['usuarios']['cod']);
                             $gal = $galerias->view_perfil();
                             $imagenes->set("cod", $gal['cod']);
+                            $imagenes->imagenesProfile();
                             ?>
-                            <div class="col-md-12 col-sm-12">
-                                <?php
-                                $imagenes->imagenesProfile();
-                                ?>
-                            </div>
                             <label class="col-md-7">Imágenes:<br/>
                                 <input type="file" id="file" name="files[]" multiple="multiple" accept="image/*"/>
                             </label>

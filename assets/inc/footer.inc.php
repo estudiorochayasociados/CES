@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-sm-6 col-md-4 col-xs-12">
                 <div class="footer_block">
-                    <a href="index.html" class="f_logo"><img src="<?=URL?>/assets/images/logo.png" class="img-responsive" alt="logo"></a>
+                    <a href="index.html" class="f_logo"><img src="<?=URL?>/assets/images/logo.png" class="img-responsive" alt="logo" width="200"></a>
                     <p><?=TITULO?>.</p>
                 </div>
             </div>
@@ -25,19 +25,6 @@
                         <li><i class="fa fa-envelope"></i> <?=EMAIL?></li>
                         <li><i class="fa fa-phone"></i> <?=TELEFONO?> </li>
                     </ul>
-                    <div class="social-bar">
-                        <ul>
-                            <li>
-                                <a class="fa fa-twitter" href="#"></a>
-                            </li>
-                            <li>
-                                <a class="fa fa-facebook" href="https://es-la.facebook.com/pages/category/Non-Governmental-Organization--NGO-/Centro-Empresarial-y-de-Servicios-de-San-Francisco-Cba-355242891226048/"></a>
-                            </li>
-                            <li>
-                                <a class="fa fa-instagram" href="#"></a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>

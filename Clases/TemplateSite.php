@@ -56,6 +56,9 @@ class TemplateSite
             <!-- JavaScripts -->
             <script src="<?= URL ?>/assets/js/modernizr.js"></script>
 
+            <!--Agregados-->
+            <link href="<?= URL ?>/assets/lightbox/lightbox.css" rel="stylesheet">
+
             <!--<script type="text/javascript" src="<?= URL ?>/assets/js/jquery-3.1.1.min.js"></script>-->
             <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
@@ -162,6 +165,10 @@ class TemplateSite
         <!-- RANGE SLIDER JS -->
         <script src="<?= URL ?>/assets/js/nouislider.min.js"></script>
         <script src="<?= URL ?>/assets/js/wNumb.js"></script>
+
+        <!--Agregados-->
+        <script src="<?= URL ?>/assets/lightbox/lightbox.js"></script>
+        <script async src="https://static.addtoany.com/menu/page.js"></script>
         <!-- FOR THIS PAGE ONLY -->
         <script src="<?= URL ?>/assets/js/imagesloaded.js"></script>
         <script src="<?= URL ?>/assets/js/isotope.min.js"></script>

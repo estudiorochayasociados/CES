@@ -15,7 +15,7 @@ $imagenes->set("cod", $promo['cod']);
 $imagen = $imagenes->listForProduct();
 $fechaI = explode("-", $promo['inicio']);
 $fechaF = explode("-", $promo['fin']);
-$template->set("title", "CES | ".ucfirst($promo['titulo']));
+$template->set("title", "CES | " . ucfirst($promo['titulo']));
 $template->set("description", "");
 $template->set("keywords", "");
 $template->set("favicon", LOGO);
@@ -35,7 +35,7 @@ $template->themeInit();
                 <div class="col-sm-6 col-md-6 hidden-xs">
                     <ol class="breadcrumb pull-right">
                         <li><a href="<?= URL ?>/index">Inicio</a></li>
-                        <li class="active"><?=$promo['titulo']?></li>
+                        <li class="active"><?= $promo['titulo'] ?></li>
                     </ol>
                 </div>
             </div>
@@ -46,14 +46,13 @@ $template->themeInit();
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="row">
-                        <div class="col-md-8 col-sm-12 col-xs-12">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="listing-2-title">
                                 <h2><?= ucfirst($promo['titulo']); ?></h2>
                             </div>
                             <div class="listing-2-meta">
                                 <ul>
-                                    <li><i class="fa fa-user"></i> <a
-                                                href="<?= URL . '/comercio/' . $funciones->normalizar_link($user['cod']) ?>"><?= $user['titulo'] ?></a>
+                                    <li><i class="fa fa-user"></i> <a href="<?= URL . '/comercio/' . $funciones->normalizar_link($user['cod']) ?>"><?= $user['titulo'] ?></a>
                                     </li>
                                     <li><i class="fa fa-phone"></i> <?= $user['telefono']; ?></li>
                                     <li>
@@ -62,48 +61,45 @@ $template->themeInit();
 
                                 </ul>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="featured-slider gallery">
-                        <?php
-                        foreach ($imagen as $img) {
-                            ?>
-                            <div class="item">
-                                <div>
-                                    <div class="image">
-                                        <a ><img
-                                                    src="<?= URL . '/' . $img['ruta'] ?>" alt="<?= ucfirst($promo['titulo']);?>"
-                                                    class="img-responsive"/></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php
-                        }
-                        ?>
-                    </div>
-                </div>
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-sm-12">
                             <div class="heading-inner">
-                                <p class="title light-blue">Descripción</p>
+                                <p class="title light-blue">Descripción de la promoción</p>
                             </div>
                             <p>
                                 <?= $promo['descripcion']; ?>
                             </p>
+                            <!--
                             <div class="heading-inner">
                                 <p class="title light-blue">Detalle</p>
-                            </div>
+                            </div>-->
                             <div>
                                 <ul class="desc-points">
-                                    <li>
-                                        <i class="fa fa-caret-right "></i> <?= $promo['detalle']; ?>
-                                    </li>
+                                    <small><i class="fa fa-caret-right "></i> <?= $promo['detalle']; ?></small>
+
                                 </ul>
                             </div>
+                            <?php
+                            foreach ($imagen as $img) {
+                                ?>
+                                <a href="<?= URL . '/' . $img['ruta'] ?>" data-lightbox="roadtrip">
+                                    <div style="width: 30%;height:300px;display:inline-block;background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/cover;"></div>
+                                </a>
+                                <?php
+                            }
+                            ?>
                             <span class="separator"></span>
+                            <br>
+                            <div class="derecha mt-10">
+                                <!-- <label>Compartir en:</label>-->
+                                <!-- AddToAny BEGIN -->
+                                <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                                    <a class="a2a_button_facebook"></a>
+                                    <a class="a2a_button_twitter"></a>
+                                    <a class="a2a_button_google_plus"></a>
+                                    <a class="a2a_button_pinterest"></a>
+                                    <a class="a2a_button_whatsapp"></a>
+                                    <a class="a2a_button_facebook_messenger"></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -38,15 +38,18 @@ if (isset($_GET["finalizar"])) {
 
                             <div class="ad-box ad-box-2 col-md-12">
                                 <div class="col-md-4 col-sm-3 col-xs-12 nopadding">
-                                    <div class="comp-logo"
-                                         style="height:400px;background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/cover;">
-                                    </div>
+                                    <a href="<?= URL . '/promocion/' . $promos['cod'] ?>">
+                                        <div class="comp-logo"
+                                             style="height:400px;background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/cover;">
+                                        </div>
+                                    </a>
+
                                 </div>
                                 <div class="col-md-8 col-sm-9 col-xs-12" style="min-height: 400px;position:relative;">
                                     <div class="ad-box-2-detail">
                                         <div class="ad-title-box">
                                             <div class="ad-title"><a
-                                                        href="#"> <?= ucfirst($promos['titulo']); ?> </a>
+                                                        href="<?= URL . '/promocion/' . $promos['cod'] ?>"> <?= ucfirst($promos['titulo']); ?> </a>
                                             </div>
                                             <div class="ad-title-meta">
                                         <span>

@@ -14,10 +14,25 @@ if (isset($_POST['registrar'])) {
     $usuario->set("email", $funcionesNav->antihack_mysqli(isset($_POST["email"]) ? $_POST["email"] : ''));
     $usuario->set("password", $funcionesNav->antihack_mysqli(isset($_POST["password"]) ? $_POST["password"] : ''));
     $usuario->set("telefono", $funcionesNav->antihack_mysqli(isset($_POST["telefono"]) ? $_POST["telefono"] : ''));
-    $usuario->set("fecha",date_create('NOW'));
+    $usuario->set("fecha",date("Y-m-d"));
+    $usuario_titulo=$funcionesNav->antihack_mysqli(isset($_POST["titulo"]) ? $_POST["titulo"] : '');
+    $usuario_email=$funcionesNav->antihack_mysqli(isset($_POST["email"]) ? $_POST["email"] : '');
     if ($usuario->add()) {
         $usuario->add();
         $usuario->login();
+        //Envio de mail al usuario
+        $mensaje = 'Gracias por registrarse '.ucfirst($usuario_titulo). '<br/>';
+        $asunto = TITULO.' - Registro';
+        $receptor = $usuario_email;
+        $emisor = EMAIL;
+        $enviar->emailEnviar($asunto,$receptor,$emisor,$mensaje);
+        //Envio de mail a la empresa
+        $mensaje2 = 'La empresa '.ucfirst($usuario_titulo).' acaba de registrarse en nuestra plataforma' .'<br/>';
+        $asunto2 = TITULO.' - Registro';
+        $receptor2 = EMAIL;
+        $emisor2 = EMAIL;
+        $enviar->emailEnviar($asunto2,$receptor2,$emisor2,$mensaje2);
+
         $funcionesNav->headerMove(URL . '/perfil/editar');
     } else {
 
@@ -196,7 +211,7 @@ if (isset($_POST['recuperar'])) {
 <!-- mobile-menu-area-end -->
 <!-- LOGIN MODEL  -->
 <div class="modal fade login-model" id="login" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="login-logo">
                 <h2>Ingresar</h2>
@@ -234,7 +249,7 @@ if (isset($_POST['recuperar'])) {
     </div>
 </div>
 <div class="modal fade " id="recover" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="login-logo">
                 <h2>Recuperar</h2>
@@ -262,7 +277,7 @@ if (isset($_POST['recuperar'])) {
 </div>
 <!-- REGISTERATION MODEL  -->
 <div class="modal fade register-model" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="login-logo">
                 <h2>Registrarse</h2>

@@ -11,10 +11,11 @@ RewriteRule ^(.*)$ $1.php
 ##RewriteRule ^productos/(.*)/(.*)$ ./productos.php?pagina=$2
 #RewriteRule ^contacto ./contact.php
 
-RewriteRule ^promocion/(.*)/(.*)$ ./promocion.php?cod=$2
+RewriteRule ^promocion/(.*)/(.*)/(.*)$ ./promocion.php?cod=$3
 RewriteRule ^perfil/(.*)/(.*)$ ./perfil.php?op=$2
-RewriteRule ^comercio/(.*)/(.*)$ ./comercio.php?cod=$2
-RewriteRule ^novedad/(.*)/(.*)$ ./novedad.php?cod=$2
+RewriteRule ^comercio/(.*)/(.*)/(.*)$ ./comercio.php?cod=$3
+RewriteRule ^novedad/(.*)/(.*)/(.*)$ ./novedad.php?cod=$3
+
 
 
 #RewriteRule ^blog/(.*)/(.*)$ ./blog.php?cod=$2

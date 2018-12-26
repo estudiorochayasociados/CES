@@ -67,18 +67,18 @@ if (isset($_POST['crear'])) {
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Fecha de inicio <span class="required"></span></label>
-                                    <input  class="form-control" type="date" min="<?= date('Y-m-d')?>" name="inicio" onchange="$('#fin').attr('min',$(this).val()).val($(this).val())">
+                                    <input  class="form-control" type="date" value="<?= date('Y-m-d')?>" min="<?= date('Y-m-d')?>" name="inicio" onchange="$('#fin').attr('min',$(this).val()).val($(this).val())">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Fecha de fin <span class="required"></span></label>
-                                    <input id="fin" class="form-control" type="date" name="fin">
+                                    <input id="fin" class="form-control" type="date" value="<?= date('Y-m-d')?>" name="fin">
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    <label>Palabras claves para hashtags dividir con "," <span class="required"></span></label>
+                                    <label>Palabras claves dividir con "," (coma) <span class="required"></span></label>
                                     <input placeholder="Ejemplo: Promo,15%OFF" class="form-control" name="keywords" type="text">
                                 </div>
                             </div>
