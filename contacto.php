@@ -5,8 +5,8 @@ $template = new Clases\TemplateSite();
 $funciones = new Clases\PublicFunction();
 $enviar = new Clases\Email();
 $template->set("title", "CES | Contacto");
-$template->set("description", "");
-$template->set("keywords", "");
+$template->set("description", "Contacto CES");
+$template->set("keywords", "Contacto,CES");
 $template->set("favicon", LOGO);
 $template->themeInit();
 ?>

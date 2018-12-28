@@ -12,8 +12,8 @@ $imagenesPerfil = new Clases\Imagenes();
 $promociones = new Clases\Promociones();
 $galerias = new Clases\Galerias();
 $template->set("title", "CES | " . ucfirst($usuario_data['titulo']));
-$template->set("description", "");
-$template->set("keywords", "");
+$template->set("description", ucfirst(substr($usuario_data['descripcion'], 0, 120)));
+$template->set("keywords", ucfirst($usuario_data['titulo']));
 $template->set("favicon", LOGO);
 $template->themeInit();
 ?>
@@ -45,7 +45,7 @@ $template->themeInit();
                                     } else {
                                         ?>
                                         <div class="detail-location"><i
-                                                    class="fa fa-map-marker"></i> <?= $usuario_data['direccion']; ?>
+                                                    class="fa fa-map-marker"></i> <?= $usuario_data['direccion']. ', ' . $usuario_data['localidad'];; ?>
                                         </div>
                                         <?php
                                     }
@@ -127,10 +127,6 @@ $template->themeInit();
                                         <li>
                                             <span class="pull-left">Teléfono</span>
                                             <span class="pull-right"><?= $usuario_data['telefono']; ?></span>
-                                        </li>
-                                        <li>
-                                            <span class="pull-left">Dirección</span>
-                                            <span class="pull-right"><?= $usuario_data['direccion'] . ', ' . $usuario_data['localidad']; ?></span>
                                         </li>
                                         <li>
                                             <span class="pull-left">Rubro</span>

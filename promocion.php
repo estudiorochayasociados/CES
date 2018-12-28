@@ -16,8 +16,8 @@ $imagen = $imagenes->listForProduct();
 $fechaI = explode("-", $promo['inicio']);
 $fechaF = explode("-", $promo['fin']);
 $template->set("title", "CES | " . ucfirst($promo['titulo']));
-$template->set("description", "");
-$template->set("keywords", "");
+$template->set("description", ucfirst(substr($promo['descripcion'], 0, 120)));
+$template->set("keywords", $promo['keywords']);
 $template->set("favicon", LOGO);
 $template->themeInit();
 ?>

@@ -11,8 +11,8 @@ $comision = $contenidos->viewCod();
 $contenidos->set("cod", "Objetivos");
 $objetivos = $contenidos->viewCod();
 $template->set("title", "CES | Sobre nosotros");
-$template->set("description", "");
-$template->set("keywords", "");
+$template->set("description", "Acerca del CES San Francisco");
+$template->set("keywords", "CES");
 $template->set("favicon", LOGO);
 $template->themeInit();
 ?>

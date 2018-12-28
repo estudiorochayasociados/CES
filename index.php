@@ -7,8 +7,8 @@ $usuarios = new Clases\Usuarios();
 $categorias = new Clases\Categorias();
 $imagenes = new Clases\Imagenes();
 $template->set("title", "CES | Inicio");
-$template->set("description", "");
-$template->set("keywords", "");
+$template->set("description", "Inico de CES San Francisco");
+$template->set("keywords", "Inicio,CES");
 $template->set("favicon", LOGO);
 $template->themeInit();
 //Categorias

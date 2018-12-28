@@ -7,8 +7,8 @@ $categorias = new Clases\Categorias();
 $novedades = new Clases\Novedades();
 $imagenes = new Clases\Imagenes();
 $template->set("title", "CES | Novedades");
-$template->set("description", "");
-$template->set("keywords", "");
+$template->set("description", "Novedades CES San Francisco");
+$template->set("keywords", "Novedades,CES");
 $template->set("favicon", LOGO);
 $template->themeInit();
 //

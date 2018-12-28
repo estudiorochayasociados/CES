@@ -9,9 +9,9 @@ $imagenes = new Clases\Imagenes();
 $usuarios = new Clases\Usuarios();
 $categorias = new Clases\Categorias();
 //
-$template->set("title", "CES | Inicio");
-$template->set("description", "");
-$template->set("keywords", "");
+$template->set("title", "CES | Promociones");
+$template->set("description", "Promociones de comercios del CES San Francisco");
+$template->set("keywords", "Promociones CES,CES");
 $template->set("favicon", LOGO);
 $template->themeInit();
 //

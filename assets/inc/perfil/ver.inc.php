@@ -21,7 +21,7 @@ $categorias = new Clases\Categorias();
                                 } else {
                                     ?>
                                     <div class="detail-location"><i
-                                                class="fa fa-map-marker"></i> <?= $_SESSION["usuarios"]['direccion']; ?>
+                                                class="fa fa-map-marker"></i> <?= $_SESSION["usuarios"]['direccion']. ', ' . $_SESSION["usuarios"]['localidad'];; ?>
                                     </div>
                                     <?php
                                 }
@@ -103,10 +103,6 @@ $categorias = new Clases\Categorias();
                                     <li>
                                         <span class="pull-left">Teléfono</span>
                                         <span class="pull-right"><?= $_SESSION["usuarios"]['telefono']; ?></span>
-                                    </li>
-                                    <li>
-                                        <span class="pull-left">Dirección</span>
-                                        <span class="pull-right"><?= $_SESSION["usuarios"]['direccion'] . ', ' . $_SESSION["usuarios"]['localidad']; ?></span>
                                     </li>
                                     <li>
                                         <span class="pull-left">Rubro</span>
