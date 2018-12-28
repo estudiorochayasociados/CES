@@ -60,15 +60,16 @@ class TemplateSite
             <link href="<?= URL ?>/assets/lightbox/lightbox.css" rel="stylesheet">
 
 
-            <!-- Etiqueta global de sitio (gtag.js) de Google Analytics -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+            <!-- Global site tag (gtag.js) - Google Analytics -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131456247-1"></script>
             <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
 
-                gtag('config', 'GA_TRACKING_ID');
+                gtag('config', 'UA-131456247-1');
             </script>
+
 
 
             <!--<script type="text/javascript" src="<?= URL ?>/assets/js/jquery-3.1.1.min.js"></script>-->

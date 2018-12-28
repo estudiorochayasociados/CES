@@ -48,14 +48,11 @@ class Email
             $mail->AltBody = strip_tags($this->mensaje);
 
             $mail->send();
-            echo '<div class="alert alert-success" role="alert">
-            ¡Consulta enviada correctamente!
-            </div>';
+            $r = 1;
         }catch (Exception $e) {
-            echo '<div class="alert alert-danger" role="alert">
-            ¡No se ha podido enviar su consulta, ha ocurrido un error! 
-            </div>', $mail->ErrorInfo;
+            $r = 0;
         }
+        return $r;
     }
 }
 ?>

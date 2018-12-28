@@ -44,14 +44,34 @@ $template->themeInit();
                         $mensaje .= "Teléfono: ".$_POST["telefono"]."<br/>";
                         $mensaje .= "Mensaje: ".$_POST["mensaje"]."<br/>";
                         $asunto = ucfirst($_POST["asunto"]);
-                        $receptor = "joaquinestudiorocha@gmail.com";//EMAIL;
-                        $emisor = "joaquinestudiorocha@gmail.com";//$_POST['email'];
+                        $receptor = EMAIL;
+                        $emisor = $_POST['email'];
 
                         $enviar->set("asunto", $asunto);
                         $enviar->set("receptor", $receptor);
                         $enviar->set("emisor", $emisor);
                         $enviar->set("mensaje", $mensaje);
                         $enviar->emailEnviar();
+                            if ($enviar->emailEnviar()==1){
+                                ?>
+                                <script>
+                                    $(document).ready(function () {
+                                        $("#mensaje").html('<div class=\'alert alert-success\'> Enviado con éxito. </div>');
+                                        $('#recoverOk').modal("show");
+                                    });
+                                </script>
+                            <?php
+                            }else{
+                            ?>
+
+                                <script>
+                                    $(document).ready(function () {
+                                        $("#mensaje").html('<div class=\'alert alert-danger\'> Ocurrió un error, pruebe nuevamente. </div>');
+                                        $('#recoverOk').modal("show");
+                                    });
+                                </script>
+                                <?php
+                            }
                         }
                         ?>
                         <form class="row" method="post" id="enviar">
@@ -118,6 +138,20 @@ $template->themeInit();
         </div>
     </section>
     <?php $template->themeEnd(); ?>
+</div>
+<div class="modal fade " id="emailOk" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="login-logo">
+                <h2>Contacto</h2>
+            </div>
+            <div class="login-box-inner">
+                <div id="mensaje" >
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

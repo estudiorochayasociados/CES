@@ -47,14 +47,22 @@ if (isset($_POST['registrar'])) {
     } else {
         $validar = $usuario->validate();
         if ($validar != '') {
-            $error_registrar = "El email ya esta en uso";
+            $error_registrar = "El email ya esta en uso.";
+            ?>
+            <script>
+                $(document).ready(function () {
+                    $("#errorRegister").html('<div class=\'alert alert-danger\'> <?= $error_registrar ?> </div>');
+                    $('#register').modal("show");
+                });
+            </script>
+            <?php
         }
     }
 }
 if (isset($_POST['login'])) {
     $usuario->set("email", $funcionesNav->antihack_mysqli(isset($_POST["email"]) ? $_POST["email"] : ''));
     $usuario->set("password", $funcionesNav->antihack_mysqli(isset($_POST["password"]) ? $_POST["password"] : ''));
-    if ($usuario->login()) {
+    if ($usuario->login() == 1) {
         $usuario->login();
         if ($_SESSION['usuarios']['estado'] == 1) {
             $funcionesNav->headerMove(URL . '/perfil/ver');
@@ -63,7 +71,16 @@ if (isset($_POST['login'])) {
         }
 
     } else {
-        $error_logear = "Usuario o contraseña incorrectos";
+        $error_logear = "Usuario o contraseña incorrectos.";
+        ?>
+        <script>
+            $(document).ready(function () {
+                $("#errorLogin").html('<div class=\'alert alert-danger\'> <?= $error_logear ?> </div>');
+                $('#login').modal("show");
+            });
+        </script>
+        <?php
+
     }
 }
 ?>
@@ -88,8 +105,10 @@ if (isset($_POST['login'])) {
                     if ($sesionCount == 0) {
                         ?>
                         <ul>
-                            <li><a href="" data-toggle="modal" data-target=".register-model"> <i class="fa fa-user"></i> Registrar</a></li>
-                            <li><a href="" data-toggle="modal" id="ingresar_btn" data-target=".login-model"> <i class="fa fa-sign-in"></i> Ingresar</a></li>
+                            <li><a href="" data-toggle="modal" data-target=".register-model"> <i class="fa fa-user"></i>
+                                    Registrar</a></li>
+                            <li><a href="" data-toggle="modal" id="ingresar_btn" data-target=".login-model"> <i
+                                            class="fa fa-sign-in"></i> Ingresar</a></li>
                         </ul>
                         <?php
                     } else {
@@ -209,16 +228,9 @@ if (isset($_POST['login'])) {
                 <h2>Ingresar</h2>
             </div>
             <div class="login-box-inner">
-                <?php
-                if ($error_logear != '') {
-                    ?>
-                    <div class='col-md-12'>
-                        <div class='alert alert-danger'> <?= $error_logear ?> </div>
-                    </div>
-                    <?php
-                }
-                ?>
-                <form method="post" id="login" onsubmit="ajaxPost('<?= URL; ?>/assets/api/logear-cuenta.api.php?login=ok','login')">
+                <div class="col-md-12" id="errorLogin"></div>
+                <form method="post" id="login"
+                      onsubmit="ajaxPost('<?= URL; ?>/assets/api/logear-cuenta.api.php?login=ok','login')">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                         <input class="form-control" type="text" data-validation="email" name="email"
@@ -250,6 +262,57 @@ if (isset($_POST['login'])) {
         </div>
     </div>
 </div>
+<?php
+if (isset($_POST['recuperar'])) {
+    $usuario->set("email", $funcionesNav->antihack_mysqli(isset($_POST["email"]) ? $_POST["email"] : ''));
+    $email = $funcionesNav->antihack_mysqli(isset($_POST["email"]) ? $_POST["email"] : '');
+    if ($usuario->validate()) {
+        $usuario_data = $usuario->validate();
+        $mensaje = 'Su contraseña es: <br/>';
+        $mensaje .= "Contraseña: " . $usuario_data['password'] . "<br/>";
+        $asunto = TITULO . ' - Recuperación de contraseña';
+        $receptor = $email;
+        $emisor = EMAIL;
+        $enviar->set("asunto", $asunto);
+        $enviar->set("receptor", $receptor);
+        $enviar->set("emisor", $emisor);
+        $enviar->set("mensaje", $mensaje);
+        $enviar->emailEnviar();
+        $enviar->emailEnviar();
+        if ($enviar->emailEnviar()==1){
+            ?>
+            <script>
+                $(document).ready(function () {
+                    $("#mensaje").html('<div class=\'alert alert-success\'> La contraseña fue enviada con éxito. </div>');
+                    $('#recoverOk').modal("show");
+                });
+            </script>
+            <?php
+        }else{
+            ?>
+
+            <script>
+                $(document).ready(function () {
+                    $("#mensaje").html('<div class=\'alert alert-danger\'> Ocurrió un error, pruebe nuevamente. </div>');
+                    $('#recoverOk').modal("show");
+                });
+            </script>
+            <?php
+        }
+
+    } else {
+        ?>
+
+        <script>
+            $(document).ready(function () {
+                $("#errorRecuperar").html('<div class=\'alert alert-danger\'> El email que intenta ingresar no existe. </div>');
+                $('#recover').modal("show");
+            });
+        </script>
+        <?php
+    }
+}
+?>
 <div class="modal fade " id="recover" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -257,27 +320,8 @@ if (isset($_POST['login'])) {
                 <h2>Recuperar</h2>
             </div>
             <div class="login-box-inner">
-                <?php
-                if (isset($_POST['recuperar'])) {
-                $usuario->set("email", $funcionesNav->antihack_mysqli(isset($_POST["email"]) ? $_POST["email"] : ''));
-                $email = $funcionesNav->antihack_mysqli(isset($_POST["email"]) ? $_POST["email"] : '');
-                if ($usuario->validate()) {
-                $usuario_data = $usuario->validate();
-                $mensaje = 'Su contraseña es: <br/>';
-                $mensaje .= "Contraseña: " . $usuario_data['password'] . "<br/>";
-                $asunto = TITULO . ' - Recuperación de contraseña';
-                $receptor = "joaquinestudiorcha@gmail.com";//$email;
-                $emisor = "joaquinestudiorocha@gmail.com";//EMAIL;
-                $enviar->set("asunto", $asunto);
-                $enviar->set("receptor", $receptor);
-                $enviar->set("emisor", $emisor);
-                $enviar->set("mensaje", $mensaje);
-                $enviar->emailEnviar();
-                } else {
-                    
-                }
-                }
-                ?>
+                <div id="errorRecuperar" class='col-md-12'>
+                </div>
                 <div id="resultado"></div>
                 <form method="POST" id="recuperar">
                     <input type="hidden" name="agregar" class="btn btn-default col-xs-12" value="0"/>
@@ -298,8 +342,22 @@ if (isset($_POST['login'])) {
         </div>
     </div>
 </div>
+<div class="modal fade " id="recoverOk" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="login-logo">
+                <h2>Recuperar</h2>
+            </div>
+            <div class="login-box-inner">
+                <div id="mensaje" >
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 <!-- REGISTERATION MODEL  -->
-<div class="modal fade register-model" tabindex="-1" role="dialog">
+<div class="modal fade register-model" id="register" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="login-logo">
@@ -307,15 +365,8 @@ if (isset($_POST['login'])) {
             </div>
             <div class="login-box-inner">
                 <div id="resultado"></div>
-                <?php
-                if ($error_registrar != '') {
-                    ?>
-                    <div class='col-md-12'>
-                        <div class='alert alert-danger'> <?= $error_registrar ?> </div>
-                    </div>
-                    <?php
-                }
-                ?>
+                <div id="errorRegister" class='col-md-12'>
+                </div>
                 <form method="POST" id="registrar">
                     <input type="hidden" name="agregar" class="btn btn-default col-xs-12" value="0"/>
 
