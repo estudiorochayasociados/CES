@@ -32,12 +32,6 @@ $template->themeInit();
                 <div class="col-sm-6 col-md-6">
                     <h1>Promoción</h1>
                 </div>
-                <div class="col-sm-6 col-md-6 hidden-xs">
-                    <ol class="breadcrumb pull-right">
-                        <li><a href="<?= URL ?>/index">Inicio</a></li>
-                        <li class="active"><?= $promo['titulo'] ?></li>
-                    </ol>
-                </div>
             </div>
         </div>
     </section>
@@ -52,7 +46,8 @@ $template->themeInit();
                             </div>
                             <div class="listing-2-meta">
                                 <ul>
-                                    <li><i class="fa fa-user"></i> <a href="<?= URL . '/comercio/' . $funciones->normalizar_link($user['cod']) ?>"><?= $user['titulo'] ?></a>
+                                    <li><i class="fa fa-user"></i> <a
+                                                href="<?= URL . '/comercio/' . $funciones->normalizar_link($user['cod']) ?>"><?= $user['titulo'] ?></a>
                                     </li>
                                     <li><i class="fa fa-phone"></i> <?= $user['telefono']; ?></li>
                                     <li>

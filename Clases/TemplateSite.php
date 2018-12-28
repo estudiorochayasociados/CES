@@ -59,6 +59,18 @@ class TemplateSite
             <!--Agregados-->
             <link href="<?= URL ?>/assets/lightbox/lightbox.css" rel="stylesheet">
 
+
+            <!-- Etiqueta global de sitio (gtag.js) de Google Analytics -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', 'GA_TRACKING_ID');
+            </script>
+
+
             <!--<script type="text/javascript" src="<?= URL ?>/assets/js/jquery-3.1.1.min.js"></script>-->
             <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
@@ -169,11 +181,23 @@ class TemplateSite
         <!--Agregados-->
         <script src="<?= URL ?>/assets/lightbox/lightbox.js"></script>
         <script async src="https://static.addtoany.com/menu/page.js"></script>
+        <!-- Begin Inspectlet Asynchronous Code -->
+        <script type="text/javascript">
+            (function() {
+                window.__insp = window.__insp || [];
+                __insp.push(['wid', 1155516341]);
+                var ldinsp = function(){
+                    if(typeof window.__inspld != "undefined") return; window.__inspld = 1; var insp = document.createElement('script'); insp.type = 'text/javascript'; insp.async = true; insp.id = "inspsync"; insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js?wid=1155516341&r=' + Math.floor(new Date().getTime()/3600000); var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(insp, x); };
+                setTimeout(ldinsp, 0);
+            })();
+        </script>
+        <!-- End Inspectlet Asynchronous Code -->
+
         <!-- FOR THIS PAGE ONLY -->
         <script src="<?= URL ?>/assets/js/imagesloaded.js"></script>
         <script src="<?= URL ?>/assets/js/isotope.min.js"></script>
+        <script src="<?= URL ?>/assets/js/vide.min.js"></script>
         <script type="text/javascript">
-
             $.validate({
                 lang: 'es'
             });

@@ -1,24 +1,34 @@
 <?php
 $usuarios = new Clases\Usuarios();
+$categorias = new Clases\Categorias();
+//$enviar = new Clases\Email();
 
+$categorias->set("area", "rubros");
+$categorias_data = $categorias->listForArea('','');
 if (isset($_POST["agregar"])) {
     $cod = substr(md5(uniqid(rand())), 0, 10);
-
+    $pass = substr(md5(uniqid(rand())), 0, 8);
+    $titulo = $funciones->antihack_mysqli(isset($_POST["titulo"]) ? $_POST["titulo"] : '');
+    $email = $funciones->antihack_mysqli(isset($_POST["email"]) ? $_POST["email"] : '');
+    $usuarios->set("titulo", $titulo);
     $usuarios->set("cod", $cod);
-    $usuarios->set("nombre", $funciones->antihack_mysqli(isset($_POST["nombre"]) ? $_POST["nombre"] : ''));
-    $usuarios->set("apellido", $funciones->antihack_mysqli(isset($_POST["apellido"]) ? $_POST["apellido"] : ''));
-    $usuarios->set("doc", $funciones->antihack_mysqli(isset($_POST["doc"]) ? $_POST["doc"] : ''));
-    $usuarios->set("email", $funciones->antihack_mysqli(isset($_POST["email"]) ? $_POST["email"] : ''));
-    $usuarios->set("password", $funciones->antihack_mysqli(isset($_POST["password"]) ? $_POST["password"] : ''));
-    $usuarios->set("postal", $funciones->antihack_mysqli(isset($_POST["postal"]) ? $_POST["postal"] : ''));
+    $usuarios->set("email", $email);
+    $usuarios->set("password", $pass);
+    $usuarios->set("telefono", $funciones->antihack_mysqli(isset($_POST["telefono"]) ? $_POST["telefono"] : ''));
+    $usuarios->set("direccion", $funciones->antihack_mysqli(isset($_POST["direccion"]) ? $_POST["direccion"] : ''));
     $usuarios->set("localidad", $funciones->antihack_mysqli(isset($_POST["localidad"]) ? $_POST["localidad"] : ''));
     $usuarios->set("provincia", $funciones->antihack_mysqli(isset($_POST["provincia"]) ? $_POST["provincia"] : ''));
-    $usuarios->set("pais", $funciones->antihack_mysqli(isset($_POST["pais"]) ? $_POST["pais"] : ''));
-    $usuarios->set("telefono", $funciones->antihack_mysqli(isset($_POST["telefono"]) ? $_POST["telefono"] : ''));
-    $usuarios->set("celular", $funciones->antihack_mysqli(isset($_POST["celular"]) ? $_POST["celular"] : ''));
-    $usuarios->set("invitado", $funciones->antihack_mysqli(isset($_POST["invitado"]) ? $_POST["invitado"] : '0'));
-    $usuarios->set("descuento", $funciones->antihack_mysqli(isset($_POST["descuento"]) ? $_POST["descuento"] : ''));
-    $usuarios->set("fecha", $funciones->antihack_mysqli(isset($_POST["fecha"]) ? $_POST["fecha"] : date("Y-m-d")));
+    $usuarios->set("categoria", $funciones->antihack_mysqli(isset($_POST["categoria"]) ? $_POST["categoria"] : ''));
+    $usuarios->set("estado", $funciones->antihack_mysqli(isset($_POST["estado"]) ? $_POST["estado"] : ''));
+    $usuarios->set("fecha", date("Y-m-d"));
+
+    ////Envio de mail al usuario
+    //$mensaje = 'Gracias por registrarse ' . ucfirst($titulo) . '<br/>';
+    //$asunto = TITULO . ' - Registro';
+    //$receptor = "joaquinestudiorocha@gmail.com";//$email;
+    //$emisor = "joaquinestudiorocha@gmail.com";//EMAIL;
+    //$enviar->emailEnviar($asunto, $receptor, $emisor, $mensaje);
+    ////
 
     $usuarios->add();
 
@@ -33,99 +43,104 @@ if (isset($_POST["agregar"])) {
         <!--
         <label class="col-md-4">
             Nombre:<br/>
-            <input type="text" name="nombre" value="<?= $usuario['nombre']; ?>" />
+            <input type="text" name="nombre"  />
         </label>
         <label class="col-md-4">
             Apellido:<br/>
-            <input type="text" name="apellido" value="<?= $usuario['apellido']; ?>" />
+            <input type="text" name="apellido"  />
         </label>
         <label class="col-md-4">
             DNI/CUIT/CUIL:<Br/>
-            <input type="text" name="doc" value="<?= $usuario['doc']; ?>" />
+            <input type="text" name="doc"  />
         </label>-->
-
         <label class="col-md-4">
             Título:<br/>
-            <input type="text" name="nombre" value="<?= $usuario['titulo']; ?>" readonly/>
+            <input type="text" name="titulo"  required />
         </label>
         <label class="col-md-4">
             Email:<br/>
-            <input type="text" name="email" value="<?= $usuario['email']; ?>" readonly/>
+            <input type="text" name="email" required />
         </label>
         <label class="col-md-4">
             Password:<br/>
-            <input type="text" name="password" value="<?= $usuario['password']; ?>" readonly/>
+            <input type="text" name="password" readonly />
         </label>
         <!--
         <label class="col-md-4">
             Postal:<br/>
-            <input type="text" name="postal" value="<?= $usuario['postal']; ?>" />
+            <input type="text" name="postal"  />
         </label>-->
+        <label class="col-md-12">
+            Dirección:<br/>
+            <input type="text" name="direccion" required/>
+        </label>
         <label class="col-md-4">
             Localidad:<br/>
-            <input type="text" name="localidad" value="<?= $usuario['localidad']; ?>" readonly/>
+            <select class="select-general form-control" data-validation="required"
+                    name="localidad">
+                <option value="San Francisco">San Francisco</option>
+            </select>
         </label>
         <label class="col-md-4">
             Provincia:<br/>
-            <input type="text" name="provincia" value="<?= $usuario['provincia']; ?>" readonly/>
+            <select class="select-general form-control" data-validation="required"
+                    name="provincia">
+                <option value="Córdoba">Córdoba</option>
+            </select>
         </label>
         <!--
         <label class="col-md-4">
             Pais:<Br/>
-            <input type="text" name="pais" value="<?= $usuario['pais']; ?>" />
+            <input type="text" name="pais"  />
         </label>-->
         <label class="col-md-4">
             Telefono:<br/>
-            <input type="text" name="telefono" value="<?= $usuario['telefono']; ?>" readonly/>
+            <input type="text" name="telefono" required />
         </label>
         <label class="col-md-12">
             Descripción:<br/>
-            <textarea class="col-md-12" cols="6" rows="8" readonly><?= $usuario['descripcion']; ?></textarea>
+            <textarea class="col-md-12" cols="6" rows="8" readonly></textarea>
         </label>
 
         <label class="col-md-4">
             Categoría:<br/>
-            <input type="text" name="categoria" value="<?= ucfirst($categorias_data['titulo']); ?>" readonly/>
+            <select class="select-general form-control" data-validation="required"
+                    name="categoria">
+                <?php
+                if (@count($categorias_data)>0){
+                    foreach ($categorias_data as $cat) {
+                        ?>
+                        <option value="<?= $cat['cod']; ?>" ><?= ucfirst($cat['titulo']); ?></option>
+                        <?php
+                    }
+                }
+                ?>
+            </select>
         </label>
         <label class="col-md-4">
             Fecha de creación:<br/>
-            <input type="date" name="fecha" value="<?= ($usuario['fecha']); ?>" readonly/>
+            <input type="date" name="fecha"  readonly/>
         </label>
         <label class="col-md-4">
             Estado:<br/>
             <select class="select-general form-control" data-validation="required"
                     name="estado">
-                <option value="<?= $usuario['estado'] ?>"
-                        selected><?php if ($usuario['estado'] == 1) {
-                        echo "Habilitado";
-                    } else {
-                        echo "Deshabilitado";
-                    } ?></option>
-                <?php
-                if ($usuario['estado'] == 1) {
-                    ?>
                     <option value="0">Deshabilitado</option>
-                    <?php
-                } else {
-                    ?>
                     <option value="1">Habilitado</option>
-                    <?php
-                }
-                ?>
             </select>
         </label>
         <!--
         <label class="col-md-4">
             Celular:<br/>
-            <input type="text" name="celular" value="<?= $usuario['celular']; ?>" />
+            <input type="text" name="celular"  />
         </label>
         <label class="col-md-2">
             Invitado:<br/>
-            <input type="text" name="invitado" value="<?= $usuario['invitado']; ?>" />
+            <input type="text" name="invitado"  />
         </label>
         <label class="col-md-2">
             Descuento:<br/>
-            <input type="text" name="descuento" value="<?= $usuario['descuento']; ?>" />
+            <input type="text" name="descuento"  />
         </label>-->
         <div class="clearfix"></div>
         <br/>

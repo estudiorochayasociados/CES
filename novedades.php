@@ -13,12 +13,12 @@ $template->set("favicon", LOGO);
 $template->themeInit();
 //
 $categorias->set("area", "novedades");
-$categorias_data = $categorias->listForArea('','');
+$categorias_data = $categorias->listForArea('', '');
 
 $pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : '0';
 $categoria = isset($_GET["categoria"]) ? $_GET["categoria"] : '0';
 
-$cantidad = 3;
+$cantidad = 8;
 
 if ($pagina > 0) {
     $pagina = $pagina - 1;
@@ -46,33 +46,27 @@ $numeroPaginas = $novedades->paginador("", $cantidad);
     <section class="ad-breadcrumb parallex">
         <div class="container page-banner">
             <div class="row">
-                <div class="col-sm-6 col-md-6">
+                <div class="col-sm-4 col-md-6">
                     <h1>Novedades</h1>
-                </div>
-                <div class="col-sm-6 col-md-6 hidden-xs">
-                    <ol class="breadcrumb pull-right">
-                        <li><a href="<?= URL ?>/index">Inicio</a></li>
-                        <li class="active">Novedades</li>
-                    </ol>
                 </div>
             </div>
         </div>
     </section>
     <section class="featured-ads">
         <div class="container">
-            <div class="row">
-                    <?php
-                    if (@count($novedades_data)>0){
+            <div class="row flex_wrap">
+                <?php
+                if (@count($novedades_data) > 0) {
                     foreach ($novedades_data as $nov) {
                         $imagenes->set("cod", $nov['cod']);
                         $img = $imagenes->view();
                         $fecha = explode("-", $nov['fecha']);
                         ?>
-                        <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-md-6">
                             <div class="blog-post">
-                                <a href="<?= URL . '/novedad/'.$funciones->normalizar_link($nov["titulo"]).'/' . $nov['cod']  ?>">
+                                <a href="<?= URL . '/novedad/' . $funciones->normalizar_link($nov["titulo"]) . '/' . $nov['cod'] ?>">
                                     <div class="post-img"
-                                         style="height:400px;background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/cover;">
+                                         style="  height:300px; background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/cover;">
                                     </div>
                                 </a>
                                 <div class="post-info">
@@ -80,7 +74,7 @@ $numeroPaginas = $novedades->paginador("", $cantidad);
                                         <i class="fa fa-calendar-o"></i> <?= $fecha[2] . '/' . $fecha[1] . '/' . $fecha[0] ?>
                                     </a>
                                     <h3 class="titulo-blog"><a
-                                                href="<?= URL . '/novedad/'.$funciones->normalizar_link($nov["titulo"]).'/' . $nov['cod'] ?>"> <?= ucfirst(substr( $nov['titulo'], 0, 120)); ?> </a>
+                                                href="<?= URL . '/novedad/' . $funciones->normalizar_link($nov["titulo"]) . '/' . $nov['cod'] ?>"> <?= ucfirst(substr($nov['titulo'], 0, 120)); ?> </a>
                                     </h3>
                                     <?= ucfirst(substr(strip_tags($nov['desarrollo']), 0, 250)); ?>...
                                 </div>
@@ -88,10 +82,18 @@ $numeroPaginas = $novedades->paginador("", $cantidad);
                                 <div class="blog-meta">
                                     <div class="share-icons">
                                         <ul>
-                                            <li><a href=https://www.facebook.com/sharer/sharer.php?u="<?= URL . '/novedad/'.$funciones->normalizar_link($nov["titulo"]).'/' . $nov['cod'] ?>"><i class="fa fa-facebook-square"></i></a></li>
-                                            <li><a href="https://plus.google.com/share?url=<?= URL . '/novedad/'.$funciones->normalizar_link($nov["titulo"]).'/' . $nov['cod']  ?>"><i class="fa fa-google-plus-square"></i></a></li>
-                                            <li><a href="https://pinterest.com/pin/create/button/?url=<?= URL . '/novedad/'.$funciones->normalizar_link($nov["titulo"]).'/' . $nov['cod']  ?>&media=&description="><i class="fa fa-pinterest-square"></i></a></li>
-                                            <li><a href="https://twitter.com/home?status=<?= URL . '/novedad/'.$funciones->normalizar_link($nov["titulo"]).'/' . $nov['cod']  ?>"><i class="fa fa-twitter-square"></i></a></li>
+                                            <li>
+                                                <a href=https://www.facebook.com/sharer/sharer.php?u="<?= URL . '/novedad/' . $funciones->normalizar_link($nov["titulo"]) . '/' . $nov['cod'] ?>"><i
+                                                            class="fa fa-facebook-square"></i></a></li>
+                                            <li>
+                                                <a href="https://plus.google.com/share?url=<?= URL . '/novedad/' . $funciones->normalizar_link($nov["titulo"]) . '/' . $nov['cod'] ?>"><i
+                                                            class="fa fa-google-plus-square"></i></a></li>
+                                            <li>
+                                                <a href="https://pinterest.com/pin/create/button/?url=<?= URL . '/novedad/' . $funciones->normalizar_link($nov["titulo"]) . '/' . $nov['cod'] ?>&media=&description="><i
+                                                            class="fa fa-pinterest-square"></i></a></li>
+                                            <li>
+                                                <a href="https://twitter.com/home?status=<?= URL . '/novedad/' . $funciones->normalizar_link($nov["titulo"]) . '/' . $nov['cod'] ?>"><i
+                                                            class="fa fa-twitter-square"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -99,14 +101,14 @@ $numeroPaginas = $novedades->paginador("", $cantidad);
                         </div>
                         <?php
                     }
-                    } else {
-                        ?>
-                        <div class="black" style="text-align: center;">
-                            <h1>No hay novedades para mostrar</h1>
-                        </div>
-                        <?php
-                    }
+                } else {
                     ?>
+                    <div class="black" style="text-align: center;">
+                        <h1>No hay novedades para mostrar</h1>
+                    </div>
+                    <?php
+                }
+                ?>
                 <?php if ($numeroPaginas > 1): ?>
                     <div class="col-xs-12">
                         <div class="pagination mb-60">
@@ -133,7 +135,6 @@ $numeroPaginas = $novedades->paginador("", $cantidad);
             </div>
         </div>
     </section>
-
 
 
     <?php

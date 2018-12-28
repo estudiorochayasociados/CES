@@ -26,8 +26,9 @@ class TemplateAdmin
     public function themeEnd()
     {
         echo '</div>';
-        echo '</body>';
         include("inc/footer.inc.php");
+        echo '</body>';
+
         echo '</html >';
     }
 

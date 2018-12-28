@@ -4,6 +4,9 @@
 <link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.min.css" />
 <link rel="stylesheet" href="<?=URL?>/css/style.css" />
 
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+
 <meta charset="UTF-8">
 <title>
     <?=$this->title?>

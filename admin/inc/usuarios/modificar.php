@@ -78,13 +78,17 @@ if (isset($_POST["agregar"])) {
         </label>
         <label class="col-md-4">
             Password:<br/>
-            <input type="text" name="password" value="<?= $usuario['password']; ?>" readonly/>
+            <input type="text" name="password" readonly/>
         </label>
         <!--
         <label class="col-md-4">
             Postal:<br/>
             <input type="text" name="postal" value="<?= $usuario['postal']; ?>" />
         </label>-->
+        <label class="col-md-12">
+            Dirección:<br/>
+            <input type="text" name="direccion" value="<?= $usuario['direccion']; ?>" readonly/>
+        </label>
         <label class="col-md-4">
             Localidad:<br/>
             <input type="text" name="localidad" value="<?= $usuario['localidad']; ?>" readonly/>

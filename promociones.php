@@ -16,7 +16,7 @@ $template->set("favicon", LOGO);
 $template->themeInit();
 //
 $categorias->set("area", "rubros");
-$categorias_data = $categorias->listForArea('','');
+$categorias_data = $categorias->listForArea('', '');
 $pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : '0';
 $categoria = isset($_GET["categoria"]) ? $_GET["categoria"] : '';
 $titulo = isset($_GET["titulo"]) ? $_GET["titulo"] : '';
@@ -41,22 +41,22 @@ endif;
 
 //Mostrar-------------------------------------
 
-$filter = array("estado=1","activo=1");
+$filter = array("estado=1", "activo=1");
 
 if ($categoria != '') {
     array_push($filter, " categoria='$categoria' ");
 }
 
 if ($titulo != '') {
-    $titulo_espacios = strpos($titulo," ");
+    $titulo_espacios = strpos($titulo, " ");
     if ($titulo_espacios) {
         $filter_title = array();
         $titulo_explode = explode(" ", $titulo);
         foreach ($titulo_explode as $titulo_) {
             array_push($filter_title, "(titulo LIKE '%$titulo_%' || keywords LIKE '%$titulo_%' || detalle LIKE '%$titulo_%')");
         }
-        $filter_title_implode = implode(" OR ",$filter_title);
-        array_push($filter, "(".$filter_title_implode.")");
+        $filter_title_implode = implode(" OR ", $filter_title);
+        array_push($filter, "(" . $filter_title_implode . ")");
     } else {
         array_push($filter, "(titulo LIKE '%$titulo%' || keywords LIKE '%$titulo%' || detalle LIKE '%$titulo%')");
     }
@@ -74,12 +74,6 @@ $numeroPaginas = $promociones->paginador($filter, $cantidad);
             <div class="row">
                 <div class="col-sm-6 col-md-6">
                     <h1>Promociones</h1>
-                </div>
-                <div class="col-sm-6 col-md-6 hidden-xs">
-                    <ol class="breadcrumb pull-right">
-                        <li><a href="<?= URL ?>/index">Inicio</a></li>
-                        <li class="active">Promociones</li>
-                    </ol>
                 </div>
             </div>
         </div>
@@ -101,14 +95,14 @@ $numeroPaginas = $promociones->paginador($filter, $cantidad);
                             <select class="select-category form-control" name="categoria">
                                 <option label="Elegir una categoría"></option>
                                 <?php
-                                if (@count($categorias_data)>0){
-                                foreach ($categorias_data as $cat) {
-                                    ?>
-                                    <option value="<?= $cat['cod']; ?>" <?php if ($cat["cod"] == $categoria) {
-                                        echo "selected";
-                                    } ?>><?= ucfirst($cat['titulo']); ?></option>
-                                    <?php
-                                }
+                                if (@count($categorias_data) > 0) {
+                                    foreach ($categorias_data as $cat) {
+                                        ?>
+                                        <option value="<?= $cat['cod']; ?>" <?php if ($cat["cod"] == $categoria) {
+                                            echo "selected";
+                                        } ?>><?= ucfirst($cat['titulo']); ?></option>
+                                        <?php
+                                    }
                                 }
                                 ?>
                             </select>
@@ -128,34 +122,34 @@ $numeroPaginas = $promociones->paginador($filter, $cantidad);
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
                     <?php
-                    if (@count($promociones_data)>0){
-                    foreach ($promociones_data as $promos) {
-                        $imagenes->set('cod', $promos['cod']);
-                        $img = $imagenes->view();
-                        $fechaI = explode("-", $promos['inicio']);
-                        $fechaF = explode("-", $promos['fin']);
-                        $usuarios->set("cod",$promos['usuario']);
-                        $usuario_data=$usuarios->view();
-                        ?>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                            <div class="papular-reviews">
-                                <a href="<?= URL . '/promocion/'.$funciones->normalizar_link($promos["titulo"]).'/'. $promos['cod'] ?>">
-                                    <div class="image"
-                                         style="height:200px;background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/cover;">
+                    if (@count($promociones_data) > 0) {
+                        foreach ($promociones_data as $promos) {
+                            $imagenes->set('cod', $promos['cod']);
+                            $img = $imagenes->view();
+                            $fechaI = explode("-", $promos['inicio']);
+                            $fechaF = explode("-", $promos['fin']);
+                            $usuarios->set("cod", $promos['usuario']);
+                            $usuario_data = $usuarios->view();
+                            ?>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="papular-reviews">
+                                    <a href="<?= URL . '/promocion/' . $funciones->normalizar_link($promos["titulo"]) . '/' . $promos['cod'] ?>">
+                                        <div class="image"
+                                             style="height:200px;background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/cover;">
 
-                                    </div>
-                                    <div class="content">
-                                        <h4> <?= ucfirst(substr($promos['titulo'], 0, 25)); ?> </h4>
-                                        <h6> <?= ucfirst($usuario_data['titulo'])?></h6>
-                                        <!--  <i class="fa fa-calendar"></i> <?= $fechaI[2] . '/' . $fechaI[1] . '/' . $fechaI[0] ?> -  <?= $fechaF[2] . '/' . $fechaF[1] . '/' . $fechaF[0] ?>
+                                        </div>
+                                        <div class="content">
+                                            <h4> <?= ucfirst(substr($promos['titulo'], 0, 25)); ?> </h4>
+                                            <h6> <?= ucfirst($usuario_data['titulo']) ?></h6>
+                                            <!--  <i class="fa fa-calendar"></i> <?= $fechaI[2] . '/' . $fechaI[1] . '/' . $fechaI[0] ?> -  <?= $fechaF[2] . '/' . $fechaF[1] . '/' . $fechaF[0] ?>
 -->
-                                    </div>
+                                        </div>
 
-                                </a>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <?php
-                    }
+                            <?php
+                        }
                     } else {
                         ?>
                         <div class="black" style="text-align: center;">
@@ -167,7 +161,7 @@ $numeroPaginas = $promociones->paginador($filter, $cantidad);
                     <div class="clearfix"></div>
                 </div>
                 <?php
-                 if ($numeroPaginas > 1): ?>
+                if ($numeroPaginas > 1): ?>
                     <div class="col-xs-12">
                         <div class="pagination mb-60">
                             <ul class="pagination text-center">

@@ -26,12 +26,6 @@ $template->themeInit();
                 <div class="col-sm-6 col-md-6">
                     <h1><?= ucfirst($usuario_data['titulo']) ?></h1>
                 </div>
-                <div class="col-sm-6 col-md-6 hidden-xs">
-                    <ol class="breadcrumb pull-right">
-                        <li><a href="<?= URL . '/index' ?>">Inicio</a></li>
-                        <li class="active"><?= ucfirst($usuario_data['titulo']) ?></li>
-                    </ol>
-                </div>
             </div>
         </div>
     </section>

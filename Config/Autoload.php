@@ -14,9 +14,9 @@ class autoload
         define('CIUDAD', "San Francisco");
         define('PROVINCIA', "Cordoba");
         define('PAIS', "Argentina");
-        define('EMAIL', "ces@ces-sanfco.com.ar");
-        define('PASS_EMAIL', "");
-        define('SMTP_EMAIL', "");
+        define('EMAIL', "web@estudiorochayasoc.com.ar");
+        define('PASS_EMAIL', "weAr2010");
+        define('SMTP_EMAIL', "estudiorochayasoc.com.ar");
         define('DIRECCION', "Belgrano 1585");
         define('LOGO', URL . "/assets/img/logo.png");
         define('APP_ID_FB', "");
@@ -49,6 +49,7 @@ class autoload
         session_start();
         define('URLSITE',"http://".$_SERVER['HTTP_HOST']."/CES/admin");
         define('URL', "http://".$_SERVER['HTTP_HOST']."/CES/admin");
+        define('EMAIL', "ces@ces-sanfco.com.ar");
         require_once "../Clases/Zebra_Image.php";
         spl_autoload_register(
             function ($clase)

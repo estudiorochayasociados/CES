@@ -6,6 +6,9 @@ $zebra = new Clases\Zebra_Image();
 $imagenes = new Clases\Imagenes();
 $categorias = new Clases\Categorias();
 $categorias->set("area", "rubros");
+$error_email = '';
+$error_contraseña = '';
+$error_contraseña_distintas = '';
 $categorias_data = $categorias->listForArea('', '');
 $borrarImg = $funcionesEdit->antihack_mysqli(isset($_GET["borrarImg"]) ? $_GET["borrarImg"] : '');
 if ($borrarImg != '') {
@@ -13,7 +16,6 @@ if ($borrarImg != '') {
     $imagenes->deleteSite();
     $funcionesEdit->headerMove(URL . "/perfil/editar");
 }
-
 
 if (isset($_POST['editar'])) {
     $usuarioEdit->set("titulo", $funcionesEdit->antihack_mysqli(isset($_POST["titulo"]) ? $_POST["titulo"] : ''));
@@ -42,10 +44,9 @@ if (isset($_POST['editar'])) {
             $funcionesEdit->headerMove(URL . '/perfil/editar');
         }
     } else {
-        echo "<div class='col-md-12'><div class='alert alert-danger'>Error </div></div>";
+        //echo "<div class='col-md-12'><div class='alert alert-danger'>Error </div></div>";
     }
 }
-
 
 if (isset($_POST['editarPass'])) {
     $email = $_SESSION['usuarios']['email'];
@@ -65,11 +66,16 @@ if (isset($_POST['editarPass'])) {
             } else {
                 $funcionesEdit->headerMove(URL . '/perfil/editar');
             }
+        } else {
+            $error_contraseña_distintas = "Las contraseñas no son iguales";
+            //echo "<div class='col-md-12'><div class='alert alert-danger'>Las contraseñas no son iguales </div></div>";
         }
     } else {
-        echo "<div class='col-md-12'><div class='alert alert-danger'>Contraseña incorrecta </div></div>";
+        $error_contraseña = "Contraseña incorrecta";
+        //echo "<div class='col-md-12'><div class='alert alert-danger'>Contraseña incorrecta </div></div>";
     }
 }
+
 if (isset($_POST['editarMail'])) {
     $emailV = $funcionesEdit->antihack_mysqli(isset($_POST["emailV"]) ? $_POST["emailV"] : '');
     $emailN = $funcionesEdit->antihack_mysqli(isset($_POST["emailN"]) ? $_POST["emailN"] : '');
@@ -87,9 +93,11 @@ if (isset($_POST['editarMail'])) {
             $funcionesEdit->headerMove(URL . '/perfil/editar');
         }
     } else {
-        echo "<div class='col-md-12'><div class='alert alert-danger'>Contraseña incorrecta </div></div>";
+        $error_email = "Email antiguo incorrecto";
+        //echo "<div class='col-md-12' id='mensaje'><div class='alert alert-danger'>Email anterior incorrecto </div></div>";
     }
 }
+
 if (isset($_POST['editarLogo'])) {
     $cod = $_SESSION['usuarios']['cod'];
     $imagenes->set("cod", $cod);
@@ -217,12 +225,21 @@ if (isset($_POST['crear_galerias'])) {
                 </div>
                 <div class="main-box profile-box-contact">
                     <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
-                        <form method="post" id="editarPass">
+                        <form method="post" id="editarPass" action="#editarPass">
                             <div class="col-md-12 col-sm-12">
                                 <div class="heading-inner">
                                     <p class="title">Cambiar contraseña</p>
                                 </div>
                             </div>
+                            <?php
+                            if ($error_contraseña != '') {
+                                ?>
+                                <div class='col-md-12'>
+                                    <div class='alert alert-danger'> <?= $error_contraseña ?> </div>
+                                </div>
+                                <?php
+                            }
+                            ?>
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>Contraseña antigua <span class="required">*</span></label>
@@ -230,6 +247,15 @@ if (isset($_POST['crear_galerias'])) {
                                            placeholder="" class="form-control" name="passV">
                                 </div>
                             </div>
+                            <?php
+                            if ($error_contraseña_distintas != '') {
+                                ?>
+                                <div class='col-md-12'>
+                                    <div class='alert alert-danger'> <?= $error_contraseña_distintas ?> </div>
+                                </div>
+                                <?php
+                            }
+                            ?>
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>Nueva contraseña <span class="required">*</span></label>
@@ -254,12 +280,22 @@ if (isset($_POST['crear_galerias'])) {
                 </div>
                 <div class="main-box profile-box-contact">
                     <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
-                        <form method="post" id="editarMail">
+
+                        <form method="post" id="editarMail" action="#editarMail">
                             <div class="col-md-12 col-sm-12">
                                 <div class="heading-inner">
                                     <p class="title">Cambiar email</p>
                                 </div>
                             </div>
+                            <?php
+                            if ($error_email != '') {
+                                ?>
+                                <div class='col-md-12'>
+                                    <div class='alert alert-danger'> <?= $error_email ?> </div>
+                                </div>
+                                <?php
+                            }
+                            ?>
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>Email antiguo <span class="required">*</span></label>
@@ -375,21 +411,21 @@ if (isset($_POST['crear_galerias'])) {
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>Facebook </label>
-                                    <input placeholder=" Ingresar link de Facebook" data-validation="url" name="face" class="form-control"
+                                    <input placeholder=" Ingresar link de Facebook" name="face" class="form-control"
                                            value="<?= $_SESSION['usuarios']['facebook'] ?>" type="text">
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>Twitter </label>
-                                    <input placeholder="Ingresar link de Twitter" data-validation="url" name="tw" class="form-control"
+                                    <input placeholder="Ingresar link de Twitter" name="tw" class="form-control"
                                            value="<?= $_SESSION['usuarios']['twitter'] ?>" type="text">
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>Instagram <span class="required">*</span></label>
-                                    <input placeholder=" Ingresar link de Instagram" data-validation="url" name="ins" class="form-control"
+                                    <input placeholder=" Ingresar link de Instagram" name="ins" class="form-control"
                                            value="<?= $_SESSION['usuarios']['instagram'] ?>" type="text">
                                 </div>
                             </div>
@@ -441,3 +477,8 @@ if (isset($_POST['crear_galerias'])) {
         </div>
     </div>
 </section>
+<script>
+    if ($('#editarLogo').get(0).files.length === 0) {
+        console.log("No files selected.");
+    }
+</script>

@@ -25,12 +25,6 @@ $template->themeInit();
                 <div class="col-sm-6 col-md-6">
                     <h1>Sobre nosotros</h1>
                 </div>
-                <div class="col-sm-6 col-md-6 hidden-xs">
-                    <ol class="breadcrumb pull-right">
-                        <li><a href="<?= URL ?>/index">Inicio</a></li>
-                        <li class="active">Empresa</li>
-                    </ol>
-                </div>
             </div>
         </div>
     </section>
@@ -72,7 +66,7 @@ $template->themeInit();
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="Heading-title black ">
-                            <h1>Obejtivos</h1>
+                            <h1>Objetivos</h1>
                         </div>
                     </div>
                     <div class="col-md-12 col-sm-6 col-xs-12">
