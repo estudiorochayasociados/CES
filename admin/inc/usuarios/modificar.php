@@ -78,7 +78,7 @@ if (isset($_POST["agregar"])) {
         </label>
         <label class="col-md-4">
             Password:<br/>
-            <input type="text" name="password" readonly/>
+            <input type="text" name="password"  value="<?= $usuario['password']; ?>"  readonly/>
         </label>
         <!--
         <label class="col-md-4">

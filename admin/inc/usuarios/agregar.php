@@ -63,7 +63,7 @@ if (isset($_POST["agregar"])) {
         </label>
         <label class="col-md-4">
             Password:<br/>
-            <input type="text" name="password" readonly />
+            <input type="text" name="password"  readonly />
         </label>
         <!--
         <label class="col-md-4">
@@ -119,7 +119,7 @@ if (isset($_POST["agregar"])) {
         </label>
         <label class="col-md-4">
             Fecha de creación:<br/>
-            <input type="date" name="fecha"  readonly/>
+            <input type="date" name="fecha" value="<?= date("d-m-Y") ?>" readonly/>
         </label>
         <label class="col-md-4">
             Estado:<br/>

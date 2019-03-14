@@ -38,7 +38,6 @@ endif;
 
 $novedades_data = $novedades->listWithOps("", "", $cantidad * $pagina . ',' . $cantidad);
 $numeroPaginas = $novedades->paginador("", $cantidad);
-//
 ?>
 <body>
 <div class="page">
@@ -52,59 +51,51 @@ $numeroPaginas = $novedades->paginador("", $cantidad);
             </div>
         </div>
     </section>
-    <section class="featured-ads">
+    <section class="">
         <div class="container">
             <div class="row flex_wrap">
                 <?php
-                if (@count($novedades_data) > 0) {
-                    foreach ($novedades_data as $nov) {
-                        $imagenes->set("cod", $nov['cod']);
-                        $img = $imagenes->view();
-                        $fecha = explode("-", $nov['fecha']);
-                        ?>
-                        <div class="col-md-6">
-                            <div class="blog-post">
-                                <a href="<?= URL . '/novedad/' . $funciones->normalizar_link($nov["titulo"]) . '/' . $nov['cod'] ?>">
-                                    <div class="post-img"
-                                         style="  height:300px; background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/cover;">
-                                    </div>
+                foreach ($novedades_data as $nov__) {
+                    $imagenes->set("cod", $nov__['cod']);
+                    $img = $imagenes->view();
+                    $fecha = explode("-", $nov__['fecha']);
+                    ?>
+                    <div class="col-md-6">
+                        <div class="blog-post">
+                            <a href="<?= URL . '/novedad/' . $funciones->normalizar_link($nov__["titulo"]) . '/' . $nov__['cod'] ?>">
+                                <div class="post-img" style="height:300px; background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/cover;"></div>
+                            </a>
+                            <div class="post-info">
+                                <a>
+                                    <i class="fa fa-calendar-o"></i> <?= $fecha[2] . '/' . $fecha[1] . '/' . $fecha[0] ?>
                                 </a>
-                                <div class="post-info">
-                                    <a>
-                                        <i class="fa fa-calendar-o"></i> <?= $fecha[2] . '/' . $fecha[1] . '/' . $fecha[0] ?>
+                                <h3 class="titulo-blog">
+                                    <a href="<?= URL . '/novedad/' . $funciones->normalizar_link($nov__["titulo"]) . '/' . $nov__['cod'] ?>">
+                                        <?= ucfirst(substr($nov__['titulo'], 0, 120)); ?>
                                     </a>
-                                    <h3 class="titulo-blog"><a
-                                                href="<?= URL . '/novedad/' . $funciones->normalizar_link($nov["titulo"]) . '/' . $nov['cod'] ?>"> <?= ucfirst(substr($nov['titulo'], 0, 120)); ?> </a>
-                                    </h3>
-                                    <?= ucfirst(substr(strip_tags($nov['desarrollo']), 0, 250)); ?>...
-                                </div>
+                                </h3>
+                                <?= ucfirst(substr(strip_tags($nov__['desarrollo']), 0, 250)); ?>...
+                            </div>
 
-                                <div class="blog-meta">
-                                    <div class="share-icons">
-                                        <ul>
-                                            <li>
-                                                <a href=https://www.facebook.com/sharer/sharer.php?u="<?= URL . '/novedad/' . $funciones->normalizar_link($nov["titulo"]) . '/' . $nov['cod'] ?>"><i
-                                                            class="fa fa-facebook-square"></i></a></li>
-                                            <li>
-                                                <a href="https://plus.google.com/share?url=<?= URL . '/novedad/' . $funciones->normalizar_link($nov["titulo"]) . '/' . $nov['cod'] ?>"><i
-                                                            class="fa fa-google-plus-square"></i></a></li>
-                                            <li>
-                                                <a href="https://pinterest.com/pin/create/button/?url=<?= URL . '/novedad/' . $funciones->normalizar_link($nov["titulo"]) . '/' . $nov['cod'] ?>&media=&description="><i
-                                                            class="fa fa-pinterest-square"></i></a></li>
-                                            <li>
-                                                <a href="https://twitter.com/home?status=<?= URL . '/novedad/' . $funciones->normalizar_link($nov["titulo"]) . '/' . $nov['cod'] ?>"><i
-                                                            class="fa fa-twitter-square"></i></a></li>
-                                        </ul>
-                                    </div>
+                            <div class="blog-meta">
+                                <div class="share-icons">
+                                    <ul>
+                                        <li>
+                                            <a href=https://www.facebook.com/sharer/sharer.php?u="<?= URL . '/novedad/' . $funciones->normalizar_link($nov__["titulo"]) . '/' . $nov__['cod'] ?>"><i
+                                                        class="fa fa-facebook-square"></i></a></li>
+                                        <li>
+                                            <a href="https://plus.google.com/share?url=<?= URL . '/novedad/' . $funciones->normalizar_link($nov__["titulo"]) . '/' . $nov__['cod'] ?>"><i
+                                                        class="fa fa-google-plus-square"></i></a></li>
+                                        <li>
+                                            <a href="https://pinterest.com/pin/create/button/?url=<?= URL . '/novedad/' . $funciones->normalizar_link($nov__["titulo"]) . '/' . $nov__['cod'] ?>&media=&description="><i
+                                                        class="fa fa-pinterest-square"></i></a></li>
+                                        <li>
+                                            <a href="https://twitter.com/home?status=<?= URL . '/novedad/' . $funciones->normalizar_link($nov__["titulo"]) . '/' . $nov__['cod'] ?>"><i
+                                                        class="fa fa-twitter-square"></i></a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-                        <?php
-                    }
-                } else {
-                    ?>
-                    <div class="black" style="text-align: center;">
-                        <h1>No hay novedades para mostrar</h1>
                     </div>
                     <?php
                 }

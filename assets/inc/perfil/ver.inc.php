@@ -159,7 +159,7 @@ $categorias = new Clases\Categorias();
                                         <li>
                                             <img src="<?= URL . '/' . $img_promos['ruta'] ?>" alt="<?= $p['titulo']; ?>"
                                                  class="img-responsive">
-                                            <a href="<?= URL . '/promocion/' . $p['cod'] ?>"><?= ucfirst(substr($p['titulo'], 0, 20)); ?> </a>
+                                            <a href="<?= URL . '/promocion/' . $funciones->normalizar_link($p["titulo"]) . '/' . $p['cod'] ?>"><?= ucfirst(substr($p['titulo'], 0, 20)); ?> </a>
                                             <span><i class="fa fa-folder-open-o"></i> <?= ucfirst($cat['titulo']) ?></span>
                                             <span><i class="fa fa-calendar"></i><?= $fechaI[2] . '/' . $fechaI[1] . '/' . $fechaI[0] ?> -  <?= $fechaF[2] . '/' . $fechaF[1] . '/' . $fechaF[0] ?>
                                                 </span>

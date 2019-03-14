@@ -14,9 +14,9 @@ class autoload
         define('CIUDAD', "San Francisco");
         define('PROVINCIA', "Cordoba");
         define('PAIS', "Argentina");
-        define('EMAIL', "web@estudiorochayasoc.com.ar");
-        define('PASS_EMAIL', "weAr2010");
-        define('SMTP_EMAIL', "estudiorochayasoc.com.ar");
+        define('EMAIL', "ces@ces-sanfco.com.ar");
+        define('PASS_EMAIL', "");
+        define('SMTP_EMAIL', "");
         define('DIRECCION', "Belgrano 1585");
         define('LOGO', URL . "/assets/img/logo.png");
         define('APP_ID_FB', "");

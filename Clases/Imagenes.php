@@ -81,8 +81,8 @@ class Imagenes
         $imagenes = $this->con->sqlReturn($sql);
         $row = mysqli_fetch_assoc($imagenes);
         if ($row === NULL) {
-            $row['ruta'] = "/assets/archivos/img/perfil.jpg";
-            return $row;
+            //$row['ruta'] = "/assets/archivos/img/perfil.jpg";
+            return false;
         } else {
             return $row;
         }
@@ -114,8 +114,8 @@ class Imagenes
         //     return $array;
         // }
         if ($notas === NULL) {
-            $row['ruta'] = "assets/archivos/sin_imagen.jpg";
-            return $row;
+            //$row['ruta'] = "assets/archivos/sin_imagen.jpg";
+            return false;
         } else {
             while ($row = mysqli_fetch_assoc($notas)) {
                 $array[] = $row;

@@ -12,7 +12,7 @@ $imagenesPerfil = new Clases\Imagenes();
 $promociones = new Clases\Promociones();
 $galerias = new Clases\Galerias();
 $template->set("title", "CES | " . ucfirst($usuario_data['titulo']));
-$template->set("description", ucfirst(substr($usuario_data['descripcion'], 0, 120)));
+$template->set("description", ucfirst(substr(strip_tags($usuario_data['descripcion']), 0, 250)));
 $template->set("keywords", ucfirst($usuario_data['titulo']));
 $template->set("favicon", LOGO);
 $template->themeInit();
@@ -44,8 +44,8 @@ $template->themeInit();
                                         <?php
                                     } else {
                                         ?>
-                                        <div class="detail-location"><i
-                                                    class="fa fa-map-marker"></i> <?= $usuario_data['direccion']. ', ' . $usuario_data['localidad'];; ?>
+                                        <div class="detail-location">
+                                            <i  class="fa fa-map-marker"></i> <?= $usuario_data['direccion']. ', ' . $usuario_data['localidad'];; ?>
                                         </div>
                                         <?php
                                     }
@@ -56,57 +56,77 @@ $template->themeInit();
                     </div>
                     <div class="row">
                         <div class="col-md-8 col-sm-12 col-xs-12 ">
-                            <div class="slick-gallery-slideshow">
-                                <div class="slider gallery-slideshow gallery-slideshow-not-tab">
-                                    <?php
-                                    $galerias->set("usuario", $usuario_data['cod']);
-                                    $gal = $galerias->view_perfil();
-                                    $imagenesPerfil->set("cod", $gal['cod']);
-                                    $galerias_perfil = $imagenesPerfil->listForProduct();
-                                    if (count($galerias_perfil) > 0) {
-                                        foreach ($galerias_perfil as $galeria) {
-                                            ?>
-                                            <div>
-                                                <div class="image" style="height:400px;background:url(<?= URL . '/' . $galeria['ruta'] ?>) no-repeat center center/cover;">
-                                                </div>
-                                            </div>
-                                            <?php
-                                        }
-                                    } else {
-                                        ?>
-                                        <div>
-                                            <div class="image"><img src="<?= URL . '/assets/archivos/img/galeria_sin.jpg' ?>"
-                                                /></div>
-                                        </div>
+                            <?php
+                            $galerias->set("usuario", $usuario_data['cod']);
+                            $gal = $galerias->view_perfil();
+                            if ($gal!=false){
+                                ?>
+                                <div class="slick-gallery-slideshow">
+                                    <div class="slider gallery-slideshow gallery-slideshow-not-tab">
                                         <?php
-                                    }
-                                    ?>
-                                </div>
-                                <div class="slider gallery-nav gallery-nav-not-tab">
-                                    <?php
-                                    $galerias->set("usuario", $usuario_data['cod']);
-                                    $gal = $galerias->view_perfil();
-                                    $imagenesPerfil->set("cod", $gal['cod']);
-                                    $galerias_perfil = $imagenesPerfil->listForProduct();
-                                    if (count($galerias_perfil) > 0) {
-                                        foreach ($galerias_perfil as $galeria) {
+                                        $galerias->set("usuario", $usuario_data['cod']);
+                                        $gal = $galerias->view_perfil();
+                                        $imagenesPerfil->set("cod", $gal['cod']);
+                                        $galerias_perfil = $imagenesPerfil->listForProduct();
+                                        if (count($galerias_perfil) > 0) {
+                                            foreach ($galerias_perfil as $galeria) {
+                                                ?>
+                                                <div>
+                                                    <div class="image" style="height:400px;background:url(<?= URL . '/' . $galeria['ruta'] ?>) no-repeat center center/cover;">
+                                                    </div>
+                                                </div>
+                                                <?php
+                                            }
+                                        } else {
                                             ?>
                                             <div>
-                                                <div class="image"><img src="<?= URL . '/' . $galeria['ruta'] ?>" alt="<?= $usuario_data['titulo']; ?>"/></div>
+                                                <div class="image"><img src="<?= URL . '/assets/archivos/img/galeria_sin.jpg' ?>"
+                                                    /></div>
                                             </div>
                                             <?php
                                         }
-                                    } else {
                                         ?>
-                                        <!--
+                                    </div>
+                                    <div class="slider gallery-nav gallery-nav-not-tab">
+                                        <?php
+                                        $galerias->set("usuario", $usuario_data['cod']);
+                                        $gal = $galerias->view_perfil();
+                                        $imagenesPerfil->set("cod", $gal['cod']);
+                                        $galerias_perfil = $imagenesPerfil->listForProduct();
+                                        if (count($galerias_perfil) > 0) {
+                                            foreach ($galerias_perfil as $galeria) {
+                                                ?>
+                                                <div>
+                                                    <div class="image"><img src="<?= URL . '/' . $galeria['ruta'] ?>" alt="<?= $usuario_data['titulo']; ?>"/></div>
+                                                </div>
+                                                <?php
+                                            }
+                                        } else {
+                                            ?>
+                                            <!--
                                         <div>
                                             <div class="image"><img src="<?= URL ?>/assets/images/post-images/camera/1.jpg"  /></div>
                                         </div>-->
-                                        <?php
-                                    }
-                                    ?>
+                                            <?php
+                                        }
+                                        ?>
+                                    </div>
                                 </div>
-                            </div>
+                            <?php
+                            }else{
+                              ?>
+                                <div class="col-md-8 col-sm-12 col-sm-12">
+                                    <div class="heading-inner">
+                                        <p class="title">Descripción del comercio</p>
+                                    </div>
+                                    <p>
+                                        <?= ucfirst($usuario_data['descripcion']); ?>
+                                    </p>
+                                </div>
+                            <?php
+                            }
+                            ?>
+
                         </div>
                         <div class="col-md-4 col-sm-12 col-xs-12 ">
                             <div class="ad-detail">
@@ -116,8 +136,13 @@ $template->themeInit();
                                 <?php
                                 $imagenesPerfil->set("cod", $usuario_data['cod']);
                                 $img = $imagenesPerfil->view();
+                                if($img!=false){
+                                    ?>
+                                    <img src="<?= URL . '/' . $img['ruta'] ?>" width="100%" />
+                                <?php
+                                }
                                 ?>
-                                <div style="height:340px;background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/100%;"></div>
+
                                 <div class="ad-detail-desc light-blue pb-40 pt-20">
                                     <ul>
                                         <li>
@@ -142,9 +167,9 @@ $template->themeInit();
                                     </ul>
                                     <ul class="social-network social-circle onwhite" style="margin-top: 10px;">
                                         <ul class="social-icons icon-circle list-unstyled list-inline">
-                                            <?php if($usuario_data['facebook'] != '') { echo '<li><a href="'.$usuario_data['facebook'].'"><i class="fa fa-facebook"></i></a></li>'; } ?>
-                                            <?php if($usuario_data['twitter'] != '') { echo '<li><a href="'.$usuario_data['twitter'].'"><i class="fa fa-instagram"></i></a></li>'; } ?>
-                                            <?php if($usuario_data['instagram'] != '') { echo '<li><a href="'.$usuario_data['instagram'].'"><i class="fa fa-twitter"></i></a></li>'; } ?>
+                                            <?php if($usuario_data['facebook'] != '') { echo '<li><a  target="_blank"  href="'.$usuario_data['facebook'].'"><i class="fa fa-facebook"></i></a></li>'; } ?>
+                                            <?php if($usuario_data['twitter'] != '') { echo '<li><a  target="_blank"  href="'.$usuario_data['twitter'].'"><i class="fa fa-instagram"></i></a></li>'; } ?>
+                                            <?php if($usuario_data['instagram'] != '') { echo '<li><a  target="_blank"  href="'.$usuario_data['instagram'].'"><i class="fa fa-twitter"></i></a></li>'; } ?>
                                         </ul>
                                     </ul>
                                 </div>
@@ -154,12 +179,18 @@ $template->themeInit();
                     </div>
                     <div class="row">
                         <div class="col-md-8 col-sm-12 col-sm-12">
-                            <div class="heading-inner">
-                                <p class="title">Descripción del comercio</p>
-                            </div>
-                            <p>
-                                <?= ucfirst($usuario_data['descripcion']); ?>
-                            </p>
+                            <?php
+                            if ($gal!=false){
+                                ?>
+                                <div class="heading-inner">
+                                    <p class="title">Descripción del comercio</p>
+                                </div>
+                                <p>
+                                    <?= ucfirst($usuario_data['descripcion']); ?>
+                                </p>
+                            <?php
+                            }
+                            ?>
                         </div>
                         <div class="col-md-4 col-sm-12 col-xs-12">
                             <aside>
@@ -183,7 +214,7 @@ $template->themeInit();
                                             <li>
                                                 <img src="<?= URL . '/' . $img_promos['ruta'] ?>" alt="<?= $p['titulo']; ?>"
                                                      class="img-responsive">
-                                                <a href="<?= URL . '/promocion/' . $p['cod'] ?>"><?= ucfirst(substr($p['titulo'], 0, 20)); ?> </a>
+                                                <a href="<?= URL . '/promocion/' . $funciones->normalizar_link($p["titulo"]) . '/' . $p['cod'] ?>"><?= ucfirst(substr($p['titulo'], 0, 20)); ?> </a>
                                                 <span><i class="fa fa-folder-open-o"></i> <?= ucfirst($cat['titulo']) ?></span>
                                                 <span><i class="fa fa-calendar"></i><?= $fechaI[2] . '/' . $fechaI[1] . '/' . $fechaI[0] ?> -  <?= $fechaF[2] . '/' . $fechaF[1] . '/' . $fechaF[0] ?>
                                                 </span>

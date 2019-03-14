@@ -111,7 +111,7 @@ $numeroPaginas = $promociones->paginador($filter, $cantidad);
                     <div class="col-md-2 col-sm-2 col-xs-2 nopadding">
                         <div class="form-group form-action">
                             <button type="submit" class="btn btn-default btn-search-submit"><span
-                                        class="fa fa-search"></span>Buscar
+                                        class="fa fa-search"></span> <span class="hidden-xs hidden-sm">Buscar</span>
                             </button>
                         </div>
                     </div>

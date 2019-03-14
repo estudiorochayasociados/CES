@@ -103,7 +103,7 @@ class Novedades
         }
 
         $sql = "SELECT * FROM `novedades` $filterSql  ORDER BY $orderSql $limitSql";
-        $notas = $this->con->sqlReturn($sql);
+         $notas = $this->con->sqlReturn($sql);
         if ($notas) {
             while ($row = mysqli_fetch_assoc($notas)) {
                 $array[] = $row;

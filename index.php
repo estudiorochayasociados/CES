@@ -21,8 +21,18 @@ $categoriasData = $categorias->listForArea('', '');
 <body>
 <div class="page">
     <?php $template->themeNav(); ?>
-    <div style="width: 100%; height: 700px;"
-         data-vide-bg="<?= URL ?>/assets/images/video.mp4" data-vide-options="loop: true, muted: false, position: 0% 0%">
+    <div class="hidden-xs hidden-sm" style="width: 100%; height: 700px;" data-vide-bg="<?= URL ?>/assets/images/video.mp4" data-vide-options="loop: true, muted: false, position: 0% 0%">
+        <div class="container pt-150 ">
+            <div class="col-md-7 mt-70" style="background:rgba(0, 92, 75,.7);padding:30px">
+                <h1 style="text-shadow: 0px 5px 10px rgba(0,0,0,.9);color:#fff" class=""><b>Evolucionamos, acá crecemos todos</b></h1>
+                <hr class="pull-left text-left mt-10 mb-10"/>
+                <div class="clearfix"></div>
+                <h3 style="text-shadow: 0px 5px 5px rgba(0,0,0,.9);color:#fff"><b>En el Centro Empresarial y de Servicios estamos evolucionando para que nuestros afiliados tengan cada día más beneficios. </b></h3>
+            </div>
+        </div>
+    </div>
+    <div class="hidden-md hidden-lg">
+        <img src="<?= URL ?>/assets/images/poster.jpg" width="100%" />
     </div>
     <section class="call-to-action-1">
         <div class="container">

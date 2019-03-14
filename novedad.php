@@ -14,7 +14,7 @@ $img = $imagenes->view();
 $fecha = explode("-", $novedad_data['fecha']);
 
 $template->set("title", "CES | ".ucfirst($novedad_data['titulo']));
-$template->set("description", ucfirst(substr($novedad_data['desarrollo'], 0, 120)));
+$template->set("description", ucfirst(substr(strip_tags($novedad_data['desarrollo']), 0, 250)));
 $template->set("keywords", "Novedad");
 $template->set("favicon", LOGO);
 $template->themeInit();

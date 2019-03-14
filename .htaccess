@@ -5,18 +5,7 @@ RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
 RewriteRule ^(.*)$ $1.php
 
-#RewriteRule ^producto/(.*)/(.*)$ ./producto.php?id=$2
-#RewriteRule ^productos/(.*)/(.*)/(.*)/(.*)$ ./productos.php?$1=$2&$3=$4&$5=$6
-##RewriteRule ^productos/(.*)/(.*)/(.*)$ ./productos.php?pagina=$3&categoria=$3
-##RewriteRule ^productos/(.*)/(.*)$ ./productos.php?pagina=$2
-#RewriteRule ^contacto ./contact.php
-
 RewriteRule ^promocion/(.*)/(.*)/(.*)$ ./promocion.php?cod=$3
 RewriteRule ^perfil/(.*)/(.*)$ ./perfil.php?op=$2
 RewriteRule ^comercio/(.*)/(.*)/(.*)$ ./comercio.php?cod=$3
 RewriteRule ^novedad/(.*)/(.*)/(.*)$ ./novedad.php?cod=$3
-
-
-
-#RewriteRule ^blog/(.*)/(.*)$ ./blog.php?cod=$2
-

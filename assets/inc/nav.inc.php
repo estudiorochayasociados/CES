@@ -181,6 +181,9 @@ if (isset($_POST['login'])) {
                     <li class="dropdown">
                         <a href="<?= URL ?>/novedades">Novedades </a>
                     </li>
+                    <li >
+                        <a href="<?= URL ?>/redes-sociales">Redes Sociales</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -211,6 +214,9 @@ if (isset($_POST['login'])) {
                             </li>
                             <li>
                                 <a href="<?= URL ?>/novedades">Novedades </a>
+                            </li>
+                            <li>
+                                <a href="<?= URL ?>/redes-sociales">Redes Sociales</a>
                             </li>
                         </ul>
                     </nav>

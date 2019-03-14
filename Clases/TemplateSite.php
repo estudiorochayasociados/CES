@@ -46,7 +46,7 @@ class TemplateSite
             <link rel="stylesheet" href="<?= URL ?>/assets/css/et-line-fonts.css" type="text/css">
             <link rel="stylesheet" type="text/css" href="<?= URL ?>/assets/fonts/classified/flaticon.css">
             <!-- Google Fonts -->
-            <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900%7cOpen+Sans:400,600,700"
+            <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900%7cOpen+Sans:400,600,700"
                   rel="stylesheet" type="text/css">
             <link href="<?=URL?>/assets/css/nouislider.min.css" rel="stylesheet">
             <!-- Theme Color -->

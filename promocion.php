@@ -5,18 +5,22 @@ $template = new Clases\TemplateSite();
 $funciones = new Clases\PublicFunction();
 $promocion = new Clases\Promociones();
 $usuario = new Clases\Usuarios();
+
+$categorias = new Clases\Categorias();
 $imagenes = new Clases\Imagenes();
 $cod = isset($_GET["cod"]) ? $_GET["cod"] : '';
 $promocion->set("cod", $cod);
 $promo = $promocion->view();
-$usuario->set("cod", $promo['usuario']);
+
+$usuario->set('cod', $promo["usuario"]);
 $user = $usuario->view();
+
 $imagenes->set("cod", $promo['cod']);
 $imagen = $imagenes->listForProduct();
 $fechaI = explode("-", $promo['inicio']);
 $fechaF = explode("-", $promo['fin']);
 $template->set("title", "CES | " . ucfirst($promo['titulo']));
-$template->set("description", ucfirst(substr($promo['descripcion'], 0, 120)));
+$template->set("description", ucfirst(substr(strip_tags($promo['descripcion']), 0, 250)));
 $template->set("keywords", $promo['keywords']);
 $template->set("favicon", LOGO);
 $template->themeInit();
@@ -40,14 +44,14 @@ $template->themeInit();
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-md-8 col-sm-12 col-xs-12">
                             <div class="listing-2-title">
                                 <h2><?= ucfirst($promo['titulo']); ?></h2>
                             </div>
                             <div class="listing-2-meta">
                                 <ul>
                                     <li><i class="fa fa-user"></i> <a
-                                                href="<?= URL . '/comercio/' . $funciones->normalizar_link($user['cod']) ?>"><?= $user['titulo'] ?></a>
+                                                href="<?= URL . '/comercio/'.$funciones->normalizar_link($user['titulo']). '/' . $user['cod'] ?>"><?= $user['titulo'] ?></a>
                                     </li>
                                     <li><i class="fa fa-phone"></i> <?= $user['telefono']; ?></li>
                                     <li>
@@ -76,14 +80,14 @@ $template->themeInit();
                             foreach ($imagen as $img) {
                                 ?>
                                 <a href="<?= URL . '/' . $img['ruta'] ?>" data-lightbox="roadtrip">
-                                    <div style="width: 30%;height:300px;display:inline-block;background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/cover;"></div>
+                                    <div style="width: 49%;height:300px;display:inline-block;background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/cover;"></div>
                                 </a>
                                 <?php
                             }
                             ?>
                             <span class="separator"></span>
                             <br>
-                            <div class="derecha mt-10">
+                            <div class=" mt-10">
                                 <!-- <label>Compartir en:</label>-->
                                 <!-- AddToAny BEGIN -->
                                 <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
@@ -94,6 +98,53 @@ $template->themeInit();
                                     <a class="a2a_button_whatsapp"></a>
                                     <a class="a2a_button_facebook_messenger"></a>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12 col-xs-12 ">
+                             <div class="ad-detail">
+                                <div class="ad-detail-title">
+                                    <h3><i class=" icon-layers"></i> Comercio</h3>
+                                </div>
+                                <?php
+                                $imagenes->set("cod", $user['cod']);
+                                $img = $imagenes->view();
+                                if($img!=false){
+                                    ?>
+                                    <img src="<?= URL . '/' . $img['ruta'] ?>" width="100%" />
+                                    <?php
+                                }
+                                ?>
+                                <div class="ad-detail-desc light-blue pb-40 pt-20 pl-0 pr-0">
+                                    <ul>
+                                        <li>
+                                            <span class="pull-left">Email</span>
+                                            <span class="pull-right"><?= $user['email']; ?></span>
+                                        </li>
+                                        <li>
+                                            <span class="pull-left">Teléfono</span>
+                                            <span class="pull-right"><?= $user['telefono']; ?></span>
+                                        </li>
+                                        <li>
+                                            <span class="pull-left">Rubro</span>
+                                            <?php
+                                            $categorias->set("cod", $user['categoria']);
+                                            $cat = $categorias->view();
+                                            ?>
+                                            <span class="pull-right"><?= ucfirst($cat['titulo']); ?></span>
+                                        </li>
+                                        <li>
+                                            <span class="pull-left"></span>
+                                        </li>
+                                    </ul>
+                                    <ul class="social-network social-circle onwhite" style="margin-top: 10px;">
+                                        <ul class="social-icons icon-circle list-unstyled list-inline">
+                                            <?php if($user['facebook'] != '') { echo '<li><a target="_blank" href="'.$user['facebook'].'"><i class="fa fa-facebook"></i></a></li>'; } ?>
+                                            <?php if($user['twitter'] != '') { echo '<li><a target="_blank" href="'.$user['twitter'].'"><i class="fa fa-instagram"></i></a></li>'; } ?>
+                                            <?php if($user['instagram'] != '') { echo '<li><a target="_blank" href="'.$user['instagram'].'"><i class="fa fa-twitter"></i></a></li>'; } ?>
+                                        </ul>
+                                    </ul>
+                                </div>
+
                             </div>
                         </div>
                     </div>

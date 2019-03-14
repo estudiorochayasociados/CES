@@ -223,7 +223,7 @@ class Usuarios
         } else {
             $filterSql = '';
         }
-        $sql = "SELECT * FROM `promociones` $filterSql";
+        $sql = "SELECT * FROM `usuarios` $filterSql";
         $contar = $this->con->sqlReturn($sql);
         $total = mysqli_num_rows($contar);
         $totalPaginas = $total / $cantidad;

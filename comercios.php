@@ -4,7 +4,6 @@ Config\Autoload::runSitio();
 $template = new Clases\TemplateSite();
 $funciones = new Clases\PublicFunction();
 $usuarios = new Clases\Usuarios();
-$usuarios->set("estado", 1);
 $imagenes = new Clases\Imagenes();
 $categorias = new Clases\Categorias();
 $template->set("title", "CES | Comercios");
@@ -19,13 +18,13 @@ $pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : '0';
 $categoria = isset($_GET["categoria"]) ? $_GET["categoria"] : '';
 $titulo = isset($_GET["titulo"]) ? $_GET["titulo"] : '';
 
-$cantidad = 5;
+$cantidad = 4;
 
 if ($pagina > 0) {
     $pagina = $pagina - 1;
 }
 
-if (@count($_GET) > 0) {
+if (@count($_GET) > 1) {
     $anidador = "&";
 } else {
     $anidador = "?";
@@ -108,7 +107,7 @@ $numeroPaginas = $usuarios->paginador($filter, $cantidad);
                     <div class="col-md-2 col-sm-2 col-xs-2 nopadding">
                         <div class="form-group form-action">
                             <button type="submit" class="btn btn-default btn-search-submit"><span
-                                        class="fa fa-search"></span>Buscar
+                                        class="fa fa-search"></span> <span class="hidden-xs hidden-sm">Buscar</span>
                             </button>
                         </div>
                     </div>
@@ -126,7 +125,7 @@ $numeroPaginas = $usuarios->paginador($filter, $cantidad);
                             ?>
                             <div class="ad-box ad-box-2" style="width:100%;">
                                 <div class="col-md-4 col-sm-3 col-xs-12 ">
-                                    <a href="<?= URL . '/comercio/'.$funciones->normalizar_link($user['titulo']). '/' . $user['cod'] ?>">
+                                    <a href="<?= URL . '/comercio/' . $funciones->normalizar_link($user['titulo']) . '/' . $user['cod'] ?>">
                                         <div style="width:100%;height:250px;background:url(<?= URL . '/' . $img['ruta'] ?>) no-repeat center center/contain"></div>
                                     </a>
                                 </div>
@@ -134,7 +133,7 @@ $numeroPaginas = $usuarios->paginador($filter, $cantidad);
                                     <div class="ad-box-2-detail">
                                         <div class="ad-title-box">
                                             <div class="ad-title"><a
-                                                        href="<?= URL . '/comercio/'.$funciones->normalizar_link($user['titulo']). '/' . $user['cod'] ?>"> <?= ucfirst($user['titulo']) ?> </a>
+                                                        href="<?= URL . '/comercio/' . $funciones->normalizar_link($user['titulo']) . '/' . $user['cod'] ?>"> <?= ucfirst($user['titulo']) ?> </a>
                                             </div>
                                             <div class="ad-title-meta">
                                        <span>
@@ -163,9 +162,11 @@ $numeroPaginas = $usuarios->paginador($filter, $cantidad);
                                                 <?php
                                             }
                                             ?>
-                                            <a href="<?= URL . '/comercio/'.$funciones->normalizar_link($user['titulo']). '/' . $user['cod'] ?>"
-                                               class="btn btn-default pull-right"> Ver información del comercio <i class="fa fa-angle-double-right"></i> </a>
+                                            <a href="<?= URL . '/comercio/' . $funciones->normalizar_link($user['titulo']) . '/' . $user['cod'] ?>"
+                                               class="btn btn-default pull-right"> Ver información del comercio <i
+                                                        class="fa fa-angle-double-right"></i> </a>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -205,10 +206,8 @@ $numeroPaginas = $usuarios->paginador($filter, $cantidad);
                 </div>
             <?php endif; ?>
         </div>
+    </section>
 </div>
-</section>
 <?php $template->themeEnd(); ?>
-</div>
 </body>
-
 </html>
